@@ -2,124 +2,84 @@
 
 import logo from "@/src/assets/store-logo.png";
 import { siteConfig } from "@/src/config/site";
-
+import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";
 import { Button } from "@nextui-org/button";
-import { Link as NextUILink } from "@nextui-org/link";
-import {
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarMenuToggle,
-  Navbar as NextUINavbar,
-} from "@nextui-org/navbar";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { FiLogIn, FiSearch } from "react-icons/fi";
+import NavbarUserDropdown from "./NavbarUserDropdown";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [isLoading, setIsLoading] = useState(false);
-  const user = false;
+  const { userData, isLoading } = useUserDetails();
 
   return (
-    <NextUINavbar
-      maxWidth="xl"
-      position="sticky"
-      className="pt-2 pb-1 lg:pb-4"
-      classNames={{
-        item: [
-          "flex",
-          "relative",
-          "h-full",
-          "items-center",
-          "data-[active=true]:after:content-['']",
-          "data-[active=true]:after:absolute",
-          "data-[active=true]:after:-bottom-3",
-          "data-[active=true]:after:left-0",
-          "data-[active=true]:after:right-0",
-          "data-[active=true]:after:h-[3px]",
-          "data-[active=true]:after:rounded-[3px]",
-          "data-[active=true]:after:bg-primary",
-        ],
-      }}
-    >
-      <NavbarBrand className="mt-3">
-        <div className="lg:hidden">
-          <NavbarMenuToggle />
-        </div>
-        <Image
-          src={logo}
-          alt="logo"
-          height={80}
-          width={80}
-          className="hidden lg:flex py-1"
-        />
-      </NavbarBrand>
+    <div className="bg-gradient-to-r from-gray-600 to-gray-800">
+      <div className="max-w-screen-xl mx-auto">
+        {/* First Row: Search Bar on Right and Logo on Left */}
+        <div className="flex items-center justify-between py-2 px-6 flex-wrap">
+          {/* Logo (on the left) */}
+          <div className="flex-shrink-0">
+            <Image
+              src={logo}
+              alt="logo"
+              height={50}
+              width={50}
+              className="transition-transform transform hover:scale-110 rounded-full"
+            />
+          </div>
 
-      <NavbarContent justify="center">
-        <div className="hidden lg:flex gap-6">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem
-              className={`text-lg ${
-                pathname === item.href ? "text-primary" : "text-white"
-              }`}
-              key={item.label}
-              isActive={pathname === item.href}
-            >
+          {/* Search Bar (on the right) */}
+          <div className="flex items-center w-full sm:w-1/2 bg-white rounded-full shadow-lg p-2 mb-4 sm:mb-0 order-first sm:order-last">
+            <FiSearch className="text-gray-500 mx-2" />
+            <input
+              type="text"
+              placeholder="Search..."
+              className="w-full bg-transparent text-gray-700 focus:outline-none px-4 rounded-full"
+            />
+          </div>
+        </div>
+
+        {/* Second Row: Routes and Login Button */}
+        <div className="flex flex-wrap items-center justify-between text-white px-6 py-2">
+          {/* Navigation Links */}
+          <div className="flex gap-8 items-center justify-center w-full sm:w-auto mb-4 sm:mb-0">
+            {siteConfig.navItems.map((item) => (
               <Link
                 href={item.href}
-                aria-current={pathname === item.href ? "page" : undefined}
+                key={item.label}
+                className={`text-lg font-semibold transition-all duration-300 hover:bg-gradient-to-r hover:from-green-400 hover:to-green-600 hover:text-white p-2 rounded-md ${
+                  pathname === item.href ? "text-white" : ""
+                }`}
               >
+                <span className="mr-2">{item.icon}</span>
                 {item.label}
               </Link>
-            </NavbarItem>
-          ))}
-        </div>
-        {/* <Image
-          src={logo}
-          alt="logo"
-          height={170}
-          width={170}
-          className="flex lg:hidden"
-        /> */}
-      </NavbarContent>
+            ))}
+          </div>
 
-      <NavbarContent justify="end">
-        <NavbarItem className="flex">
-          {isLoading ? (
-            <div className="animate-pulse w-10 h-10 rounded-full bg-gray-400 " />
-          ) : user ? (
-            // <NavbarUserDropdown user={user} />
-            ""
-          ) : (
-            <Link href="/login">
-              <div className="hidden md:block">
-                <Button color="secondary">Login</Button>
-              </div>
-            </Link>
-          )}
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarMenu>
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item.label}-${index}`}>
-              <NextUILink
-                color="primary"
-                href={item.href}
-                size="lg"
-                className="font-bold"
-              >
-                {item.label}
-              </NextUILink>
-            </NavbarMenuItem>
-          ))}
+          {/* Login Button */}
+          <div className="w-full sm:w-auto text-center sm:text-right">
+            {isLoading ? (
+              <div className="animate-pulse w-10 h-10 rounded-full bg-gray-400 mx-auto sm:mx-0" />
+            ) : userData ? (
+              <NavbarUserDropdown user={userData} />
+            ) : (
+              <Link href="/login">
+                <Button
+                  color="primary"
+                  radius="lg"
+                  size="sm"
+                  className="bg-white text-black hover:bg-gray-200 transition-all mx-auto sm:mx-0"
+                >
+                  <FiLogIn className="mr-2" /> Login
+                </Button>
+              </Link>
+            )}
+          </div>
         </div>
-      </NavbarMenu>
-    </NextUINavbar>
+      </div>
+    </div>
   );
 }
