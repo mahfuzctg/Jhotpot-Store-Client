@@ -1,6 +1,6 @@
 "use client";
 
-import logo from "@/src/assets/logo.png";
+import logo from "@/src/assets/store-logo.png";
 import { siteConfig } from "@/src/config/site";
 
 import { Button } from "@nextui-org/button";
