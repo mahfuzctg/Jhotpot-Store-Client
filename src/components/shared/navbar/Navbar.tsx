@@ -21,6 +21,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between py-2 px-6 flex-wrap">
           {/* Logo (on the left) */}
           <div className="flex-shrink-0">
+            {" "}
             <Image
               src={logo}
               alt="logo"
@@ -28,8 +29,7 @@ export default function Navbar() {
               width={50}
               className="transition-transform transform hover:scale-110 rounded-full"
             />
-          </div>
-
+          </div>{" "}
           {/* Search Bar (on the right) */}
           <div className="flex items-center w-full sm:w-1/2 bg-white rounded-full shadow-lg p-2 mb-4 sm:mb-0 order-first sm:order-last">
             <FiSearch className="text-gray-500 mx-2" />
