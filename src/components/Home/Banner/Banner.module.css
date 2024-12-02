@@ -1,0 +1,20 @@
+/* Custom bullet styles */
+.swiper-pagination-bullet {
+  background-color: white;
+  /* Bullet color */
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+  /* Active bullet opacity */
+}
+
+/* Custom pagination container positioning */
+.swiper-pagination {
+  bottom: 30px;
+  /* Adjust to position it near "Shop Now" button */
+  left: 50%;
+  transform: translateX(-50%);
+}

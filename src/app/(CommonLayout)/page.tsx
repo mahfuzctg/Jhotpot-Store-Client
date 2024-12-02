@@ -1,7 +1,8 @@
 const page = () => {
   return (
-    <div>
-      <h1>Welcome to , page Page!</h1>
+    <div className="pt-16 lg:pt-0">
+      <Banner />
+      <div className="py-16"></div>
     </div>
   );
 };
