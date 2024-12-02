@@ -1,3 +1,5 @@
+import Banner from "../../components/Home/Banner/Banner";
+
 const page = () => {
   return (
     <div className="pt-16 lg:pt-0">

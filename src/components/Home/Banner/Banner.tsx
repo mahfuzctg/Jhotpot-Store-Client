@@ -1,6 +1,6 @@
 "use client";
 
-import bannerInfo from "@/src/jsons/bannerInfo.json";
+import banner from "@/src/jsons/banner.json";
 import parse from "html-react-parser";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -26,7 +26,7 @@ const Banner = () => {
         modules={[Autoplay, Pagination]}
         className="mySwiper"
       >
-        {bannerInfo.map((banner, index) => (
+        {banner.map((banner, index) => (
           <SwiperSlide key={index}>
             <div className="flex flex-col lg:flex-row justify-center items-center px-6 md:px-12">
               {/* Text Section */}
