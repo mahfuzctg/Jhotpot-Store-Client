@@ -35,11 +35,11 @@ const Banner = () => {
                   🌟 {banner.heading_short} 🌟
                 </div>
                 <h1 className="text-5xl font-bold text-white mb-4">
-                  {parse(banner.heading)} 🎉
+                  {parse(banner.heading)}
                 </h1>
                 <p className="text-white text-lg mb-6">{banner.description}</p>
                 <button className="relative h-12 w-30 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3">
-                  Shop now 🛍️
+                  Buy now 🛍️
                 </button>
               </div>
             </div>
