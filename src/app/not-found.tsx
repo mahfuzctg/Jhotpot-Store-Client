@@ -1,35 +1,36 @@
 import { Button } from "@nextui-org/button";
-import Image from "next/image";
 import Link from "next/link";
+import { FaSadTear } from "react-icons/fa";
+import { FiHome } from "react-icons/fi";
 
 const NotFoundPage = () => {
   return (
-    <div className="relative h-screen">
-      <Image
-        src={
-          "https://images.pexels.com/photos/2132180/pexels-photo-2132180.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-        }
-        alt="background"
-        fill
-        className="absolute inset-0 object-cover w-full h-full"
-      />
-      <div className="relative bg-gray-900 bg-opacity-75 h-full">
-        <div className="flex flex-col justify-center items-center h-full max-w-2xl mx-auto">
-          <h1 className="mb-5 text-6xl md:text-8xl font-bold text-white text-center">
-            404
-          </h1>
-          <h1 className="mb-5 text-4xl md:text-6xl font-bold text-white text-center">
-            Page Not Found
-          </h1>
-          <div className="divider w-80 mx-auto text-white" />
-          <p className="mb-5 md:text-lg text-white text-center mx-5">
-            Sorry but we couldn&apos;t find the page you are looking for. Please
-            check to make sure you&apos;ve typed the URL correctly.
-          </p>
-          <Link href="/">
-            <Button>Back to Home</Button>
-          </Link>
+    <div className="flex flex-col justify-center items-center h-screen bg-gradient-to-b from-gray-900 to-black text-center px-5">
+      <div className="flex flex-col items-center gap-4 text-white">
+        <div className="text-red-500 text-8xl">
+          <FaSadTear />
         </div>
+        <h1 className="text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-500 via-yellow-500 to-orange-500">
+          404
+        </h1>
+        <h2 className="text-4xl font-bold">Oops! Page not found.</h2>
+        <p className="text-gray-300 text-lg max-w-lg">
+          It seems like the page you are looking for doesn't exist or has been
+          moved. Don’t worry, let’s get you back on track!
+        </p>
+      </div>
+      <div className="mt-6">
+        <Link href="/">
+          <Button
+            color="primary"
+            radius="sm"
+            size="lg"
+            className="bg-gradient-to-r from-green-500 to-blue-500 text-white flex items-center gap-2 hover:from-blue-500 hover:to-green-500"
+          >
+            <FiHome />
+            Back to Home
+          </Button>
+        </Link>
       </div>
     </div>
   );
