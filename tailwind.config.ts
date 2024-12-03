@@ -27,7 +27,7 @@ module.exports = {
           layout: {}, // dark theme layout tokens
           colors: {
             primary: {
-              DEFAULT: "##15B4A3",
+              DEFAULT: "#14B6A5",
             },
             secondary: {
               DEFAULT: "#4f46e5",

@@ -16,10 +16,10 @@ export default function FeatureSection() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Card 1 */}
-          <div className="group relative p-6 text-center bg-white shadow-lg rounded-lg border-b-4 border-[#1A706E] overflow-hidden">
+          <div className="group relative p-6 text-center bg-white shadow-lg rounded-lg border-b-4 border-[#14B6A5] overflow-hidden">
             <div className="absolute inset-0 bg-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
             <div className="relative z-10">
-              <FaCarrot className="text-5xl text-[#1B6264] mx-auto mb-4 group-hover:text-white transition-colors duration-500" />
+              <FaCarrot className="text-5xl text-[#14B6A5] mx-auto mb-4 group-hover:text-white transition-colors duration-500" />
               <h3 className="text-xl font-semibold mb-2 group-hover:text-white transition-colors duration-500">
                 Farm Fresh Vegetables
               </h3>
@@ -30,10 +30,10 @@ export default function FeatureSection() {
             </div>
           </div>
           {/* Card 2 */}
-          <div className="group relative p-6 text-center bg-white shadow-lg rounded-lg border-b-4 border-[#1A706E] overflow-hidden">
+          <div className="group relative p-6 text-center bg-white shadow-lg rounded-lg border-b-4 border-[#14B6A5] overflow-hidden">
             <div className="absolute inset-0 bg-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
             <div className="relative z-10">
-              <FaLeaf className="text-5xl text-[#1B6264] mx-auto mb-4 group-hover:text-white transition-colors duration-500" />
+              <FaLeaf className="text-5xl text-[#14B6A5] mx-auto mb-4 group-hover:text-white transition-colors duration-500" />
               <h3 className="text-xl font-semibold mb-2 group-hover:text-white transition-colors duration-500">
                 100% Organic Products
               </h3>
@@ -43,10 +43,10 @@ export default function FeatureSection() {
             </div>
           </div>
           {/* Card 3 */}
-          <div className="group relative p-6 text-center bg-white shadow-lg rounded-lg border-b-4 border-[#1A706E] overflow-hidden">
+          <div className="group relative p-6 text-center bg-white shadow-lg rounded-lg border-b-4 border-[#14B6A5] overflow-hidden">
             <div className="absolute inset-0 bg-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
             <div className="relative z-10">
-              <FaShoppingBasket className="text-5xl text-[#1B6264] mx-auto mb-4 group-hover:text-white transition-colors duration-500" />
+              <FaShoppingBasket className="text-5xl text-[#14B6A5] mx-auto mb-4 group-hover:text-white transition-colors duration-500" />
               <h3 className="text-xl font-semibold mb-2 group-hover:text-white transition-colors duration-500">
                 Convenient Shopping
               </h3>
@@ -57,10 +57,10 @@ export default function FeatureSection() {
             </div>
           </div>
           {/* Card 4 */}
-          <div className="group relative p-6 text-center bg-white shadow-lg rounded-lg border-b-4 border-[#1A706E] overflow-hidden">
+          <div className="group relative p-6 text-center bg-white shadow-lg rounded-lg border-b-4 border-[#14B6A5] overflow-hidden">
             <div className="absolute inset-0 bg-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
             <div className="relative z-10">
-              <FaTruck className="text-5xl text-[#1B6264] mx-auto mb-4 group-hover:text-white transition-colors duration-500" />
+              <FaTruck className="text-5xl text-[#14B6A5] mx-auto mb-4 group-hover:text-white transition-colors duration-500" />
               <h3 className="text-xl font-semibold mb-2 group-hover:text-white transition-colors duration-500">
                 Fast Delivery
               </h3>
@@ -70,10 +70,10 @@ export default function FeatureSection() {
             </div>
           </div>
           {/* Card 5 */}
-          <div className="group relative p-6 text-center bg-white shadow-lg rounded-lg border-b-4 border-[#1A706E] overflow-hidden">
+          <div className="group relative p-6 text-center bg-white shadow-lg rounded-lg border-b-4 border-[#14B6A5] overflow-hidden">
             <div className="absolute inset-0 bg-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
             <div className="relative z-10">
-              <FaHandsHelping className="text-5xl text-[#1B6264] mx-auto mb-4 group-hover:text-white transition-colors duration-500" />
+              <FaHandsHelping className="text-5xl text-[#14B6A5] mx-auto mb-4 group-hover:text-white transition-colors duration-500" />
               <h3 className="text-xl font-semibold mb-2 group-hover:text-white transition-colors duration-500">
                 Friendly Support
               </h3>
@@ -83,10 +83,10 @@ export default function FeatureSection() {
             </div>
           </div>
           {/* Card 6 */}
-          <div className="group relative p-6 text-center bg-white shadow-lg rounded-lg border-b-4 border-[#1A706E] overflow-hidden">
+          <div className="group relative p-6 text-center bg-white shadow-lg rounded-lg border-b-4 border-[#14B6A5] overflow-hidden">
             <div className="absolute inset-0 bg-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
             <div className="relative z-10">
-              <FaShieldAlt className="text-5xl text-[#1B6264] mx-auto mb-4 group-hover:text-white transition-colors duration-500" />
+              <FaShieldAlt className="text-5xl text-[#14B6A5] mx-auto mb-4 group-hover:text-white transition-colors duration-500" />
               <h3 className="text-xl font-semibold mb-2 group-hover:text-white transition-colors duration-500">
                 Safe Transactions
               </h3>

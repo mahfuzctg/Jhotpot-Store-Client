@@ -15,7 +15,7 @@ export default function Navbar() {
   const { userData, isLoading } = useUserDetails();
 
   return (
-    <div className="bg-gradient-to-r from-[#14B8A6] to-gray-800">
+    <div className="bg-white shadow-md">
       <div className="max-w-screen-xl mx-auto">
         {/* Navbar in a single row */}
         <div className="flex items-center justify-between py-2 px-6">
@@ -31,7 +31,7 @@ export default function Navbar() {
           </div>
 
           {/* Search Bar */}
-          <div className="flex items-center w-1/2 bg-white rounded-full shadow-lg p-1 ">
+          <div className="flex items-center w-1/2 border-b-4 border-[#14B6A5]  rounded-full shadow p-1">
             <FiSearch className="text-gray-500 mx-2" />
             <input
               type="text"
@@ -46,8 +46,8 @@ export default function Navbar() {
               <Link
                 href={item.href}
                 key={item.label}
-                className={`text-lg font-semibold transition-all duration-300 hover:bg-gradient-to-r hover:from-[#14B8A6] hover:to-[#14B8A6] hover:text-white p-2 rounded-md ${
-                  pathname === item.href ? "text-white" : ""
+                className={`text-lg font-semibold text-[#14B6A5] transition-all duration-300 hover:border-b-4 hover:border-[#14B6A5] ${
+                  pathname === item.href ? "border-b-4 border-[#14B6A5]" : ""
                 }`}
               >
                 <span className="mr-2">{item.icon}</span>
@@ -68,7 +68,7 @@ export default function Navbar() {
                   color="primary"
                   radius="lg"
                   size="sm"
-                  className="bg-white text-black hover:bg-gray-200 transition-all mx-auto"
+                  className="bg-[#14B6A5] text-white hover:bg-[#0E867A] transition-all mx-auto"
                 >
                   <FiLogIn className="mr-2" /> Login
                 </Button>

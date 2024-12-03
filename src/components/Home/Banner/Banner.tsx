@@ -3,7 +3,7 @@
 const Banner = () => {
   return (
     <div
-      className="relative flex items-center justify-center h-[500px] bg-cover bg-center bg-no-repeat"
+      className="relative flex items-center justify-center md:h-[550px] bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: `url('https://i.postimg.cc/xdnsFcb0/New-Arrival-2.png')`, // Replace with your image path
       }}
