@@ -1,3 +1,4 @@
+import FeatureSection from "@/src/components/Home/Feature/Feature";
 import ScrollingMarquee from "@/src/components/Home/Marquee/Marquee";
 import Banner from "../../components/Home/Banner/Banner";
 
@@ -8,6 +9,10 @@ const page = () => {
       <>
         <ScrollingMarquee />
       </>
+
+      <div className="py-16">
+        <FeatureSection />
+      </div>
     </div>
   );
 };
