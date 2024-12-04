@@ -1,6 +1,7 @@
 import FeatureSection from "@/src/components/Home/Feature/Feature";
 import Footer from "@/src/components/Home/Footer/Footer";
 import ScrollingMarquee from "@/src/components/Home/Marquee/Marquee";
+import CategorySection from "@/src/components/Sections/CategorySection";
 import Banner from "../../components/Home/Banner/Banner";
 
 const page = () => {
@@ -13,6 +14,9 @@ const page = () => {
 
       <div className="py-16">
         <FeatureSection />
+      </div>
+      <div className="py-16">
+        <CategorySection />
       </div>
       <div className="pt-16">
         <Footer />

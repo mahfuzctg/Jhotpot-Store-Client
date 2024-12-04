@@ -6,7 +6,7 @@ const Banner = () => {
         <img
           src="https://i.postimg.cc/xdnsFcb0/New-Arrival-2.png" // Replace with your banner image URL
           alt="Banner"
-          className="w-full h-[60vh] object-cover"
+          className="w-full h-[80vh] object-cover"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center">
           <h1 className="text-white text-4xl md:text-6xl font-bold text-center">
