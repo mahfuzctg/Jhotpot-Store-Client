@@ -18,7 +18,7 @@ const CategorySection = () => {
         {/* Grid layout for categories */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {/* Category Card 1 */}
-          <div className="category-card bg-white shadow-lg rounded-3xl overflow-hidden border-4 border-[#17AEA1] hover:scale-105 transition-transform duration-500 transform hover:shadow-2xl">
+          <div className="category-card bg-white shadow-lg rounded-lg overflow-hidden relative border-t-[3px] border-[#17AEA1] hover:scale-105 transition-transform duration-300 transform hover:shadow-2xl">
             <Link href="/category/leafy-greens">
               <div>
                 <Image
@@ -35,16 +35,18 @@ const CategorySection = () => {
                   <p className="text-gray-600 mt-2">
                     Spinach, Kale, Lettuce, and more.
                   </p>
-                  <button className="mt-4 px-6 py-2 bg-[#17AEA1] text-white rounded-full hover:bg-[#148c7f] transition-colors duration-300">
-                    Explore
-                  </button>
                 </div>
               </div>
             </Link>
+            <div className="px-6 py-2 bg-[#17AEA1] text-white w-full absolute bottom-0 left-0 rounded-b-lg text-center">
+              <button className="w-full ">Explore</button>
+            </div>
+            {/* Saw-like border effect */}
+            <div className="absolute top-0 left-0 w-full h-full clip-saw border-t-[3px] border-[#17AEA1]"></div>
           </div>
 
           {/* Category Card 2 */}
-          <div className="category-card bg-white shadow-lg rounded-2xl overflow-hidden border-4 border-[#17AEA1] hover:scale-105 transition-transform duration-500 transform hover:shadow-2xl">
+          <div className="category-card bg-white shadow-lg rounded-lg overflow-hidden relative border-t-[3px] border-[#17AEA1] hover:scale-105 transition-transform duration-300 transform hover:shadow-2xl">
             <Link href="/category/root-vegetables">
               <div>
                 <Image
@@ -61,16 +63,18 @@ const CategorySection = () => {
                   <p className="text-gray-600 mt-2">
                     Carrots, Beets, Potatoes, and more.
                   </p>
-                  <button className="mt-4 px-6 py-2 bg-[#17AEA1] text-white rounded-full hover:bg-[#148c7f] transition-colors duration-300">
-                    Explore
-                  </button>
                 </div>
               </div>
             </Link>
+            <div className="px-6 py-2 bg-[#17AEA1] text-white w-full absolute bottom-0 left-0 rounded-b-lg text-center">
+              <button className="w-full ">Explore</button>
+            </div>
+            {/* Saw-like border effect */}
+            <div className="absolute top-0 left-0 w-full h-full clip-saw border-t-[3px] border-[#17AEA1]"></div>
           </div>
 
           {/* Category Card 3 */}
-          <div className="category-card bg-white shadow-lg rounded-xl overflow-hidden border-4 border-[#17AEA1] hover:scale-105 transition-transform duration-500 transform hover:shadow-2xl">
+          <div className="category-card bg-white shadow-lg rounded-lg overflow-hidden relative border-t-[3px] border-[#17AEA1] hover:scale-105 transition-transform duration-300 transform hover:shadow-2xl">
             <Link href="/category/cruciferous-vegetables">
               <div>
                 <Image
@@ -87,16 +91,18 @@ const CategorySection = () => {
                   <p className="text-gray-600 mt-2">
                     Broccoli, Cauliflower, Cabbage, and more.
                   </p>
-                  <button className="mt-4 px-6 py-2 bg-[#17AEA1] text-white rounded-full hover:bg-[#148c7f] transition-colors duration-300">
-                    Explore
-                  </button>
                 </div>
               </div>
             </Link>
+            <div className="px-6 py-2 bg-[#17AEA1] text-white w-full absolute bottom-0 left-0 rounded-b-lg text-center">
+              <button className="w-full ">Explore</button>
+            </div>
+            {/* Saw-like border effect */}
+            <div className="absolute top-0 left-0 w-full h-full clip-saw border-t-[3px] border-[#17AEA1]"></div>
           </div>
 
           {/* Category Card 4 */}
-          <div className="category-card bg-white shadow-lg rounded-full overflow-hidden border-4 border-[#17AEA1] hover:scale-105 transition-transform duration-500 transform hover:shadow-2xl">
+          <div className="category-card bg-white shadow-lg rounded-lg overflow-hidden relative border-t-[3px] border-[#17AEA1] hover:scale-105 transition-transform duration-300 transform hover:shadow-2xl">
             <Link href="/category/fruits-and-berries">
               <div>
                 <Image
@@ -113,12 +119,14 @@ const CategorySection = () => {
                   <p className="text-gray-600 mt-2">
                     Tomatoes, Peppers, Berries, and more.
                   </p>
-                  <button className="mt-4 px-6 py-2 bg-[#17AEA1] text-white rounded-full hover:bg-[#148c7f] transition-colors duration-300">
-                    Explore
-                  </button>
                 </div>
               </div>
             </Link>
+            <div className="px-6 py-2 bg-[#17AEA1] text-white w-full absolute bottom-0 left-0 rounded-b-lg text-center">
+              <button className="w-full ">Explore</button>
+            </div>
+            {/* Saw-like border effect */}
+            <div className="absolute top-0 left-0 w-full h-full clip-saw border-t-[3px] border-[#17AEA1]"></div>
           </div>
         </div>
       </div>
