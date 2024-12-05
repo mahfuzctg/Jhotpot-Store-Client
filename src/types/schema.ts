@@ -140,3 +140,8 @@ export enum UserStatus {
   BLOCKED = "BLOCKED",
   DELETED = "DELETED",
 }
+
+export enum PaymentStatus {
+  PAID = "PAID",
+  UNPAID = "UNPAID",
+}
