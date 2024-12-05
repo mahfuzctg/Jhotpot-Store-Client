@@ -37,3 +37,18 @@ export interface IVendor {
   followers: IFollow[];
   user: IUser;
 }
+
+export interface ICustomer {
+  id: string;
+  name: string;
+  email: string;
+  profilePhoto?: string;
+  isDeleted: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  orders: IOrder[];
+  reviews: IReview[];
+  follows: IFollow[];
+  recentProductView: IRecentProductView[];
+  user: IUser;
+}
