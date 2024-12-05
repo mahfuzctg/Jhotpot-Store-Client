@@ -118,3 +118,12 @@ export interface IFollow {
   customer: ICustomer;
   vendor: IVendor;
 }
+
+export interface IRecentProductView {
+  id: string;
+  customerId: string;
+  productId: string;
+  viewedAt: Date;
+  customer: ICustomer;
+  product: IProduct;
+}
