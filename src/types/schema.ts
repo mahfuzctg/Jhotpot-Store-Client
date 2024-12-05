@@ -21,3 +21,19 @@ export interface IAdmin {
   updatedAt: Date;
   user: IUser;
 }
+
+export interface IVendor {
+  id: string;
+  name: string;
+  email: string;
+  shopName?: string;
+  logo?: string;
+  description?: string;
+  isDeleted: boolean;
+  createdAt: Date;
+  updatedAt: Date;
+  products: IProduct[];
+  orders: IOrder[];
+  followers: IFollow[];
+  user: IUser;
+}
