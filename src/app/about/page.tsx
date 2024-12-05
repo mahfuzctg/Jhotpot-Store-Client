@@ -23,7 +23,12 @@ const Banner = () => {
       {/* About Section */}
       <div className="bg-gray-100 py-12 px-6 md:px-12">
         <div className="max-w-5xl mx-auto text-center">
-          <Title heading={"About Us"} sub={"WELCOME"}></Title>
+          <Title
+            heading={
+              "We are committed to providing you with the best services to meet your needs. Our platform is designed to"
+            }
+            sub={"WELCOME"}
+          ></Title>
           <p className="text-gray-600 mt-4 text-lg md:text-xl">
             We are committed to providing you with the best services to meet
             your needs. Our platform is designed to offer a seamless experience
