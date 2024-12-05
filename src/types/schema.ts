@@ -110,3 +110,11 @@ export interface IReview {
   product: IProduct;
   customer: ICustomer;
 }
+
+export interface IFollow {
+  id: string;
+  customerId: string;
+  vendorId: string;
+  customer: ICustomer;
+  vendor: IVendor;
+}
