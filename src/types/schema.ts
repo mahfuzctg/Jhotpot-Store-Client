@@ -127,3 +127,10 @@ export interface IRecentProductView {
   customer: ICustomer;
   product: IProduct;
 }
+
+export enum UserRole {
+  SUPER_ADMIN = "SUPER_ADMIN",
+  ADMIN = "ADMIN",
+  VENDOR = "VENDOR",
+  CUSTOMER = "CUSTOMER",
+}
