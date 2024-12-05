@@ -1,3 +1,5 @@
+import Title from "@/src/components/Sections/title";
+
 const Banner = () => {
   return (
     <div className="relative w-full h-screen">
@@ -21,9 +23,7 @@ const Banner = () => {
       {/* About Section */}
       <div className="bg-gray-100 py-12 px-6 md:px-12">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-            About Us
-          </h2>
+          <Title heading={"About Us"} sub={"WELCOME"}></Title>
           <p className="text-gray-600 mt-4 text-lg md:text-xl">
             We are committed to providing you with the best services to meet
             your needs. Our platform is designed to offer a seamless experience

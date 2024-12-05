@@ -66,7 +66,7 @@ const AllProducts = () => {
   return (
     <div className="pb-14 px-8">
       {/* <SectionTitle sub="Shop The Best" heading="Explore Our Collection" /> */}
-
+      ffffgretterrfvfd
       <div className="py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
         {isLoading
           ? Array.from({ length: dataPerPage }).map((_, index) => (
@@ -78,7 +78,6 @@ const AllProducts = () => {
               </div>
             ))}
       </div>
-
       <div>
         {allProductsResponse?.data?.length > 0 && (
           <div className="flex justify-center items-center mt-4">
