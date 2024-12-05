@@ -71,3 +71,10 @@ export interface IProduct {
   category: ICategory;
   vendor: IVendor;
 }
+
+export interface ICategory {
+  id: string;
+  name: string;
+  image: string;
+  products: IProduct[];
+}
