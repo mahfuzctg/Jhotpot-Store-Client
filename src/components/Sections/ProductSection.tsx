@@ -1,7 +1,7 @@
-import { IProduct } from "@/src/types/model";
+import { IProduct } from "@/src/types/schema";
 import { IoMdCart } from "react-icons/io";
 
-const HomeProductCard = ({ singleProduct }: { singleProduct: IProduct }) => {
+const ProductSection = ({ singleProduct }: { singleProduct: IProduct }) => {
   return (
     <div className="relative max-w-[350px] space-y-4 rounded-lg p-4 shadow-lg md:w-[312px] bg-[#18181B] group">
       {/* Image Section */}
@@ -42,4 +42,4 @@ const HomeProductCard = ({ singleProduct }: { singleProduct: IProduct }) => {
   );
 };
 
-export default HomeProductCard;
+export default ProductSection;
