@@ -134,3 +134,9 @@ export enum UserRole {
   VENDOR = "VENDOR",
   CUSTOMER = "CUSTOMER",
 }
+
+export enum UserStatus {
+  ACTIVE = "ACTIVE",
+  BLOCKED = "BLOCKED",
+  DELETED = "DELETED",
+}
