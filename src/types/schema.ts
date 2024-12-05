@@ -100,3 +100,13 @@ export interface IOrderDetail {
   order: IOrder;
   product: IProduct;
 }
+
+export interface IReview {
+  id: string;
+  productId: string;
+  customerId: string;
+  rating: number;
+  comment?: string;
+  product: IProduct;
+  customer: ICustomer;
+}
