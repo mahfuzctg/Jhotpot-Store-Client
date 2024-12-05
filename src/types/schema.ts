@@ -52,3 +52,22 @@ export interface ICustomer {
   recentProductView: IRecentProductView[];
   user: IUser;
 }
+
+export interface IProduct {
+  id: string;
+  name: string;
+  price: number;
+  inventoryCount: number;
+  description?: string;
+  image: string;
+  flashSale?: boolean;
+  discount?: number;
+  categoryId: string;
+  isDeleted: boolean;
+  vendorId: string;
+  orderDetails: IOrderDetail[];
+  reviews: IReview[];
+  recentProductView: IRecentProductView[];
+  category: ICategory;
+  vendor: IVendor;
+}
