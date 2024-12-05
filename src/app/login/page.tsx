@@ -124,15 +124,6 @@ export default function Login() {
           } w-full lg:w-1/2`}
         >
           <div className="flex flex-col items-center justify-center h-full px-10 text-white">
-            {/* <Link href={"/"}>
-              <Image
-                src={logo}
-                alt="logo"
-                height={60}
-                width={60}
-                className="flex py-4 rounded-full"
-              />
-            </Link> */}
             <h1 className="text-2xl font-semibold my-5">Sign In</h1>
             <div className="flex space-x-3 mb-5">
               <a href="#" className="icon">
@@ -331,16 +322,12 @@ export default function Login() {
         {/* Mobile Toggle Text */}
         <div className="lg:hidden absolute bottom-5 left-1/2 transform  -translate-x-1/2 text-center z-50 w-60 md:w-auto">
           <p>
-            {" "}
-            {isActive
-              ? "Already have an account?"
-              : "Don't have an account?"}{" "}
+            {isActive ? "Already have an account?" : "Don't have an account?"}{" "}
             <button
               onClick={() => setIsActive(!isActive)}
               className="text-primary font-bold hover:underline"
             >
-              {" "}
-              {isActive ? "Login Now!" : "Sign Up Now!"}{" "}
+              {isActive ? "Login Now!" : "Sign Up Now!"}
             </button>{" "}
           </p>
         </div>
@@ -348,5 +335,3 @@ export default function Login() {
     </div>
   );
 }
-
-// previous
