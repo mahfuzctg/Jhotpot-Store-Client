@@ -90,3 +90,13 @@ export interface IOrder {
   customer: ICustomer;
   vendor: IVendor;
 }
+
+export interface IOrderDetail {
+  id: string;
+  orderId: string;
+  productId: string;
+  quantity: number;
+  pricePerUnit: number;
+  order: IOrder;
+  product: IProduct;
+}
