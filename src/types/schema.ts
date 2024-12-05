@@ -78,3 +78,15 @@ export interface ICategory {
   image: string;
   products: IProduct[];
 }
+
+export interface IOrder {
+  id: string;
+  customerId: string;
+  vendorId: string;
+  totalPrice: number;
+  paymentStatus: PaymentStatus;
+  transactionId: string;
+  orderDetails: IOrderDetail[];
+  customer: ICustomer;
+  vendor: IVendor;
+}
