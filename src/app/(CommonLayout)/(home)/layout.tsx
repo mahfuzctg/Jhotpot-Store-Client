@@ -1,4 +1,3 @@
-import Footer from "@/src/components/Home/Footer/Footer";
 import { ReactNode } from "react";
 
 const HomeLayout = ({
@@ -19,7 +18,6 @@ const HomeLayout = ({
       {allProducts}
       {/* <DealOffer /> */}
       {flashSale}
-      <Footer />
     </>
   );
 };
