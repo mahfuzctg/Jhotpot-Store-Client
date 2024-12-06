@@ -1,8 +1,9 @@
 "use client";
 
-import ProductSection from "@/src/components/Sections/ProductSection";
-import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/porduct.api";
+import HomeProductCard from "@/src/components/Cards/HomeProductCard";
 
+import Title from "@/src/components/Sections/title";
+import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/porduct.api";
 import { IProduct } from "@/src/types/schema";
 
 import { Pagination } from "@nextui-org/pagination";
@@ -65,8 +66,8 @@ const AllProducts = () => {
 
   return (
     <div className="pb-14 px-8">
-      {/* <SectionTitle sub="Shop The Best" heading="Explore Our Collection" /> */}
-      ffffgretterrfvfd
+      <Title sub="Shop The Best" heading="Explore Our Collection" />
+
       <div className="py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
         {isLoading
           ? Array.from({ length: dataPerPage }).map((_, index) => (
@@ -74,10 +75,11 @@ const AllProducts = () => {
             ))
           : allProductsResponse?.data?.map((singleProduct: IProduct) => (
               <div key={singleProduct.id}>
-                <ProductSection singleProduct={singleProduct} />
+                <HomeProductCard singleProduct={singleProduct} />
               </div>
             ))}
       </div>
+
       <div>
         {allProductsResponse?.data?.length > 0 && (
           <div className="flex justify-center items-center mt-4">
