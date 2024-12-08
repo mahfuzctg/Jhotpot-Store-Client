@@ -29,10 +29,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en">
+    <html suppressHydrationWarning lang="en" data-theme="">
       <head />
       <body
-        className={clsx("min-h-screen bg-background antialiased mx-6 lg:mx-0")}
+        className={clsx("min-h-screen bg-background antialiased px-3 lg:mx-0")}
       >
         <Providers>{children}</Providers>
       </body>

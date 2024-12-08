@@ -13,6 +13,7 @@ import {
 import storage from "redux-persist/lib/storage";
 import authReducer from "../redux/features/auth/auth.slice";
 import { baseApi } from "./api/baseApi";
+
 // Persist configuration for auth state
 const persistConfig = {
   key: "auth",

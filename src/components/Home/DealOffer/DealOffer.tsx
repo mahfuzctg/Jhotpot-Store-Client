@@ -1,6 +1,5 @@
 "use client";
 
-import Countdown from "react-countdown";
 import { MdDiscount } from "react-icons/md";
 
 const DealOffer = () => {
@@ -49,7 +48,7 @@ const DealOffer = () => {
             <span className="text-primary">UP TO 70% OFF</span>
           </h1>
           <div className="mt-6">
-            <Countdown date={targetDate} renderer={renderer} />
+            {/* <Countdown date={targetDate} renderer={renderer} /> */}
           </div>
           <button className="relative h-12 w-30 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3 mt-6">
             Shop Now
@@ -58,7 +57,7 @@ const DealOffer = () => {
 
         <div className="flex-1 xl:relative">
           <img
-            src="https://html.pixelfit.agency/pesco/assets/images/banner/deal-1.png"
+            src="https://res.cloudinary.com/dxv10xebz/image/upload/v1733589260/spbo6hznzjymo4tsogxb.jpg"
             alt="Shopping Offer"
             className="rounded-lg shadow-lg w-full max-w-md mx-auto xl:-top-[142px] xl:absolute"
           />

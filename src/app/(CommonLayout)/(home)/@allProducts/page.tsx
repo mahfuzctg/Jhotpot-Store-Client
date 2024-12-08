@@ -1,8 +1,9 @@
 "use client";
 
 import HomeProductCard from "@/src/components/Cards/HomeProductCard";
-
+import ProductLoading from "@/src/components/LoadingCards/ProductLoading";
 import Title from "@/src/components/Sections/title";
+
 import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/porduct.api";
 import { IProduct } from "@/src/types/schema";
 
@@ -71,7 +72,9 @@ const AllProducts = () => {
       <div className="py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
         {isLoading
           ? Array.from({ length: dataPerPage }).map((_, index) => (
-              <div key={index}>{/* <ProductLoading /> */}</div>
+              <div key={index}>
+                <ProductLoading />
+              </div>
             ))
           : allProductsResponse?.data?.map((singleProduct: IProduct) => (
               <div key={singleProduct.id}>

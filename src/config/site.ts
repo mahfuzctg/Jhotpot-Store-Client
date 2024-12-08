@@ -14,6 +14,14 @@ export const siteConfig = {
       href: "/about",
     },
     {
+      label: "Products",
+      href: "/allProducts",
+    },
+    {
+      label: "Flash Sale",
+      href: "/flashSale",
+    },
+    {
       label: "Contact",
       href: "/contact",
     },
@@ -26,6 +34,14 @@ export const siteConfig = {
     {
       label: "About",
       href: "/about",
+    },
+    {
+      label: "Products",
+      href: "/allProducts",
+    },
+    {
+      label: "Flash Sale",
+      href: "/flashSale",
     },
     {
       label: "Contact",
