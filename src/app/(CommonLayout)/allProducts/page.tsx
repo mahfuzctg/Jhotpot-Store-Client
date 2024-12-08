@@ -111,14 +111,10 @@ const AllProducts = () => {
 
   const handleCategorySelect = (key: Key) => {
     setCategory(String(key));
-    // setPage(1);
-    // setPosts([]);
   };
 
   const handleSortSelect = (key: Key) => {
     setSort(String(key));
-    // setPage(1);
-    // setPosts([]);
   };
 
   const handleSliderChange = (values: number[]) => {
@@ -237,7 +233,6 @@ const AllProducts = () => {
               value={[minPrice, maxPrice]}
               onChange={handleSliderChange}
             />
-
             <p className="xl:text-xl font-medium text-white text-center">
               Price Range: ${minPrice} - ${maxPrice}
             </p>
@@ -358,18 +353,12 @@ const AllProducts = () => {
       </div>
 
       {/* Pagination part */}
-      <div className="pt-7">
-        {allProductsResponse?.data?.length > 0 && (
-          <div className="flex justify-center items-center mt-4">
-            <Pagination
-              total={totalPages}
-              initialPage={1}
-              page={currentPage}
-              onChange={handlePageChange}
-              showControls
-            />
-          </div>
-        )}
+      <div className="flex justify-center mt-10">
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          onChange={handlePageChange}
+        />
       </div>
     </div>
   );
