@@ -7,12 +7,16 @@ import { Button } from "@nextui-org/button";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FiLogIn, FiSearch } from "react-icons/fi";
+import { FiLogIn, FiLogOut, FiSearch, FiCreditCard } from "react-icons/fi";
 import NavbarUserDropdown from "./NavbarUserDropdown";
 
 export default function Navbar() {
   const pathname = usePathname();
   const { userData, isLoading } = useUserDetails();
+
+  const handleLogout = () => {
+    console.log("User logged out."); // Replace with actual logout logic
+  };
 
   return (
     <div className="bg-white shadow-md">
@@ -30,13 +34,15 @@ export default function Navbar() {
             />
           </div>
 
-          {/* Search Bar */}
-          <div className="flex items-center w-1/2 border-b-4 border-[#14B6A5]  rounded-full shadow p-1">
-            <FiSearch className="text-gray-500 mx-2" />
+          {/* Search Field */}
+          <div className="relative flex items-center">
+            <div className="flex items-center bg-gray-200 hover:bg-gray-300 transition-all rounded-full p-2 shadow">
+              <FiSearch className="text-gray-500 cursor-pointer" />
+            </div>
             <input
               type="text"
               placeholder="Search..."
-              className="w-full bg-transparent text-gray-700 focus:outline-none px-4 rounded-full"
+              className="absolute left-0 top-0 w-0 opacity-0 bg-gray-100 text-gray-700 rounded-full focus:w-48 focus:opacity-100 focus:pl-10 focus:pr-4 focus:py-2 focus:outline-none focus:ring-2 focus:ring-[#14B6A5] transition-all"
             />
           </div>
 
@@ -54,14 +60,33 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
+
+            {/* Card Icon */}
+            <Link
+              href="/cart"
+              className={`text-lg font-semibold text-[#14B6A5] transition-all duration-300 hover:border-b-4 hover:border-[#14B6A5] ${
+                pathname === "/cart" ? "border-b-4 border-[#14B6A5]" : ""
+              }`}
+            >
+              <FiCreditCard className="mr-2 text-lg" />
+              Cart
+            </Link>
           </div>
 
-          {/* Login Button */}
+          {/* Login/Logout Button */}
           <div className="text-center">
             {isLoading ? (
               <div className="animate-pulse w-10 h-10 rounded-full bg-gray-400 mx-auto" />
             ) : userData ? (
-              <NavbarUserDropdown user={userData} />
+              <Button
+                color="danger"
+                radius="lg"
+                size="sm"
+                className="bg-red-500 text-white hover:bg-red-600 transition-all mx-auto"
+                onClick={handleLogout}
+              >
+                <FiLogOut className="mr-2" /> Logout
+              </Button>
             ) : (
               <Link href="/login">
                 <Button
