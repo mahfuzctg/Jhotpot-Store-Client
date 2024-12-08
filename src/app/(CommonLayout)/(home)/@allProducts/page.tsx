@@ -85,7 +85,7 @@ const AllProducts = () => {
 
       <div>
         {allProductsResponse?.data?.length > 0 && (
-          <div className="flex justify-center items-center mt-4">
+          <div className="flex justify-center  items-center mt-4">
             <Pagination
               total={totalPages}
               initialPage={1}

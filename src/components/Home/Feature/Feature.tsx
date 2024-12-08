@@ -10,7 +10,7 @@ import {
 export default function FeatureSection() {
   return (
     <div className="py-16 bg-white text-black">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-8xl mx-auto px-10">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           Why Shop with Jhotpot Store?
         </h2>

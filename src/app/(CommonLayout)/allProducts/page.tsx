@@ -1,26 +1,26 @@
 "use client";
 
-import { Button } from "@nextui-org/button";
+import { Key, useEffect, useState } from "react";
 import {
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
 } from "@nextui-org/dropdown";
-import { Key, useEffect, useState } from "react";
-
-import { BiFilterAlt } from "react-icons/bi";
-import { GrCompare } from "react-icons/gr";
-import { ImCross } from "react-icons/im";
-
-import HomeProductCard from "@/src/components/Cards/HomeProductCard";
-import ProductLoading from "@/src/components/LoadingCards/ProductLoading";
+import { Button } from "@nextui-org/button";
 import { useGetAllCategoriesQuery } from "@/src/lib/redux/features/category/categoryApi";
-import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/porduct.api";
-import { ICategory, IProduct } from "@/src/types/schema";
+
+import { GrCompare } from "react-icons/gr";
+import { BiFilterAlt } from "react-icons/bi";
+import { ImCross } from "react-icons/im";
+import Slider from "react-slider";
+
+import ProductLoading from "@/src/components/LoadingCards/ProductLoading";
+import HomeProductCard from "@/src/components/Cards/HomeProductCard";
 import { Pagination } from "@nextui-org/pagination";
 import { useSearchParams } from "next/navigation";
-import Slider from "react-slider";
+import { ICategory, IProduct } from "@/src/types/schema";
+import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/porduct.api";
 
 const AllProducts = () => {
   const searchParams = useSearchParams();
@@ -111,10 +111,14 @@ const AllProducts = () => {
 
   const handleCategorySelect = (key: Key) => {
     setCategory(String(key));
+    // setPage(1);
+    // setPosts([]);
   };
 
   const handleSortSelect = (key: Key) => {
     setSort(String(key));
+    // setPage(1);
+    // setPosts([]);
   };
 
   const handleSliderChange = (values: number[]) => {
@@ -233,6 +237,7 @@ const AllProducts = () => {
               value={[minPrice, maxPrice]}
               onChange={handleSliderChange}
             />
+
             <p className="xl:text-xl font-medium text-white text-center">
               Price Range: ${minPrice} - ${maxPrice}
             </p>
@@ -353,12 +358,18 @@ const AllProducts = () => {
       </div>
 
       {/* Pagination part */}
-      <div className="flex justify-center mt-10">
-        <Pagination
-          totalPages={totalPages}
-          currentPage={currentPage}
-          onChange={handlePageChange}
-        />
+      <div className="pt-7">
+        {allProductsResponse?.data?.length > 0 && (
+          <div className="flex justify-center items-center mt-4">
+            <Pagination
+              total={totalPages}
+              initialPage={1}
+              page={currentPage}
+              onChange={handlePageChange}
+              showControls
+            />
+          </div>
+        )}
       </div>
     </div>
   );
