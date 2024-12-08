@@ -1,5 +1,5 @@
-import { BaseQueryApi } from "@reduxjs/toolkit/query";
 import { SVGProps } from "react";
+import { BaseQueryApi } from "@reduxjs/toolkit/query";
 
 export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number;

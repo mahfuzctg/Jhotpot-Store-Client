@@ -1,17 +1,18 @@
 // store/store.ts
 import { configureStore } from "@reduxjs/toolkit";
+import authReducer from "../redux/features/auth/auth.slice";
+import productReducer from "@/src/lib/redux/features/products/product.slice";
 import {
+  persistStore,
+  persistReducer,
   FLUSH,
+  REHYDRATE,
   PAUSE,
   PERSIST,
-  persistReducer,
-  persistStore,
   PURGE,
   REGISTER,
-  REHYDRATE,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import authReducer from "../redux/features/auth/auth.slice";
 import { baseApi } from "./api/baseApi";
 
 // Persist configuration for auth state
@@ -28,6 +29,7 @@ export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     auth: persistedReducer,
+    products: productReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
