@@ -1,102 +1,86 @@
 "use client";
 
-import logo from "@/src/assets/store-logo.png";
-import { siteConfig } from "@/src/config/site";
-import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";
-import { Button } from "@nextui-org/button";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import { FiLogIn, FiMenu, FiSearch, FiX } from "react-icons/fi";
-import NavbarUserDropdown from "./NavbarUserDropdown";
 
-export default function Navbar() {
+
+import { logout } from "@/src/lib/redux/features/auth/auth.slice";
+import { useAppDispatch } from "@/src/lib/redux/hooks";
+import { logoutService } from "@/src/utils/loginService";
+
+import { Avatar } from "@nextui-org/avatar";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@nextui-org/dropdown";
+import { LayoutDashboard, LogOut } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import toast from "react-hot-toast";
+
+export default function NavbarUserDropdown({ user }: { user: any }) {
+  const router = useRouter();
   const pathname = usePathname();
-  const { userData, isLoading } = useUserDetails();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const { userData } = user;
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const handleLogout = () => {
+    dispatch(logout());
+
+
+    logoutService();
+    if (protectedRoutes.some((route: { [Symbol.match](string: string): RegExpMatchArray | null; }) => pathname.match(route))) {
+      router.push("/");
+    }
+
+    toast.success("Logged out successfully", { duration: 3000 });
+  };
+
+  const handleNavigation = (pathname: string) => {
+    router.push(pathname);
   };
 
   return (
-    <div className="bg-gradient-to-r from-green-600 to-green-400">
-      <div className="max-w-screen-xl mx-auto">
-        {/* First Row: Search Bar and Logo */}
-        <div className="flex items-center justify-between py-4 px-6 flex-wrap">
-          {/* Search Bar */}
-          <div className="flex items-center w-full sm:w-1/2 bg-white rounded-full shadow-lg p-2 mb-4 sm:mb-0">
-            <FiSearch className="text-gray-500 mx-2" />
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full bg-transparent text-gray-700 focus:outline-none py-2 px-4 rounded-full"
-            />
-          </div>
-
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Image
-              src={logo}
-              alt="logo"
-              height={80}
-              width={80}
-              className="transition-transform transform hover:scale-110"
-            />
-          </div>
-
-          {/* Hamburger Icon (Visible on small screens) */}
-          <div className="sm:hidden">
-            <button onClick={toggleMenu} className="text-white text-2xl">
-              {isMenuOpen ? <FiX /> : <FiMenu />}
-            </button>
-          </div>
-        </div>
-
-        {/* Second Row: Routes and Login Button */}
-        <div
-          className={`flex flex-wrap items-center justify-between bg-black text-white py-3 px-6 transition-all duration-300 ${
-            isMenuOpen ? "block" : "hidden"
-          } sm:flex`}
-        >
-          {/* Navigation Links */}
-          <div className="flex gap-8 items-center justify-center w-full sm:w-auto mb-4 sm:mb-0">
-            {siteConfig.navItems.map((item) => (
-              <Link
-                href={item.href}
-                key={item.label}
-                className={`text-lg font-semibold transition-all duration-300 hover:text-green-300 ${
-                  pathname === item.href ? "text-green-300" : ""
-                }`}
-              >
-                <span className="mr-2">{item.icon}</span>
-                {item.label}
-              </Link>
-            ))}
-          </div>
-
-          {/* Login Button */}
-          <div className="w-full sm:w-auto text-center sm:text-right">
-            {isLoading ? (
-              <div className="animate-pulse w-10 h-10 rounded-full bg-gray-400 mx-auto sm:mx-0" />
-            ) : userData ? (
-              <NavbarUserDropdown user={userData} />
-            ) : (
-              <Link href="/login">
-                <Button
-                  color="primary"
-                  radius="lg"
-                  size="lg"
-                  className="bg-green-700 text-white hover:bg-green-600 transition-all mx-auto sm:mx-0"
-                >
-                  <FiLogIn className="mr-2" /> Login
-                </Button>
-              </Link>
-            )}
-          </div>
-        </div>
-      </div>
+    <div className="flex items-center gap-4">
+      <Dropdown placement="bottom-end">
+        <DropdownTrigger>
+          <Avatar
+            isBordered
+            as="button"
+            className="transition-transform"
+            src={userData?.profilePhoto}
+          />
+        </DropdownTrigger>
+        <DropdownMenu aria-label="Profile Actions" variant="flat">
+          <DropdownItem key="profile" className="h-14 gap-2">
+            <p className="font-semibold text-white">Signed in as</p>
+            <p className="font-semibold text-white">{userData?.email}</p>
+          </DropdownItem>
+          <DropdownItem
+            onClick={() =>
+              handleNavigation(
+                userData?.role === "USER"
+                  ? "/user-dashboard"
+                  : "/admin-dashboard"
+              )
+            }
+          >
+            <span className="flex items-center gap-2 text-white">
+              <span>
+                <LayoutDashboard size={16} />
+              </span>
+              <span>Dashboard</span>
+            </span>
+          </DropdownItem>
+          <DropdownItem onClick={handleLogout} key="logout" color="danger">
+            <span className="flex items-center gap-2 text-white">
+              <span>
+                <LogOut size={16} />
+              </span>
+              <span>Logout</span>
+            </span>
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
     </div>
   );
 }

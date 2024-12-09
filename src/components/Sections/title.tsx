@@ -3,7 +3,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { MdShoppingCart } from "react-icons/md"; // Example icon
-import { PiStarFourFill } from "react-icons/pi";
 
 const Title = ({ sub, heading }: { sub: string; heading: string }) => {
   const ref = useRef(null);
@@ -24,9 +23,9 @@ const Title = ({ sub, heading }: { sub: string; heading: string }) => {
         transition={{ duration: 0.6, delay: 0.15, ease: "easeInOut" }}
         className="flex justify-center items-center gap-2 text-teal-500 text-2xl font-extrabold tracking-wider"
       >
-        <PiStarFourFill className="text-teal-500" />
+      
         {sub}
-        <PiStarFourFill className="text-teal-500" />
+    
       </motion.div>
 
       {/* Heading with Emoji */}
