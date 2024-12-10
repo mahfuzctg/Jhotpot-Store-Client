@@ -56,7 +56,7 @@ const Banner = () => {
 
   return (
     <div
-      className="relative bg-cover bg-center h-[90vh] flex flex-col items-center justify-center text-white transition-all duration-1000 ease-in-out"
+      className="relative bg-cover bg-center h-[100vh] flex flex-col items-center justify-center text-white transition-all duration-1000 ease-in-out"
       style={{
         backgroundImage: `url(${images[currentImage]})`, // Automatically sliding background
       }}
@@ -65,49 +65,41 @@ const Banner = () => {
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl text-center px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-4xl text-center px-4 sm:px-6 lg:px-8 w-full">
         {/* Welcome Text */}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#FFFFFF]">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#82C408]">
           Welcome to Jhotpot Store
         </h1>
-        <p className="mt-4 text-lg sm:text-xl text-gray-300">
+        <p className="mt-4 text-base sm:text-lg lg:text-xl text-gray-300">
           Limited Offer / Yearly Offer - Grab the best deals now!
         </p>
 
         {/* Countdown Timer */}
-        <div className="mt-8">
-          <h2 className="text-2xl font-bold text-[#13A193] mb-4">
+        <div className="mt-6 sm:mt-8">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#82C408] mb-4">
             Start Your New Year Buy Something Fresh!
           </h2>
-          <div className="flex flex-wrap justify-center gap-8 text-xl font-semibold">
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-8 text-sm sm:text-lg font-semibold">
             <div className="text-center">
-              <p
-                className="bg-gradient-to-r from-[#13A193] to-[#F3901E] text-transparent bg-clip-text text-4xl sm:text-5xl font-bold"
-              >
+              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-3xl sm:text-4xl font-bold">
                 {timeLeft.days}
               </p>
               <p className="text-gray-300">Days</p>
             </div>
             <div className="text-center">
-              <p
-                className="bg-gradient-to-r from-[#13A193] to-[#F3901E] text-transparent bg-clip-text text-4xl sm:text-5xl font-bold"
-              >
+              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-3xl sm:text-4xl font-bold">
                 {timeLeft.hours}
               </p>
               <p className="text-gray-300">Hours</p>
             </div>
             <div className="text-center">
-              <p
-                className="bg-gradient-to-r from-[#13A193] to-[#F3901E] text-transparent bg-clip-text text-4xl sm:text-5xl font-bold"
-              >
+              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-3xl sm:text-4xl font-bold">
                 {timeLeft.minutes}
               </p>
               <p className="text-gray-300">Minutes</p>
             </div>
             <div className="text-center">
-              <p
-                className="bg-gradient-to-r from-[#13A193] to-[#F3901E] text-transparent bg-clip-text text-4xl sm:text-5xl font-bold"
-              >
+              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-3xl sm:text-4xl font-bold">
                 {timeLeft.seconds}
               </p>
               <p className="text-gray-300">Seconds</p>
@@ -116,8 +108,8 @@ const Banner = () => {
         </div>
 
         {/* Buy Now Button */}
-        <div className="mt-8">
-          <button className="px-8 py-4 bg-gradient-to-r from-[#F3901E] to-[#13A193] text-white font-bold text-lg rounded-lg shadow-lg hover:scale-105 transition">
+        <div className="mt-6 sm:mt-8">
+          <button className="px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-[#82C408] to-[#82C408] text-white font-bold text-lg sm:text-xl rounded-lg shadow-lg hover:scale-105 transition">
             Buy Now
           </button>
         </div>
