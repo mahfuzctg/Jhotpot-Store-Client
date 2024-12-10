@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { MdShoppingCart } from "react-icons/md"; // Example icon
 
 const Title = ({ sub, heading }: { sub: string; heading: string }) => {
   const ref = useRef(null);
@@ -14,39 +13,41 @@ const Title = ({ sub, heading }: { sub: string; heading: string }) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: isInView ? 1 : 0 }}
       transition={{ duration: 0.6, ease: "easeInOut" }}
-      className="text-center"
+      className="relative  sm:py-24  bg-[#fff] text-[#82C408] overflow-hidden"
     >
-      {/* Subtitle with Icon */}
-      <motion.div
+      {/* Bird-Shaped Background */}
+      <div className="absolute inset-0  flex justify-center items-center">
+        <motion.img
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: isInView ? 1 : 0.8, opacity: isInView ? 0.2 : 0 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          src="https://i.postimg.cc/CKmJLqMP/31009.png"
+          alt="Bird Shape"
+          className="absolute w-[100%] h-[20%] "
+        />
+      </div>
+
+      {/* Heading */}
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
+        transition={{ duration: 0.6, delay: 0.3, ease: "easeInOut" }}
+        className="text-3xl sm:text-5xl lg:text-7xl font-extrabold leading-tight"
+      >
+        {heading}
+      </motion.h1>
+
+      {/* Subtitle */}
+      <motion.p
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : -20 }}
         transition={{ duration: 0.6, delay: 0.15, ease: "easeInOut" }}
-        className="flex justify-center items-center gap-2 text-white text-2xl font-extrabold tracking-wider"
+        className="mt-4 text-lg sm:text-xl lg:text-2xl font-semibold tracking-wide"
       >
-      
         {sub}
+      </motion.p>
+
     
-      </motion.div>
-
-      {/* Heading with Emoji */}
-      <motion.h1
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : -20 }}
-        transition={{ duration: 0.6, delay: 0.3, ease: "easeInOut" }}
-        className="mt-2 text-gray-800 text-lg font-medium flex justify-center items-center gap-2"
-      >
-        <MdShoppingCart className="text-white" />
-        {heading}
-        <span>🛒</span> {/* Emoji added */}
-      </motion.h1>
-
-      {/* Decorative line */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: isInView ? 1 : 0 }}
-        transition={{ duration: 0.6, delay: 0.45, ease: "easeInOut" }}
-        className="mt-4 mx-auto w-20 h-1 bg-teal-400 rounded-full"
-      />
     </motion.div>
   );
 };

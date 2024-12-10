@@ -10,13 +10,13 @@ import Title from "../../Sections/title";
 
 export default function ChooseUs() {
   return (
-    <div className="py-20 bg-gradient-to-r from-[#fff] via-[#82C408] to-[#82C408] text-gray-800">
+    <div className="py-20 my-20 bg-gradient-to-r from-[#fff] via-[#82C408] to-[#82C408] text-gray-800">
       <div className="max-w-7xl mx-auto px-8">
         {/* Section Title */}
         <div className="text-center mb-16">
           <Title
-            sub="Why Choose Jhotpot Store?"
-            heading="Your Trusted Choice for Quality Products, Exceptional Value, and Unmatched Convenience"
+            heading="Why Choose Jhotpot Store?"
+            sub="Your Trusted Choice for Quality Products, Exceptional Value, and Unmatched Convenience"
           />
         </div>
 
