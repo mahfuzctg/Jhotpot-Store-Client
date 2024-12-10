@@ -41,7 +41,7 @@ const DealOffer = () => {
       <div className="relative max-w-4xl mx-auto text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
           We are working on something{" "}
-          <span className="text-teal-500">awesome!</span>
+          <span className="text-[#82C408]">awesome!</span>
         </h1>
         <p className="text-lg mb-8">
           Don't miss out! We're offering up to 70% off on all products.
@@ -55,7 +55,7 @@ const DealOffer = () => {
             placeholder="Enter your email here to stay tuned"
             className="p-3 rounded-l-lg w-2/3 max-w-md text-gray-900"
           />
-          <button className="p-3 rounded-r-lg bg-red-500 text-white font-bold hover:bg-red-600">
+          <button className="p-3 rounded-r-lg bg-[#FFA900] text-white font-bold hover:bg-red-600">
             DO IT!
           </button>
         </div>

@@ -3,28 +3,55 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-teal-500 text-white py-12">
-      <div className="container mx-auto px-4">
+    <footer className="relative bg-black text-white py-16">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: "url('https://i.postimg.cc/85LYkC3j/headerpng-parspng-com-3.png')", 
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          opacity: 0.2,
+        }}
+      ></div>
+
+      <div className="relative container mx-auto px-4">
         {/* Upper Footer */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo and Description */}
           <div>
-            <h2 className="text-2xl font-bold mb-4">Votegum</h2>
-            <p className="text-sm text-gray-200 leading-6">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tellus
-              luctus nec ullamcorper mattis pulvinar dapibus leo.
+            <h2 className="text-3xl font-bold mb-4 text-[#82C408]">Votegum</h2>
+            <p className="text-sm leading-6 text-white">
+              Making every vote count with seamless digital solutions. Join us
+              in shaping a better future!
             </p>
-            <div className="flex space-x-4 mt-4 text-xl">
-              <a href="#" aria-label="Twitter">
+            <div className="flex space-x-4 mt-6 text-xl">
+              <a
+                href="#"
+                aria-label="Twitter"
+                className="text-[#FFA900] hover:text-[#82C408]"
+              >
                 <FaTwitter />
               </a>
-              <a href="#" aria-label="Facebook">
+              <a
+                href="#"
+                aria-label="Facebook"
+                className="text-[#FFA900] hover:text-[#82C408]"
+              >
                 <FaFacebook />
               </a>
-              <a href="#" aria-label="Instagram">
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="text-[#FFA900] hover:text-[#82C408]"
+              >
                 <FaInstagram />
               </a>
-              <a href="#" aria-label="LinkedIn">
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                className="text-[#FFA900] hover:text-[#82C408]"
+              >
                 <FaLinkedin />
               </a>
             </div>
@@ -32,72 +59,50 @@ const Footer = () => {
 
           {/* Information Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Information</h3>
-            <ul className="space-y-2 text-sm text-gray-200">
-              <li>
-                <a href="#" className="hover:text-white">
-                  Footer Menu 1
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  How to Vote
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  Contact for Media
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  Local Events
-                </a>
-              </li>
+            <h3 className="text-lg font-semibold mb-4 text-white">Information</h3>
+            <ul className="space-y-2 text-sm">
+              {["Footer Menu 1", "About Us", "How to Vote", "Contact for Media", "Local Events"].map(
+                (item) => (
+                  <li key={item}>
+                    <a
+                      href="#"
+                      className="hover:text-[#FFA900] transition-colors"
+                    >
+                      {item}
+                    </a>
+                  </li>
+                )
+              )}
             </ul>
           </div>
 
           {/* Other Pages Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Other Page</h3>
-            <ul className="space-y-2 text-sm text-gray-200">
-              <li>
-                <a href="#" className="hover:text-white">
-                  Footer Menu 2
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  Team Members
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  Daily Updates
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  Registration Form
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white">
-                  Partners & Sponsors
-                </a>
-              </li>
+            <h3 className="text-lg font-semibold mb-4 text-white">Other Pages</h3>
+            <ul className="space-y-2 text-sm">
+              {[
+                "Footer Menu 2",
+                "Team Members",
+                "Daily Updates",
+                "Registration Form",
+                "Partners & Sponsors",
+              ].map((item) => (
+                <li key={item}>
+                  <a
+                    href="#"
+                    className="hover:text-[#FFA900] transition-colors"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Contact Us */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-            <ul className="space-y-2 text-sm text-gray-200">
+            <h3 className="text-lg font-semibold mb-4 text-white">Contact Us</h3>
+            <ul className="space-y-2 text-sm">
               <li>+62 123 456 789</li>
               <li>Marina Boom, East Java - Indonesia</li>
               <li>Monday-Friday: 9:00 AM - 6:00 PM (GMT)</li>
@@ -107,23 +112,25 @@ const Footer = () => {
 
         {/* Lower Footer */}
         <div className="mt-12 text-center">
-          <h3 className="text-lg font-semibold mb-4">Subscribe or Newsletter</h3>
-          <p className="text-sm text-gray-200 mb-4">
-            Receive the latest updates, news, and information.
+          <h3 className="text-lg font-semibold mb-4 text-white">
+            Subscribe to Our Newsletter
+          </h3>
+          <p className="text-sm text-white mb-4">
+            Stay updated with our latest news and events.
           </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center items-center max-w-lg mx-auto">
             <input
               type="email"
               placeholder="Your email address here"
-              className="p-3 rounded-l-lg text-gray-900 focus:outline-none"
+              className="p-3 rounded-l-lg text-gray-900 w-2/3 focus:outline-none"
             />
-            <button className="p-3 bg-teal-700 hover:bg-teal-800 text-white font-semibold rounded-r-lg">
+            <button className="p-3 bg-[#82C408] hover:bg-[#FFA900] text-white font-semibold rounded-r-lg">
               Subscribe
             </button>
           </div>
-          <hr className="my-8 border-gray-300" />
-          <p className="text-sm text-gray-100">
-            © Themegum Template Kit © 2023. All rights reserved
+          <hr className="my-8 border-gray-600" />
+          <p className="text-sm text-gray-400">
+            © Votegum Template Kit 2023. All rights reserved.
           </p>
         </div>
       </div>

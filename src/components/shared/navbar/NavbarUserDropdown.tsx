@@ -24,9 +24,8 @@ export default function NavbarUserDropdown({ user }: { user: any }) {
 
   const handleLogout = () => {
     dispatch(logout());
-
- 
     logoutService();
+
     if (protectedRoutes.some((route) => pathname.match(route))) {
       router.push("/");
     }
@@ -39,22 +38,28 @@ export default function NavbarUserDropdown({ user }: { user: any }) {
   };
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex justify-start w-[50%] gap-4">
       <Dropdown placement="bottom-end">
         <DropdownTrigger>
           <Avatar
             isBordered
             as="button"
-            className="transition-transform"
+            className="transition-transform hover:scale-110 border-2 border-gray-200 shadow-lg"
             src={userData?.profilePhoto}
+            size="lg"
           />
         </DropdownTrigger>
-        <DropdownMenu aria-label="Profile Actions" variant="flat">
-          <DropdownItem key="profile" className="h-14 gap-2">
-            <p className="font-semibold text-white">Signed in as</p>
-            <p className="font-semibold text-white">{userData?.email}</p>
+        <DropdownMenu
+          aria-label="Profile Actions"
+          variant="flat"
+          className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg shadow-2xl p-3"
+        >
+          <DropdownItem key="profile" className="flex flex-col gap-1 px-4 py-2">
+            <span className="text-sm font-semibold">Signed in as</span>
+            <span className="text-sm font-medium">{userData?.email}</span>
           </DropdownItem>
           <DropdownItem
+            key="dashboard"
             onClick={() =>
               handleNavigation(
                 userData?.role === "USER"
@@ -62,21 +67,19 @@ export default function NavbarUserDropdown({ user }: { user: any }) {
                   : "/admin-dashboard"
               )
             }
+            className="flex items-center gap-2 px-4 py-2 hover:bg-green-500 rounded-md transition duration-200 ease-in-out"
           >
-            <span className="flex items-center gap-2 text-white">
-              <span>
-                <LayoutDashboard size={16} />
-              </span>
-              <span>Dashboard</span>
-            </span>
+            <LayoutDashboard size={16} />
+            <span>Dashboard</span>
           </DropdownItem>
-          <DropdownItem onClick={handleLogout} key="logout" color="danger">
-            <span className="flex items-center gap-2 text-white">
-              <span>
-                <LogOut size={16} />
-              </span>
-              <span>Logout</span>
-            </span>
+          <DropdownItem
+            key="logout"
+            onClick={handleLogout}
+            color="danger"
+            className="flex items-center gap-2 px-4 py-2 hover:bg-red-500 rounded-md transition duration-200 ease-in-out"
+          >
+            <LogOut size={16} />
+            <span>Logout</span>
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
