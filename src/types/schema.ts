@@ -54,6 +54,7 @@ export interface ICustomer {
 }
 
 export interface IProduct {
+  _id: Key | null | undefined;
   id: string;
   name: string;
   price: number;
