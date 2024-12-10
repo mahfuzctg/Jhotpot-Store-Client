@@ -5,7 +5,7 @@ import Loading from "@/src/components/Loading/Loading";
 import {
   useDeleteRecentProductMutation,
   useGetRecentViewProductsQuery,
-} from "@/src/lib/redux/features/products/porduct.api";
+} from "@/src/lib/redux/features/products/product.api";
 import { PiStarFourFill } from "react-icons/pi";
 import { IRecentProductView } from "@/src/types/schema";
 import Link from "next/link";

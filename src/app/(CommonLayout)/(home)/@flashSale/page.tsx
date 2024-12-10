@@ -3,7 +3,7 @@
 import HomeProductCard from "@/src/components/Cards/HomeProductCard";
 import ProductLoading from "@/src/components/LoadingCards/ProductLoading";
 import Title from "@/src/components/Sections/title";
-import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/porduct.api";
+import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/product.api";
 import { IProduct } from "@/src/types/schema";
 
 import { useEffect, useState } from "react";

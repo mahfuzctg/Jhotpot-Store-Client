@@ -20,7 +20,7 @@ import HomeProductCard from "@/src/components/Cards/HomeProductCard";
 import { Pagination } from "@nextui-org/pagination";
 import { useSearchParams } from "next/navigation";
 import { ICategory, IProduct } from "@/src/types/schema";
-import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/porduct.api";
+import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/product.api";
 
 const AllProducts = () => {
   const searchParams = useSearchParams();

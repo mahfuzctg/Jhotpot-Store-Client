@@ -18,7 +18,7 @@ import ProductLoading from "@/src/components/LoadingCards/ProductLoading";
 import HomeProductCard from "@/src/components/Cards/HomeProductCard";
 import { Pagination } from "@nextui-org/pagination";
 import { ICategory, IProduct } from "@/src/types/schema";
-import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/porduct.api";
+import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/product.api";
 
 const FlashSale = () => {
   const [filterApplied, setFilterApplied] = useState(false);

@@ -4,7 +4,7 @@ import HomeProductCard from "@/src/components/Cards/HomeProductCard";
 import { useEffect, useState } from "react";
 import { Pagination } from "@nextui-org/pagination";
 import ProductLoading from "@/src/components/LoadingCards/ProductLoading";
-import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/porduct.api";
+import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/product.api";
 import Title from "@/src/components/Sections/title";
 import { IProduct } from "@/src/types/schema";
 

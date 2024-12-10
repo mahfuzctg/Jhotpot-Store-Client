@@ -27,7 +27,7 @@ import Link from "next/link";
 import { IProduct } from "@/src/types/schema";
 import Loading from "@/src/components/Loading/Loading";
 import WarningModal from "@/src/components/modal/WarningModal";
-import { useGetAllProductsQuery, useGetSingleProductQuery } from "@/src/lib/redux/features/products/porduct.api";
+import { useGetAllProductsQuery, useGetSingleProductQuery } from "@/src/lib/redux/features/products/product.api";
 import { addProduct, clearCart } from "@/src/lib/redux/features/products/product.slice";
 import QuantitySelector from "@/src/components/ui/components/QuantitySelector";
 
