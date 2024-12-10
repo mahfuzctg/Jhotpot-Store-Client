@@ -1,14 +1,12 @@
 "use client";
 
 import HomeProductCard from "@/src/components/Cards/HomeProductCard";
-import ProductLoading from "@/src/components/LoadingCards/ProductLoading";
-import Title from "@/src/components/Sections/title";
-
-import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/porduct.api";
-import { IProduct } from "@/src/types/schema";
-
-import { Pagination } from "@nextui-org/pagination";
 import { useEffect, useState } from "react";
+import { Pagination } from "@nextui-org/pagination";
+import ProductLoading from "@/src/components/LoadingCards/ProductLoading";
+import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/porduct.api";
+import Title from "@/src/components/Sections/title";
+import { IProduct } from "@/src/types/schema";
 
 const AllProducts = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -85,7 +83,7 @@ const AllProducts = () => {
 
       <div>
         {allProductsResponse?.data?.length > 0 && (
-          <div className="flex justify-center  items-center mt-4">
+          <div className="flex justify-center items-center mt-4">
             <Pagination
               total={totalPages}
               initialPage={1}

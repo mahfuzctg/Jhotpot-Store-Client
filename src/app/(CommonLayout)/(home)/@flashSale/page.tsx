@@ -48,7 +48,7 @@ const FlashSale = () => {
     <div
       className="py-28 md:px-6 relative"
       style={{
-        backgroundImage: "url('https://i.postimg.cc/qvkkRT4t/istockphoto-1457433817-612x612.jpg')",
+        backgroundImage: "url('https://i.postimg.cc/XvbzfwsX/powerpoint-template-450w.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         minHeight: "100vh",

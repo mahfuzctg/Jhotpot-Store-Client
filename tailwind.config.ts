@@ -27,10 +27,10 @@ module.exports = {
           layout: {}, // dark theme layout tokens
           colors: {
             primary: {
-              DEFAULT: "#14B6A5",
+              DEFAULT: "#82C408",
             },
             secondary: {
-              DEFAULT: "#4f46e5",
+              DEFAULT: "#FFA900",
             },
           }, // dark theme colors
         },
