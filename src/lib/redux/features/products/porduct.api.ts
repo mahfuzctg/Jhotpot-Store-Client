@@ -60,8 +60,6 @@ const productApi = baseApi.injectEndpoints({
           url += `?${params.toString()}`;
         }
 
-        console.log(url);
-
         return {
           url,
           method: "GET",
@@ -83,7 +81,51 @@ const productApi = baseApi.injectEndpoints({
       },
       providesTags: ["products"],
     }),
+    getRecentViewProducts: builder.query({
+      query: () => {
+        return {
+          url: "/recent-products",
+          method: "GET",
+        };
+      },
+      transformResponse: (response: TResponseRedux<any>) => {
+        return response.data;
+      },
+      providesTags: ["recent-products"],
+    }),
+    addRecentProduct: builder.mutation({
+      query: (productInfo) => {
+        return {
+          url: "/recent-products",
+          method: "POST",
+          body: productInfo,
+        };
+      },
+      transformResponse: (response: TResponseRedux<any>) => {
+        return response.data;
+      },
+      invalidatesTags: ["recent-products"],
+    }),
+    deleteRecentProduct: builder.mutation({
+      query: (productInfo) => {
+        return {
+          url: "/recent-products",
+          method: "DELETE",
+          body: productInfo,
+        };
+      },
+      transformResponse: (response: TResponseRedux<any>) => {
+        return response.data;
+      },
+      invalidatesTags: ["recent-products"],
+    }),
   }),
 });
 
-export const { useGetAllProductsQuery, useGetSingleProductQuery } = productApi;
+export const {
+  useGetAllProductsQuery,
+  useGetSingleProductQuery,
+  useGetRecentViewProductsQuery,
+  useAddRecentProductMutation,
+  useDeleteRecentProductMutation,
+} = productApi;
