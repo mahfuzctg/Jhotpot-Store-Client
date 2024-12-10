@@ -1,11 +1,10 @@
 "use client";
 
-
-
+import { protectedRoutes } from "@/src/constant";
 import { logout } from "@/src/lib/redux/features/auth/auth.slice";
+
 import { useAppDispatch } from "@/src/lib/redux/hooks";
 import { logoutService } from "@/src/utils/loginService";
-
 import { Avatar } from "@nextui-org/avatar";
 import {
   Dropdown,
@@ -26,9 +25,9 @@ export default function NavbarUserDropdown({ user }: { user: any }) {
   const handleLogout = () => {
     dispatch(logout());
 
-
+ 
     logoutService();
-    if (protectedRoutes.some((route: { [Symbol.match](string: string): RegExpMatchArray | null; }) => pathname.match(route))) {
+    if (protectedRoutes.some((route) => pathname.match(route))) {
       router.push("/");
     }
 

@@ -89,6 +89,9 @@ const Navbar: React.FC = () => {
           <Link href="/about" className="hover:text-green-600 transition duration-200">
             About
           </Link>
+          <Link href="/allProducts" className="hover:text-green-600 transition duration-200">
+            Products
+          </Link>
           <Link href="/shop" className="hover:text-green-600 transition duration-200">
             Shop
           </Link>
@@ -142,6 +145,9 @@ const Navbar: React.FC = () => {
             >
               About
             </Link>
+            <Link href="/allProducts" className="hover:text-green-600 transition duration-200">
+            Products
+          </Link>
             <Link
               href="/shop"
               className="hover:text-green-600 transition duration-200"

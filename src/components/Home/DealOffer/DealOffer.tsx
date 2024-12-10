@@ -30,7 +30,7 @@ const DealOffer = () => {
       className="relative text-white py-20 px-4"
       style={{
         backgroundImage:
-          "url('https://res.cloudinary.com/dxv10xebz/image/upload/v1733589260/spbo6hznzjymo4tsogxb.jpg')",
+          "url('https://i.postimg.cc/XYsS2BFL/istockphoto-155137713-612x612.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",

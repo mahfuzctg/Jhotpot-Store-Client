@@ -1,5 +1,5 @@
 import DealOffer from "@/src/components/Home/DealOffer/DealOffer";
-import FeatureSection from "@/src/components/Home/Feature/Feature";
+import FeatureSection from "@/src/components/Home/Feature/ChooseUs";
 import { ReactNode } from "react";
 
 const HomeLayout = ({
@@ -19,10 +19,11 @@ const HomeLayout = ({
       {allCategories}
       {allProducts}
      
+     
+      {flashSale}
       <FeatureSection />
       
       <DealOffer />
-      {flashSale}
     </>
   );
 };
