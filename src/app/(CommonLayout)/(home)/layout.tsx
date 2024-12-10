@@ -17,10 +17,8 @@ const HomeLayout = ({
     <>
       {children}
       {allCategories}
-      {allProducts}
-     
-     
       {flashSale}
+      {allProducts}
       <FeatureSection />
       
       <DealOffer />

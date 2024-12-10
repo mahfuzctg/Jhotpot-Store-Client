@@ -56,7 +56,7 @@ const Banner = () => {
 
   return (
     <div
-      className="relative bg-cover bg-center h-[80vh] flex flex-col items-center justify-center text-white transition-all duration-1000 ease-in-out"
+      className="relative bg-cover bg-center h-[90vh] flex flex-col items-center justify-center text-white transition-all duration-1000 ease-in-out"
       style={{
         backgroundImage: `url(${images[currentImage]})`, // Automatically sliding background
       }}
@@ -77,9 +77,9 @@ const Banner = () => {
         {/* Countdown Timer */}
         <div className="mt-8">
           <h2 className="text-2xl font-bold text-[#13A193] mb-4">
-            Start Your New Year Buy Somehing Fresh!
+            Start Your New Year Buy Something Fresh!
           </h2>
-          <div className="flex justify-center gap-8 text-xl font-semibold">
+          <div className="flex flex-wrap justify-center gap-8 text-xl font-semibold">
             <div className="text-center">
               <p
                 className="bg-gradient-to-r from-[#13A193] to-[#F3901E] text-transparent bg-clip-text text-4xl sm:text-5xl font-bold"

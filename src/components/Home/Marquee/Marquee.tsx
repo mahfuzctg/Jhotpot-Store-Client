@@ -17,25 +17,25 @@ const ScrollingMarquee = () => {
   const groupedKeywords = keywords.map((keyword, index) => (
     <span
       key={index}
-      className="flex items-center space-x-4 text-2xl font-bold"
+      className="flex items-center space-x-6 text-2xl font-bold transition-all duration-300 transform hover:scale-110 hover:text-[#fff] hover:rotate-3 hover:shadow-lg"
     >
-      <span className="text-white">{keyword.emoji}</span>
-      <span>{keyword.name}</span>
+      <span className="text-4xl">{keyword.emoji}</span>
+      <span className="text-[#F7F7F7]">{keyword.name}</span>
     </span>
   ));
 
   return (
-    <div className=" text-[#15AD9E] py-6 overflow-hidden">
-      <Marquee gradient={false} speed={80}>
-        <div className="flex items-center space-x-6 mx-6">
+    <div className="py-6 overflow-hidden bg-gradient-to-l from-indigo-600 via-green-600 to-pink-500 shadow-xl">
+      <Marquee gradient={true} speed={80}>
+        <div className="flex items-center space-x-12 mx-6">
           {groupedKeywords}
           <div className="mx-16" />
         </div>
-        <div className="flex items-center space-x-6 mx-6">
+        <div className="flex items-center space-x-12 mx-6">
           {groupedKeywords}
           <div className="mx-16" />
         </div>
-        <div className="flex items-center space-x-6 mx-6">
+        <div className="flex items-center space-x-12 mx-6">
           {groupedKeywords}
         </div>
       </Marquee>

@@ -21,7 +21,7 @@ const Title = ({ sub, heading }: { sub: string; heading: string }) => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : -20 }}
         transition={{ duration: 0.6, delay: 0.15, ease: "easeInOut" }}
-        className="flex justify-center items-center gap-2 text-teal-500 text-2xl font-extrabold tracking-wider"
+        className="flex justify-center items-center gap-2 text-white text-2xl font-extrabold tracking-wider"
       >
       
         {sub}
@@ -35,7 +35,7 @@ const Title = ({ sub, heading }: { sub: string; heading: string }) => {
         transition={{ duration: 0.6, delay: 0.3, ease: "easeInOut" }}
         className="mt-2 text-gray-800 text-lg font-medium flex justify-center items-center gap-2"
       >
-        <MdShoppingCart className="text-teal-500" />
+        <MdShoppingCart className="text-white" />
         {heading}
         <span>🛒</span> {/* Emoji added */}
       </motion.h1>
