@@ -17,6 +17,10 @@ export const siteConfig = {
       label: "Products",
       href: "/allProducts",
     },
+    {
+      label: "Recent Viewed",
+      href: "/recentProductsView",
+    },
    
     {
       label: "Flash Sale",
@@ -43,6 +47,10 @@ export const siteConfig = {
     {
       label: "Products",
       href: "/allProducts",
+    },
+    {
+      label: "Recent Viewed",
+      href: "/recentView",
     },
     {
       label: "Flash Sale",
