@@ -17,9 +17,14 @@ export const siteConfig = {
       label: "Products",
       href: "/allProducts",
     },
+   
     {
       label: "Flash Sale",
       href: "/flashSale",
+    },
+    {
+      label: "Shop",
+      href: "/shop",
     },
     {
       label: "Contact",
