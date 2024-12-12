@@ -2,15 +2,8 @@
 "use client";
 
 import QuantitySelector from "@/src/components/ui/components/QuantitySelector";
-import {
-  useAddRecentProductMutation,
-  useGetAllProductsQuery,
-  useGetSingleProductQuery,
-} from "@/src/lib/redux/features/products/product.api";
-import {
-  addProduct,
-  clearCart,
-} from "@/src/lib/redux/features/products/product.slice";
+
+
 import { useAppDispatch, useAppSelector } from "@/src/lib/redux/hooks";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
@@ -32,6 +25,8 @@ import { IProduct } from "@/src/types/schema";
 import HomeProductCard from "@/src/components/Cards/HomeProductCard";
 import { PiStarFourFill } from "react-icons/pi";
 import Link from "next/link";
+import { useAddRecentProductMutation, useGetAllProductsQuery, useGetSingleProductQuery } from "@/src/lib/redux/features/products/product.api";
+import { addProduct, clearCart } from "@/src/lib/redux/features/products/product.slice";
 
 const ProductDetails = () => {
   const searchParams = useSearchParams();
