@@ -20,8 +20,8 @@ const couponSlice = createSlice({
   initialState,
   reducers: {
     setCoupon: (state, action) => {
-      const { coupon } = action.payload;
-      state.coupon = coupon;
+      const { couponInfo } = action.payload;
+      state.coupon = couponInfo;
     },
     clearCoupon: (state) => {
       state.coupon = null;
@@ -33,4 +33,4 @@ export const { setCoupon, clearCoupon } = couponSlice.actions;
 
 export default couponSlice.reducer;
 
-export const selectApplientCoupon = (state: RootState) => state.coupon.coupon;
+export const selectAppliedCoupon = (state: RootState) => state.coupon.coupon;
