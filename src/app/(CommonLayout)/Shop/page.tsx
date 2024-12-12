@@ -5,11 +5,9 @@ import Loading from "@/src/components/Loading/Loading";
 import ProductLoading from "@/src/components/LoadingCards/ProductLoading";
 import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";
 import { useGetSingleCustomerQuery, useGetSingleVendorQuery } from "@/src/lib/redux/features/auth/auth.api";
+import { useFollowUserMutation, useUnfollowUserMutation } from "@/src/lib/redux/features/users/user.api";
 
-import {
-  useFollowUserMutation,
-  useUnfollowUserMutation,
-} from "@/src/lib/redux/features/users/user.api";
+
 import { IFollow, IProduct } from "@/src/types/schema";
 import { Pagination } from "@nextui-org/pagination";
 import { useSearchParams } from "next/navigation";

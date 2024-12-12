@@ -2,11 +2,11 @@
 "use client";
 
 import { useGetAllCouponsQuery } from "@/src/lib/redux/features/coupon/couponApi";
-import { ICoupon } from "@/src/types/model";
+import { ICoupon } from "@/src/types/schema";
 import { useState } from "react";
 import { RiCoupon2Fill } from "react-icons/ri";
 import { format } from "date-fns";
-import CouponLoading from "../../LoadingCards/CouponLoading";
+i=
 
 const CouponModal = () => {
   const [coupon, setCoupon] = useState<string>("");

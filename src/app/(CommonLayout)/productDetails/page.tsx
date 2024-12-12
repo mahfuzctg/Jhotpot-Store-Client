@@ -1,8 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-
-
+import QuantitySelector from "@/src/components/ui/components/QuantitySelector";
+import {
+  useAddRecentProductMutation,
+  useGetAllProductsQuery,
+  useGetSingleProductQuery,
+} from "@/src/lib/redux/features/products/product.api";
+import {
+  addProduct,
+  clearCart,
+} from "@/src/lib/redux/features/products/product.slice";
 import { useAppDispatch, useAppSelector } from "@/src/lib/redux/hooks";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
@@ -12,24 +20,18 @@ import { BsCart3 } from "react-icons/bs";
 import { FaCircleXmark, FaTruckFast } from "react-icons/fa6";
 import { MdAssignmentReturn } from "react-icons/md";
 import { AiFillCheckCircle } from "react-icons/ai";
-
-
+import Loading from "@/src/components/Loading/Loading";
+import WarningModal from "@/src/components/modal/WarningModal";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import ProductLoading from "@/src/components/LoadingCards/ProductLoading";
-
+import { IProduct } from "@/src/types/schema";
 import HomeProductCard from "@/src/components/Cards/HomeProductCard";
 import { PiStarFourFill } from "react-icons/pi";
 import Link from "next/link";
-import { IProduct } from "@/src/types/schema";
-import Loading from "@/src/components/Loading/Loading";
-import WarningModal from "@/src/components/modal/WarningModal";
-import { useGetAllProductsQuery, useGetSingleProductQuery } from "@/src/lib/redux/features/products/product.api";
-import { addProduct, clearCart } from "@/src/lib/redux/features/products/product.slice";
-import QuantitySelector from "@/src/components/ui/components/QuantitySelector";
 
 const ProductDetails = () => {
   const searchParams = useSearchParams();
@@ -49,18 +51,30 @@ const ProductDetails = () => {
   const [inStock, setInStock] = useState(data?.inventory || 0);
   const isDisabled = !(inStock && quantity);
   const dispatch = useAppDispatch();
-  const { products } = useAppSelector((state) => state?.products || {});
-
+  const { products } = useAppSelector((state) => state.products);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [pendingProduct, setPendingProduct] = useState<any>(null);
   const [category, setCategory] = useState<string | undefined>(undefined);
   const params = new URLSearchParams();
   params.set("shop", data?.vendor?.id);
+  const [addRecentProduct] = useAddRecentProductMutation();
 
   const { data: allProductsResponse, isLoading: allProductsLoading } =
     useGetAllProductsQuery({ category });
 
   useEffect(() => {
+    const addProduct = async () => {
+      if (data) {
+        try {
+          const productInfo = { productId: data.id };
+          const result = await addRecentProduct(productInfo).unwrap();
+          console.log(result);
+        } catch (error) {
+          console.error("Failed to add recent product:", error);
+        }
+      }
+    };
+
     if (data?.image?.length) {
       setSelectedImage(data.image[0]);
     }
@@ -72,7 +86,9 @@ const ProductDetails = () => {
     if (data?.category) {
       setCategory(data?.category?.name);
     }
-  }, [data]);
+
+    addProduct();
+  }, [data, addRecentProduct]);
 
   const increment = () => {
     if (inStock > 1) {

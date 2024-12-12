@@ -23,7 +23,7 @@ const Title = ({ sub, heading }: { sub: string; heading: string }) => {
           transition={{ duration: 0.8, ease: "easeInOut" }}
           src="https://i.postimg.cc/CKmJLqMP/31009.png"
           alt="Bird Shape"
-          className="absolute w-[100%] h-[20%] "
+          className="absolute w-[80%] h-[20%] "
         />
       </div>
 
@@ -32,7 +32,7 @@ const Title = ({ sub, heading }: { sub: string; heading: string }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
         transition={{ duration: 0.6, delay: 0.3, ease: "easeInOut" }}
-        className="text-3xl sm:text-5xl lg:text-7xl font-extrabold leading-tight"
+        className="text-3xl sm:text-5xl lg:text-7xl text-center font-extrabold leading-tight"
       >
         {heading}
       </motion.h1>
@@ -42,7 +42,7 @@ const Title = ({ sub, heading }: { sub: string; heading: string }) => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : -20 }}
         transition={{ duration: 0.6, delay: 0.15, ease: "easeInOut" }}
-        className="mt-4 text-lg sm:text-xl lg:text-2xl font-semibold tracking-wide"
+        className="mt-4 text-center text-lg sm:text-xl lg:text-2xl font-semibold tracking-wide"
       >
         {sub}
       </motion.p>

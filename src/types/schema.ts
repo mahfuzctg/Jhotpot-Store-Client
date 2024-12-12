@@ -54,13 +54,12 @@ export interface ICustomer {
 }
 
 export interface IProduct {
-  _id: Key | null | undefined;
   id: string;
   name: string;
   price: number;
-  inventoryCount: number;
+  inventory: number;
   description?: string;
-  image: string;
+  image: string[];
   flashSale?: boolean;
   discount?: number;
   categoryId: string;
@@ -146,3 +145,16 @@ export enum PaymentStatus {
   PAID = "PAID",
   UNPAID = "UNPAID",
 }
+
+export interface ICoupon {
+  id: string;
+  code: string;
+  discountType: DiscountType;
+  discountValue: number;
+  startDate: string;
+  endDate: string;
+  usedCount: number;
+  isActive: boolean;
+}
+
+type DiscountType = "PERCENTAGE" | "FIXED";

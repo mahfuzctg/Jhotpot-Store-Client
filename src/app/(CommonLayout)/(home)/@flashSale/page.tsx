@@ -45,7 +45,13 @@ const FlashSale = () => {
   }, []);
 
   return (
-    <div
+ <div>
+        
+
+  
+      <Title sub="Limited Time Offer" heading="Flash Sale Collection" />
+   
+<div
       className="py-28 md:px-6 relative"
       style={{
         backgroundImage: "url('https://i.postimg.cc/XvbzfwsX/powerpoint-template-450w.jpg')",
@@ -60,17 +66,13 @@ const FlashSale = () => {
         style={{
           height: "100%",
           clipPath: "polygon(50% 0%, 70% 30%, 100% 50%, 70% 70%, 50% 100%, 30% 70%, 0% 50%, 30% 30%)", // Bird-like shape
-          background: "#34C0B2", // Overlay for contrast
+          background: "#82C408", // Overlay for contrast
         }}
       ></div>
 
-      {/* Title Section at the top */}
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 text-center text-white py-10 ">
-      <Title sub="Limited Time Offer" heading="Flash Sale Collection" />
-      </div>
 
       {/* Flash Sale Section with Grid of Products */}
-      <div className="py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-y-4 relative z-10">
+      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-y-4 relative z-10">
         {isLoading
           ? Array.from({ length: dataPerPage }).map((_, index) => (
               <div key={index}>
@@ -91,6 +93,7 @@ const FlashSale = () => {
         </button>
       </div>
     </div>
+ </div>
   );
 };
 

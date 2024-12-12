@@ -14,6 +14,8 @@ import { PiStarFourFill } from "react-icons/pi";
 import { RiErrorWarningFill } from "react-icons/ri";
 import { RiCoupon2Fill } from "react-icons/ri";
 import { useDisclosure } from "@nextui-org/modal";
+import MainModal from "@/src/components/modal/Reusable/MainModal";
+import CouponModal from "@/src/components/modal/Reusable/CouponModal";
 
 
 const CheckOut = () => {
