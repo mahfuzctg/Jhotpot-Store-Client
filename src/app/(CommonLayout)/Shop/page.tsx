@@ -1,19 +1,24 @@
 "use client";
 
-import HomeProductCard from "@/src/components/Cards/HomeProductCard";
-import Loading from "@/src/components/Loading/Loading";
-import ProductLoading from "@/src/components/LoadingCards/ProductLoading";
+import dynamic from "next/dynamic";
 import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";
-import { useGetSingleCustomerQuery, useGetSingleVendorQuery } from "@/src/lib/redux/features/auth/auth.api";
-import { useFollowUserMutation, useUnfollowUserMutation } from "@/src/lib/redux/features/users/user.api";
 
 
-import { IFollow, IProduct } from "@/src/types/schema";
-import { Pagination } from "@nextui-org/pagination";
+
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaUserFriends } from "react-icons/fa";
+import ProductLoading from "@/src/components/LoadingCards/ProductLoading";
+import HomeProductCard from "@/src/components/Cards/HomeProductCard";
+import { Pagination } from "@nextui-org/pagination";
+import { useGetSingleCustomerQuery, useGetSingleVendorQuery } from "@/src/lib/redux/features/auth/auth.api";
+import { useFollowUserMutation, useUnfollowUserMutation } from "@/src/lib/redux/features/users/user.api";
+import { IFollow, IProduct } from "@/src/types/schema";
+
+const Loading = dynamic(() => import("@/src/components/Loading/Loading"), {
+  ssr: false,
+});
 
 const ShopPage = () => {
   const searchParams = useSearchParams();
@@ -42,6 +47,7 @@ const ShopPage = () => {
   const { data: singleCustomer } = useGetSingleCustomerQuery(email ?? "", {
     skip: !email,
   });
+
   const [followUser] = useFollowUserMutation();
   const [unfollowUser] = useUnfollowUserMutation();
 
@@ -68,7 +74,7 @@ const ShopPage = () => {
     });
   };
 
-  const handleunfollowVendor = async () => {
+  const handleUnfollowVendor = async () => {
     const vendorInfo = {
       vendorId: singleVendor?.id,
     };
@@ -101,7 +107,7 @@ const ShopPage = () => {
                 <h2 className="text-4xl font-semibold text-white">
                   {singleVendor?.shopName || "Shop Name"}
                 </h2>
-                <p className="text-black text-lg max-w-lg mx-auto text-center">
+                <p className="text-white/80 text-lg max-w-lg mx-auto text-center">
                   {singleVendor?.description || "No description available."}
                 </p>
                 <p className="text-white/70 text-lg flex gap-2 items-center">
@@ -122,7 +128,7 @@ const ShopPage = () => {
                   </button>
                 ) : (
                   <button
-                    onClick={handleunfollowVendor}
+                    onClick={handleUnfollowVendor}
                     className="relative h-10 w-30 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3"
                   >
                     Unfollow

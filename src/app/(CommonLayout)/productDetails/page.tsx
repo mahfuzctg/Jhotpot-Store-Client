@@ -2,15 +2,7 @@
 "use client";
 
 import QuantitySelector from "@/src/components/ui/components/QuantitySelector";
-import {
-  useAddRecentProductMutation,
-  useGetAllProductsQuery,
-  useGetSingleProductQuery,
-} from "@/src/lib/redux/features/products/product.api";
-import {
-  addProduct,
-  clearCart,
-} from "@/src/lib/redux/features/products/product.slice";
+
 import { useAppDispatch, useAppSelector } from "@/src/lib/redux/hooks";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
@@ -20,7 +12,6 @@ import { BsCart3 } from "react-icons/bs";
 import { FaCircleXmark, FaTruckFast } from "react-icons/fa6";
 import { MdAssignmentReturn } from "react-icons/md";
 import { AiFillCheckCircle } from "react-icons/ai";
-import Loading from "@/src/components/Loading/Loading";
 import WarningModal from "@/src/components/modal/WarningModal";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -28,13 +19,21 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
 import ProductLoading from "@/src/components/LoadingCards/ProductLoading";
-import { IProduct, IReview } from "@/src/types/schema";
+
 import HomeProductCard from "@/src/components/Cards/HomeProductCard";
 import Link from "next/link";
 import { useGetReviewsByIdQuery } from "@/src/lib/redux/features/reviews/reviewApi";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import ReactStars from "react-stars";
+import dynamic from "next/dynamic";
+import { addProduct, clearCart } from "@/src/lib/redux/features/products/product.slice";
+import { IProduct, IReview } from "@/src/types/schema";
+import { useAddRecentProductMutation, useGetAllProductsQuery, useGetSingleProductQuery } from "@/src/lib/redux/features/products/product.api";
+
+const Loading = dynamic(() => import("@/src/components/Loading/Loading"), {
+  ssr: false,
+});
 
 const ProductDetails = () => {
   const searchParams = useSearchParams();
@@ -52,9 +51,12 @@ const ProductDetails = () => {
   });
 
   const { data: productReview, isLoading: reviewLoading } =
-    useGetReviewsByIdQuery(productId ?? "", {
-      skip: !productId,
-    });
+    useGetReviewsByIdQuery(
+      { productId },
+      {
+        skip: !productId,
+      }
+    );
 
   const [selectedImage, setSelectedImage] = useState<string | undefined>();
   const [quantity, setQuantity] = useState(0);
@@ -239,7 +241,7 @@ const ProductDetails = () => {
               <p className="text-gray-400 max-w-lg text-center lg:text-left">
                 {data?.description}
               </p>
-              <div className="flex text-black  gap-2 items-end">
+              <div className="flex text-white  gap-2 items-end">
                 <p
                   className={`text-${data?.flashSale ? "xl" : "3xl"} ${data?.flashSale && "line-through text-2xl"}`}
                 >
@@ -256,7 +258,7 @@ const ProductDetails = () => {
 
               <p
                 id="helper-text-explanation"
-                className=" text-black text-2xl mt-5"
+                className=" text-white text-2xl mt-5"
               >
                 Select the quantity of products:
               </p>
@@ -285,7 +287,7 @@ const ProductDetails = () => {
                     >
                       <span
                         onClick={handleAddToCart}
-                        className="flex items-center gap-2 px-6 py-3  rounded-lg w-full justify-center cursor-pointer relative h-12 w-30 origin-top transform border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-black hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
+                        className="flex items-center gap-2 px-6 py-3  rounded-lg w-full justify-center cursor-pointer relative h-12 w-30 origin-top transform border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
                       >
                         <BsCart3 className="font-bold" />{" "}
                         <span>Add to cart</span>
@@ -295,12 +297,12 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-              <h1 className="text-black my-3 text-2xl">
+              <h1 className="text-white my-3 text-2xl">
                 <span className="font-bold">Category:</span>{" "}
                 <span className="text-gray-400">{data?.category?.name}</span>
               </h1>
 
-              <h1 className="text-black my-3 text-2xl">
+              <h1 className="text-white my-3 text-2xl">
                 <span className="font-bold">Shop Name:</span>{" "}
                 <span
                   className="relative inline-block text-2xl font-medium text-gray-400
@@ -410,7 +412,7 @@ const ProductDetails = () => {
 
                             if (filteredProducts?.length === 0) {
                               return (
-                                <div className="text-center text-black text-2xl font-bold mt-6">
+                                <div className="text-center text-white text-2xl font-bold mt-6">
                                   Sorry, no related products available.
                                 </div>
                               );
@@ -438,7 +440,7 @@ const ProductDetails = () => {
               {activeTab === "Reviews" && (
                 <div>
                   {productReview?.length === 0 ? (
-                    <div className="text-center text-black text-2xl font-bold mt-6">
+                    <div className="text-center text-white text-2xl font-bold mt-6">
                       Sorry, no product review available.
                     </div>
                   ) : (
@@ -524,7 +526,7 @@ const ProductDetails = () => {
                                         </svg>
                                       </div>
                                       <div>
-                                        <h1 className="text-2xl font-semibold text-black">
+                                        <h1 className="text-2xl font-semibold text-white">
                                           {singleReview?.customer?.name}
                                         </h1>
                                         <ReactStars
