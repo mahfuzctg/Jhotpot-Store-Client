@@ -1,19 +1,21 @@
+
 "use client";
 
 import { protectedRoutes } from "@/src/constant";
-import { logout } from "@/src/lib/redux/features/auth/auth.slice";
+
 import { clearCoupon } from "@/src/lib/redux/features/coupon/couponSlice";
-import { clearCart } from "@/src/lib/redux/features/products/product.slice";
 import { useAppDispatch } from "@/src/lib/redux/hooks";
 import { logoutService } from "@/src/utils/loginService";
 import { usePathname, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import logo from "@/src/assets/store-logo.png";
+import logo from "@/src/assets/logo.png";
 import Link from "next/link";
 import Image from "next/image";
 import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";
 import { Avatar } from "@nextui-org/avatar";
 import { Divider } from "@nextui-org/divider";
+import { logout } from "@/src/lib/redux/features/auth/auth.slice";
+import { clearCart } from "@/src/lib/redux/features/products/product.slice";
 
 interface SidebarLink {
   label: string;
@@ -30,7 +32,7 @@ const Sidebar = ({ links, commonLinks }: SidebarProps) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const pathname = usePathname();
-  const { userData } = useUserDetails();
+  const { userData, isLoading } = useUserDetails();
 
   const handleLogout = () => {
     dispatch(logout());
@@ -109,13 +111,25 @@ const Sidebar = ({ links, commonLinks }: SidebarProps) => {
 
               {/* User Image */}
               <div className="flex justify-center items-center pt-2">
-                {userData?.userData?.profilePhoto ? (
-                  <Avatar
-                    src={userData?.userData?.profilePhoto}
-                    className="w-16 h-16 text-large"
-                  />
-                ) : (
+                {isLoading ? (
                   <div className="animate-pulse rounded-full bg-gray-400 w-20 h-20" />
+                ) : (
+                  <>
+                    {userData?.userData?.role === "VENDOR" ? (
+                      <Image
+                        src={userData?.userData?.logo}
+                        alt="logo"
+                        height={90}
+                        width={160}
+                        className="h-16 text-large object-contain"
+                      />
+                    ) : (
+                      <Avatar
+                        src={userData?.userData?.profilePhoto}
+                        className="w-16 h-16 text-large"
+                      />
+                    )}
+                  </>
                 )}
               </div>
 
@@ -129,7 +143,7 @@ const Sidebar = ({ links, commonLinks }: SidebarProps) => {
                   <a
                     key={index}
                     href={link.href}
-                    className="flex items-start md:items-center space-x-2 py-1 px-2 hover:bg-primary hover:text-white rounded font-bold"
+                    className="flex items-start md:items-center space-x-2 py-2 px-2 hover:bg-primary hover:text-white rounded font-bold"
                   >
                     {link.icon}
                     <span>{link.label}</span>
@@ -144,7 +158,7 @@ const Sidebar = ({ links, commonLinks }: SidebarProps) => {
                   <a
                     key={index}
                     href={link.href}
-                    className="flex items-center space-x-2 py-1 px-2 hover:bg-primary hover:text-white rounded font-bold"
+                    className="flex items-center space-x-2 py-2 px-2 hover:bg-primary hover:text-white rounded font-bold"
                   >
                     {link.icon}
                     <span>{link.label}</span>
@@ -155,7 +169,7 @@ const Sidebar = ({ links, commonLinks }: SidebarProps) => {
               <Divider className="" />
 
               <div onClick={handleLogout} className="px-2 cursor-pointer">
-                <div className="flex items-start md:items-center space-x-2 py-1 px-2 hover:bg-primary hover:text-white rounded font-bold">
+                <div className="flex items-start md:items-center space-x-2 py-2 px-2 hover:bg-primary hover:text-white rounded font-bold">
                   {/* Logout SVG */}
                   <span>Logout</span>
                 </div>
