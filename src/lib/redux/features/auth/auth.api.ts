@@ -48,16 +48,6 @@ const authApi = baseApi.injectEndpoints({
       },
       providesTags: ["users"],
     }),
-    updateUser: builder.mutation({
-      query: (options) => {
-        return {
-          url: `/auth/users/${options.id}`,
-          method: "PATCH",
-          body: options.data,
-        };
-      },
-      invalidatesTags: ["users"],
-    }),
     getMyProfile: builder.query({
       query: () => {
         return {
@@ -96,6 +86,16 @@ const authApi = baseApi.injectEndpoints({
       },
       providesTags: ["users"],
     }),
+    changePassword: builder.mutation({
+      query: (passwordInfo) => {
+        return {
+          url: "/auth/change-password",
+          method: "POST",
+          body: passwordInfo,
+        };
+      },
+      invalidatesTags: ["users"],
+    }),
   }),
 });
 
@@ -103,8 +103,8 @@ export const {
   useLoginMutation,
   useSignUpMutation,
   useGetAllUsersQuery,
-  useUpdateUserMutation,
   useGetMyProfileQuery,
   useGetSingleVendorQuery,
   useGetSingleCustomerQuery,
+  useChangePasswordMutation,
 } = authApi;

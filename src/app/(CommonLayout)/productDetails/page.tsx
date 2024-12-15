@@ -2,8 +2,15 @@
 "use client";
 
 import QuantitySelector from "@/src/components/ui/components/QuantitySelector";
-
-
+import {
+  useAddRecentProductMutation,
+  useGetAllProductsQuery,
+  useGetSingleProductQuery,
+} from "@/src/lib/redux/features/products/product.api";
+import {
+  addProduct,
+  clearCart,
+} from "@/src/lib/redux/features/products/product.slice";
 import { useAppDispatch, useAppSelector } from "@/src/lib/redux/hooks";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
@@ -19,18 +26,21 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Navigation } from "swiper/modules";
+import { Navigation, Autoplay, Pagination } from "swiper/modules";
 import ProductLoading from "@/src/components/LoadingCards/ProductLoading";
-import { IProduct } from "@/src/types/schema";
+import { IProduct, IReview } from "@/src/types/schema";
 import HomeProductCard from "@/src/components/Cards/HomeProductCard";
-import { PiStarFourFill } from "react-icons/pi";
 import Link from "next/link";
-import { useAddRecentProductMutation, useGetAllProductsQuery, useGetSingleProductQuery } from "@/src/lib/redux/features/products/product.api";
-import { addProduct, clearCart } from "@/src/lib/redux/features/products/product.slice";
+import { useGetReviewsByIdQuery } from "@/src/lib/redux/features/reviews/reviewApi";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import ReactStars from "react-stars";
 
 const ProductDetails = () => {
   const searchParams = useSearchParams();
   const [productId, setProductId] = useState<string | null>(null);
+  const swiperRef = useRef(null);
+  const isInView = useInView(swiperRef);
 
   useEffect(() => {
     const id = searchParams.get("product");
@@ -40,6 +50,11 @@ const ProductDetails = () => {
   const { data, isLoading } = useGetSingleProductQuery(productId ?? "", {
     skip: !productId,
   });
+
+  const { data: productReview, isLoading: reviewLoading } =
+    useGetReviewsByIdQuery(productId ?? "", {
+      skip: !productId,
+    });
 
   const [selectedImage, setSelectedImage] = useState<string | undefined>();
   const [quantity, setQuantity] = useState(0);
@@ -53,9 +68,15 @@ const ProductDetails = () => {
   const params = new URLSearchParams();
   params.set("shop", data?.vendor?.id);
   const [addRecentProduct] = useAddRecentProductMutation();
+  const [activeTab, setActiveTab] = useState("Related Products");
 
   const { data: allProductsResponse, isLoading: allProductsLoading } =
-    useGetAllProductsQuery({ category });
+    useGetAllProductsQuery(
+      { category },
+      {
+        skip: !category,
+      }
+    );
 
   useEffect(() => {
     const addProduct = async () => {
@@ -63,7 +84,6 @@ const ProductDetails = () => {
         try {
           const productInfo = { productId: data.id };
           const result = await addRecentProduct(productInfo).unwrap();
-          console.log(result);
         } catch (error) {
           console.error("Failed to add recent product:", error);
         }
@@ -166,6 +186,7 @@ const ProductDetails = () => {
     ? data?.price - discountAmount
     : data?.price;
 
+  console.log(productReview);
   // console.log(allProductsResponse);
 
   return (
@@ -218,7 +239,7 @@ const ProductDetails = () => {
               <p className="text-gray-400 max-w-lg text-center lg:text-left">
                 {data?.description}
               </p>
-              <div className="flex text-white  gap-2 items-end">
+              <div className="flex text-black  gap-2 items-end">
                 <p
                   className={`text-${data?.flashSale ? "xl" : "3xl"} ${data?.flashSale && "line-through text-2xl"}`}
                 >
@@ -235,7 +256,7 @@ const ProductDetails = () => {
 
               <p
                 id="helper-text-explanation"
-                className=" text-white text-2xl mt-5"
+                className=" text-black text-2xl mt-5"
               >
                 Select the quantity of products:
               </p>
@@ -264,7 +285,7 @@ const ProductDetails = () => {
                     >
                       <span
                         onClick={handleAddToCart}
-                        className="flex items-center gap-2 px-6 py-3  rounded-lg w-full justify-center cursor-pointer relative h-12 w-30 origin-top transform border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
+                        className="flex items-center gap-2 px-6 py-3  rounded-lg w-full justify-center cursor-pointer relative h-12 w-30 origin-top transform border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-black hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
                       >
                         <BsCart3 className="font-bold" />{" "}
                         <span>Add to cart</span>
@@ -274,12 +295,12 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-              <h1 className="text-white my-3 text-2xl">
+              <h1 className="text-black my-3 text-2xl">
                 <span className="font-bold">Category:</span>{" "}
                 <span className="text-gray-400">{data?.category?.name}</span>
               </h1>
 
-              <h1 className="text-white my-3 text-2xl">
+              <h1 className="text-black my-3 text-2xl">
                 <span className="font-bold">Shop Name:</span>{" "}
                 <span
                   className="relative inline-block text-2xl font-medium text-gray-400
@@ -334,64 +355,203 @@ const ProductDetails = () => {
           </div>
 
           <div className="my-14">
-            <div className="w-11/12 lg:w-11/12 xl:4/5 mx-auto">
-              <div className="flex justify-center items-center gap-2 uppercase">
-                <PiStarFourFill className="text-primary" />
-                <span className="font-medium text-primary">
-                  You might also like
-                </span>
-              </div>
-              <h1 className="mt-2 text-4xl font-bold text-white text-center">
+            <div className="flex justify-center gap-8 mb-8">
+              <button
+                className={`pb-2 text-lg font-medium ${
+                  activeTab === "Related Products"
+                    ? "border-b-2 border-primary text-primary"
+                    : "text-gray-400"
+                }`}
+                onClick={() => setActiveTab("Related Products")}
+              >
                 Related Products
-              </h1>
+              </button>
+              <button
+                className={`pb-2 text-lg font-medium ${
+                  activeTab === "Reviews"
+                    ? "border-b-2 border-primary text-primary"
+                    : "text-gray-400"
+                }`}
+                onClick={() => setActiveTab("Reviews")}
+              >
+                Reviews
+              </button>
             </div>
 
-            <div className="w-full lg:w-11/12 xl:w-4/5 mx-auto my-8">
-              <Swiper
-                spaceBetween={30}
-                loop={true}
-                pagination={{
-                  clickable: true,
-                }}
-                navigation={true}
-                modules={[Navigation]}
-                className="mySwiper"
-                breakpoints={{
-                  640: { slidesPerView: 1 },
-                  768: { slidesPerView: 2 },
-                  1024: { slidesPerView: 3 },
-                }}
-              >
-                {allProductsLoading
-                  ? renderLoadingCards()
-                  : (() => {
-                      const filteredProducts =
-                        allProductsResponse?.data?.filter(
-                          (singleProduct: IProduct) =>
-                            singleProduct?.id !== data?.id
-                        );
+            {/* Tabs Content */}
+            <div>
+              {activeTab === "Related Products" && (
+                <div>
+                  {/* Your Code Tab Content */}
+                  <div className="w-full lg:w-11/12 xl:w-4/5 mx-auto my-8">
+                    <Swiper
+                      spaceBetween={30}
+                      loop={true}
+                      pagination={{
+                        clickable: true,
+                      }}
+                      navigation={true}
+                      modules={[Navigation]}
+                      className="mySwiper"
+                      breakpoints={{
+                        640: { slidesPerView: 1 },
+                        768: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 },
+                      }}
+                    >
+                      {allProductsLoading
+                        ? renderLoadingCards()
+                        : (() => {
+                            const filteredProducts =
+                              allProductsResponse?.data?.filter(
+                                (singleProduct: IProduct) =>
+                                  singleProduct?.id !== data?.id
+                              );
 
-                      if (filteredProducts?.length === 0) {
-                        return (
-                          <div className="text-center text-white text-2xl font-bold mt-6">
-                            Sorry, no related products available.
-                          </div>
-                        );
-                      }
+                            if (filteredProducts?.length === 0) {
+                              return (
+                                <div className="text-center text-black text-2xl font-bold mt-6">
+                                  Sorry, no related products available.
+                                </div>
+                              );
+                            }
 
-                      // Render the filtered products
-                      return filteredProducts.map(
-                        (singleProduct: IProduct, index: number) => (
-                          <SwiperSlide
-                            key={index}
-                            className="px-10 md:px-5 lg:px-0"
+                            // Render the filtered products
+                            return filteredProducts?.map(
+                              (singleProduct: IProduct, index: number) => (
+                                <SwiperSlide
+                                  key={index}
+                                  className="px-10 md:px-5 lg:px-0"
+                                >
+                                  <HomeProductCard
+                                    singleProduct={singleProduct}
+                                  />
+                                </SwiperSlide>
+                              )
+                            );
+                          })()}
+                    </Swiper>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === "Reviews" && (
+                <div>
+                  {productReview?.length === 0 ? (
+                    <div className="text-center text-black text-2xl font-bold mt-6">
+                      Sorry, no product review available.
+                    </div>
+                  ) : (
+                    <div className="text-center text-gray-500">
+                      <motion.div
+                        ref={swiperRef}
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={isInView || data ? { opacity: 1, y: 0 } : {}}
+                        transition={{
+                          duration: 0.8,
+                          delay: 0.4,
+                          ease: "easeOut",
+                        }}
+                      >
+                        <div>
+                          <Swiper
+                            spaceBetween={30}
+                            slidesPerView={
+                              productReview?.length % 2 === 0 ? 2 : 1
+                            }
+                            slidesPerGroup={
+                              productReview?.length % 2 === 0 ? 2 : 1
+                            }
+                            autoplay={{
+                              delay: 6000,
+                              disableOnInteraction: false,
+                            }}
+                            pagination={{
+                              clickable: true,
+                            }}
+                            modules={[Autoplay, Pagination, Navigation]}
+                            className="mySwiper"
+                            breakpoints={{
+                              350: {
+                                slidesPerView:
+                                  productReview?.length % 2 === 0 ? 2 : 1, // For small devices
+                                slidesPerGroup: 1,
+                              },
+                              800: {
+                                slidesPerView: 2, // For medium devices
+                                slidesPerGroup: 2,
+                              },
+                            }}
                           >
-                            <HomeProductCard singleProduct={singleProduct} />
-                          </SwiperSlide>
-                        )
-                      );
-                    })()}
-              </Swiper>
+                            {productReview?.map(
+                              (singleReview: IReview, index: number) => (
+                                <SwiperSlide key={index}>
+                                  <div className="mt-8 px-10 pb-12 border-2 border-primary rounded-lg">
+                                    <div className="flex items-center gap-10 pt-8">
+                                      <div className="flex">
+                                        <img
+                                          src={
+                                            singleReview?.customer?.profilePhoto
+                                          }
+                                          alt="profile"
+                                          className="rounded-full w-20 h-20 object-cover object-top"
+                                        />
+                                        <svg
+                                          viewBox="-1 0 19 19"
+                                          xmlns="http://www.w3.org/2000/svg"
+                                          className="cf-icon-svg w-10 -ml-5"
+                                        >
+                                          <g
+                                            id="SVGRepo_bgCarrier"
+                                            strokeWidth="0"
+                                          />
+                                          <g
+                                            id="SVGRepo_tracerCarrier"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                          />
+                                          <g id="SVGRepo_iconCarrier">
+                                            <path
+                                              d="M16.417 9.583A7.917 7.917 0 1 1 8.5 1.666a7.917 7.917 0 0 1 7.917 7.917z"
+                                              fill="#f5840c"
+                                            />
+
+                                            <path
+                                              d="M7.659 9.733a3.333 3.333 0 0 0-.362-2.507 2.543 2.543 0 0 0-.908-.851 2.504 2.504 0 0 0-1.364-.278 2.259 2.259 0 0 0-1.297 3.99 2.23 2.23 0 0 0 2.515.211 3.335 3.335 0 0 1-1.655 1.403 3.942 3.942 0 0 1-.485.164 1.84 1.84 0 0 0-.445.128.567.567 0 0 0 .32 1.059 2.496 2.496 0 0 0 .5-.113 5.2 5.2 0 0 0 .475-.161A4.37 4.37 0 0 0 7.57 10.07q.053-.167.09-.337zm6.34 0a3.331 3.331 0 0 0-.362-2.507 2.54 2.54 0 0 0-.908-.851 2.502 2.502 0 0 0-1.364-.278 2.259 2.259 0 0 0-1.297 3.99 2.229 2.229 0 0 0 2.515.211 3.334 3.334 0 0 1-1.654 1.403 3.96 3.96 0 0 1-.486.164 1.847 1.847 0 0 0-.445.128.568.568 0 0 0 .32 1.059 2.496 2.496 0 0 0 .5-.113q.241-.07.475-.161a4.37 4.37 0 0 0 2.617-2.708q.052-.167.089-.337z"
+                                              fill="#ffffff"
+                                            />
+                                          </g>
+                                        </svg>
+                                      </div>
+                                      <div>
+                                        <h1 className="text-2xl font-semibold text-black">
+                                          {singleReview?.customer?.name}
+                                        </h1>
+                                        <ReactStars
+                                          count={5}
+                                          value={singleReview?.rating}
+                                          size={24}
+                                          color2={"#f5840c"}
+                                          edit={false}
+                                        />
+                                      </div>
+                                    </div>
+                                    <div className="mt-8">
+                                      <p className="md:text-lg text-left text-gray-300">
+                                        &quot;{singleReview?.comment}&quot;
+                                      </p>
+                                    </div>
+                                  </div>
+                                </SwiperSlide>
+                              )
+                            )}
+                          </Swiper>
+                        </div>
+                      </motion.div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
 

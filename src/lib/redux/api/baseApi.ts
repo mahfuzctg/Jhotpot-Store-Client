@@ -1,17 +1,18 @@
-
+// Need to use the React-specific entry point to import createApi
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
+// import { verifyToken } from "@/src/utils/verifyToken";
 
-
-
+// Define a service using a base URL and expected endpoints
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api",
+    baseUrl: "https://jhotpot-store-server.vercel.app/api",
     credentials: "include",
     prepareHeaders: (headers, { getState }) => {
       const token = (getState() as RootState).auth.token;
 
+    
       if (token) {
         headers.set("authorization", `${token}`);
       }
@@ -26,6 +27,7 @@ export const baseApi = createApi({
     "recent-products",
     "coupon",
     "orders",
+    "reviews"
   ],
   endpoints: () => ({}),
 });

@@ -8,7 +8,7 @@ const ProductSection = ({ singleProduct }: { singleProduct: IProduct }) => {
       <div className="relative overflow-hidden rounded-lg">
         <img
           className="h-[275px] w-[306px] rounded-lg object-cover duration-300 group-hover:scale-110"
-          src={singleProduct.image}
+          src={singleProduct.image[0]} 
           alt={singleProduct.name}
         />
 

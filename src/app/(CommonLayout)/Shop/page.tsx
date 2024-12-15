@@ -101,7 +101,7 @@ const ShopPage = () => {
                 <h2 className="text-4xl font-semibold text-white">
                   {singleVendor?.shopName || "Shop Name"}
                 </h2>
-                <p className="text-white/80 text-lg max-w-lg mx-auto text-center">
+                <p className="text-black text-lg max-w-lg mx-auto text-center">
                   {singleVendor?.description || "No description available."}
                 </p>
                 <p className="text-white/70 text-lg flex gap-2 items-center">

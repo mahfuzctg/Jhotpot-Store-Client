@@ -12,6 +12,8 @@ import { Button } from "@nextui-org/button";
 
 interface ModalComponentProps {
   isOpen: boolean;
+  isDismissable?: boolean;
+  isKeyboardDismissDisabled?: boolean
   onOpenChange: (open: boolean) => void;
   title?: string;
   children: ReactNode;
@@ -32,6 +34,7 @@ interface ModalComponentProps {
 const MainModal = ({
   isOpen,
   onOpenChange,
+  
   title,
   children,
   footerContent,

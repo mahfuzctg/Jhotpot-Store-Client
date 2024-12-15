@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 
 export const loginUser = async (userData: Record<string, any>) => {
   try {
-    const response = await fetch("http://localhost:5000/api/auth/login", {
+    const response = await fetch("https://jhotpot-store-server.vercel.app/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,8 +20,8 @@ export const loginUser = async (userData: Record<string, any>) => {
     const data = await response.json();
 
     if (data.success) {
-      cookies().set("accessToken", data?.data?.accessToken);
-      cookies().set("refreshToken", data?.data?.refreshToken);
+      (await cookies()).set("accessToken", data?.data?.accessToken);
+      (await cookies()).set("refreshToken", data?.data?.refreshToken);
     }
 
     return data;
@@ -36,7 +36,7 @@ export const registerUser = async (userInfo: Record<string, any>) => {
   try {
     if (role === "User") {
       const response = await fetch(
-        "http://localhost:5000/api/users/create-customer",
+        "https://jhotpot-store-server.vercel.app/api/users/create-customer",
         {
           method: "POST",
           headers: {
@@ -54,14 +54,14 @@ export const registerUser = async (userInfo: Record<string, any>) => {
       const data = await response.json();
 
       if (data.success) {
-        cookies().set("accessToken", data?.token);
+        (await cookies()).set("accessToken", data?.token);
         // cookies().set("refreshToken", data?.data?.refreshToken);
       }
 
       return data;
     } else {
       const response = await fetch(
-        "http://localhost:5000/api/users/create-customer",
+        "https://jhotpot-store-server.vercel.app/api/users/create-customer",
         {
           method: "POST",
           headers: {
@@ -79,7 +79,7 @@ export const registerUser = async (userInfo: Record<string, any>) => {
       const data = await response.json();
 
       if (data.success) {
-        cookies().set("accessToken", data?.token);
+        (await cookies()).set("accessToken", data?.token);
         // cookies().set("refreshToken", data?.data?.refreshToken);
       }
 
@@ -90,13 +90,13 @@ export const registerUser = async (userInfo: Record<string, any>) => {
   }
 };
 
-export const logoutService = () => {
-  cookies().delete("accessToken");
-  cookies().delete("refreshToken");
+export const logoutService = async () => {
+  (await cookies()).delete("accessToken");
+  (await cookies()).delete("refreshToken");
 };
 
 export const getAccessToken = async () => {
-  const accessToken = cookies().get("accessToken")?.value;
+  const accessToken = (await cookies()).get("accessToken")?.value;
 
   return accessToken;
 };

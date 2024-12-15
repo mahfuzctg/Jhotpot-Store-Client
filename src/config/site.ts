@@ -31,9 +31,13 @@ export const siteConfig = {
       href: "/shop",
     },
     {
-      label: "Contact",
-      href: "/contact",
+      label: "Dashboard",
+      href: "/dashboard",
     },
+   
+     
+     
+   
   ],
   navMenuItems: [
     {
@@ -57,12 +61,13 @@ export const siteConfig = {
       href: "/flashSale",
     },
     {
+      label: "Shop",
+      href: "/shop",
+    },
+    {
       label: "Contact",
       href: "/contact",
     },
-    {
-      label: "Login",
-      href: "/login",
-    },
+  
   ],
 };

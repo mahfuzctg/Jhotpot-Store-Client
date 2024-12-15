@@ -1,10 +1,53 @@
 import { FaCircleXmark } from "react-icons/fa6";
+import {
+  removeProduct,
+  updateQuantity,
+} from "@/src/lib/redux/features/products/product.slice";
+import { useAppDispatch, useAppSelector } from "@/src/lib/redux/hooks";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface CartDrawerProps {
   onClose: () => void;
 }
 
 const CartDrawer: React.FC<CartDrawerProps> = ({ onClose }) => {
+  const { products, quantities, subtotal } = useAppSelector(
+    (state) => state.products
+  );
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  // Handle checkout redirection
+  const handleCheckout = () => {
+    router.push("/checkout");
+  };
+
+  // Increment product quantity
+  const increment = (id: string) => {
+    const selectedProduct = products.find((item) => item.id === id);
+    if (selectedProduct) {
+      const currentQuantity = quantities[id] || 0;
+      if (currentQuantity < selectedProduct.inStock) {
+        dispatch(updateQuantity({ id, quantity: currentQuantity + 1 }));
+      }
+    }
+  };
+
+  // Decrement product quantity
+  const decrement = (id: string) => {
+    const currentQuantity = quantities[id];
+    if (currentQuantity > 1) {
+      dispatch(updateQuantity({ id, quantity: currentQuantity - 1 }));
+    }
+  };
+
+  // Handle removal of product from cart
+  const handleRemoveFromCart = (id: string) => {
+    dispatch(removeProduct(id));
+    toast.success("Product removed from Cart!");
+  };
+
   return (
     <div className="fixed top-0 right-0 w-1/5 h-full bg-white/70 backdrop-blur-lg text-gray-800 shadow-lg transform transition-transform duration-300 z-50 flex flex-col">
       {/* Header */}
@@ -18,22 +61,75 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ onClose }) => {
 
       {/* Content */}
       <div className="p-6 flex-1 flex flex-col justify-center items-center text-center">
-        <p className="text-lg mb-4">
-          Oops! It looks like your cart is empty for now.
-        </p>
-        <button
-          className="bg-gradient-to-r from-[#82C408] to-green-500 text-white px-6 py-2 rounded-full hover:from-green-600 hover:to-green-700 shadow-lg transform hover:scale-105 transition duration-300"
-          onClick={onClose}
-        >
-          Browse Products
-        </button>
+        {products?.length > 0 ? (
+          <div className="w-full">
+            {/* Cart Items */}
+            {products.map((singleProduct) => (
+              <div
+                key={singleProduct.id}
+                className="flex items-center justify-between py-4 border-b"
+              >
+                <img
+                  src={singleProduct.image}
+                  className="w-16 h-16 object-contain rounded-lg"
+                  alt={singleProduct.name}
+                />
+                <div className="ml-4 w-2/3">
+                  <h2 className="text-sm font-semibold">{singleProduct.name}</h2>
+                  <div className="flex justify-between items-center mt-2">
+                    <div className="flex items-center space-x-2 border border-gray-400 rounded px-2">
+                      <button
+                        onClick={() => decrement(singleProduct.id)}
+                        className="text-lg font-semibold text-gray-700 hover:text-green-600"
+                      >
+                        -
+                      </button>
+                      <span className="text-lg">{quantities[singleProduct.id]}</span>
+                      <button
+                        onClick={() => increment(singleProduct.id)}
+                        className="text-lg font-semibold text-gray-700 hover:text-green-600"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <span className="font-bold text-lg text-gray-800">
+                      ${singleProduct.price * quantities[singleProduct.id]}
+                    </span>
+                    <FaCircleXmark
+                      onClick={() => handleRemoveFromCart(singleProduct.id)}
+                      className="text-red-600 cursor-pointer text-xl"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p className="text-lg mb-4">Your Cart is currently empty</p>
+        )}
+
+        {/* Checkout Button */}
+        {products.length > 0 && (
+          <button
+            onClick={handleCheckout}
+            className="w-full bg-gradient-to-r from-[#82C408] to-green-500 text-white px-6 py-2 rounded-full mt-4 hover:from-green-600 hover:to-green-700 shadow-lg transform hover:scale-105 transition duration-300"
+          >
+            Proceed to Checkout
+          </button>
+        )}
       </div>
 
       {/* Footer */}
       <div className="p-4 text-sm text-gray-500 text-center">
-        <p>
-          Don’t forget to check out our latest collections for exciting deals!
-        </p>
+        {products.length === 0 ? (
+          <p>Don’t forget to check out our latest collections for exciting deals!</p>
+        ) : (
+          <div className="mt-4">
+            <h3 className="text-lg font-semibold text-gray-800">Subtotal</h3>
+            <p className="font-semibold text-gray-800">${subtotal.toFixed(2)}</p>
+            <p className="text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -3,8 +3,8 @@
 import { Input } from "@nextui-org/input";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { EyeFilledIcon } from "../ui/elements/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "../ui/elements/EyeSlashFilledIcon";
+import { EyeFilledIcon } from "../ui/elements/EyeFilledIcon";
 
 interface IProps {
   variant?: "flat" | "bordered" | "faded" | "underlined";
@@ -22,6 +22,7 @@ interface IProps {
     | "danger"
     | undefined;
   pathname?: string;
+  readonly?: boolean;
 }
 
 export default function SHInput({
@@ -33,6 +34,7 @@ export default function SHInput({
   name,
   color = "primary",
   pathname,
+  readonly = false,
 }: IProps) {
   const {
     register,
@@ -55,9 +57,10 @@ export default function SHInput({
       label={label}
       color={color}
       readOnly={
-        name === "email" && pathname !== "/login" && pathname !== "/register"
+        readonly ||
+        (name === "email" && pathname !== "/login" && pathname !== "/register")
       }
-      className="focus:border-primary-500 border-green-300"
+      className="focus:border-primary-500 border-red-300 text-white"
       endContent={
         type === "password" && (
           <button

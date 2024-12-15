@@ -1,13 +1,13 @@
 "use client";
 
-import { NextUIProvider } from "@nextui-org/system";
-import { ThemeProviderProps } from "next-themes/dist/types";
-import { useRouter } from "next/navigation";
 import * as React from "react";
-import { Toaster } from "react-hot-toast";
+import { NextUIProvider } from "@nextui-org/system";
+import { useRouter } from "next/navigation";
+import { ThemeProviderProps } from "next-themes/dist/types";
 import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "../redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { Toaster } from "react-hot-toast";
 
 export interface ProvidersProps {
   children: React.ReactNode;

@@ -6,7 +6,8 @@ import { ICoupon } from "@/src/types/schema";
 import { useState } from "react";
 import { RiCoupon2Fill } from "react-icons/ri";
 import { format } from "date-fns";
-i=
+import CouponLoading from "../../LoadingCards/CouponLoading";
+
 
 const CouponModal = () => {
   const [coupon, setCoupon] = useState<string>("");

@@ -1,11 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-redundant-roles */
 "use client";
 
-import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/product.api";
-import { removeProduct } from "@/src/lib/redux/features/products/product.slice";
+import {
+  clearCart,
+  removeProduct,
+} from "@/src/lib/redux/features/products/product.slice";
 import { useAppDispatch, useAppSelector } from "@/src/lib/redux/hooks";
-import { IProduct } from "@/src/types/schema";
 import { ReactNode, useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -14,11 +16,19 @@ import { PiStarFourFill } from "react-icons/pi";
 import { RiErrorWarningFill } from "react-icons/ri";
 import { RiCoupon2Fill } from "react-icons/ri";
 import { useDisclosure } from "@nextui-org/modal";
+
+import {
+  clearCoupon,
+  selectAppliedCoupon,
+} from "@/src/lib/redux/features/coupon/couponSlice";
+import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";
+import { usePlaceOrderMutation } from "@/src/lib/redux/features/orders/order.api";
 import MainModal from "@/src/components/modal/Reusable/MainModal";
 import CouponModal from "@/src/components/modal/Reusable/CouponModal";
 
 
 const CheckOut = () => {
+  const { userData } = useUserDetails();
   const { handleSubmit, formState, register, reset } = useForm<FieldValues>({
     defaultValues: {
       name: "",
@@ -30,14 +40,8 @@ const CheckOut = () => {
   const { errors } = formState;
   const dispatch = useAppDispatch();
   const [togglePayment, setTogglePayment] = useState(false);
-  const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  //   const [updateProduct] = useUpdateProductMutation();
-  //   const [addOrder] = useAddOrderMutation();
-
-  const { data: allProductsResponse, isLoading } = useGetAllProductsQuery({});
-
-  const allProducts = allProductsResponse?.data;
+  const [placeOrder] = usePlaceOrderMutation();
 
   const {
     products: stateProducts,
@@ -45,26 +49,75 @@ const CheckOut = () => {
     subtotal,
   } = useAppSelector((state) => state.products);
 
-  useEffect(() => {
-    if (!isLoading) {
-      const stateProductIds = stateProducts.map((product) => product.id);
-      const filtered = allProducts.filter((product: IProduct) =>
-        stateProductIds.includes(product?.id)
-      );
-      setFilteredProducts(filtered);
-    }
-  }, [allProducts, stateProducts, isLoading]);
+  const appliedCoupon = useAppSelector(selectAppliedCoupon);
 
   const handleRemoveFromCart = (id: string) => {
     dispatch(removeProduct(id));
+    dispatch(clearCoupon());
     toast.success("Product removed successfully!");
   };
 
   const shipping = subtotal * 0.05;
   const taxes = subtotal * 0.02;
-  const total = subtotal + shipping + taxes;
+  const primaryTotal = subtotal + shipping + taxes;
+  const discount =
+    appliedCoupon && appliedCoupon?.discountType === "PERCENTAGE"
+      ? primaryTotal * (appliedCoupon?.discountValue / 100)
+      : (appliedCoupon?.discountValue ?? 0);
+  const total = primaryTotal - discount;
 
-  const handlePlaceOrder = async (formData: any) => {};
+  const handlePlaceOrder = async (formData: any) => {
+    if (!togglePayment) {
+      return toast.error("Please select delivery method");
+    }
+
+    toast.loading("Placing order...");
+
+    const transactionId = `TXN-${Date.now()}`;
+
+    const orderInfo = {
+      vendorId: stateProducts[0].vendorId,
+      transactionId,
+      totalPrice: total,
+      deliveryAddress: formData.address || userData?.userData?.address,
+      orderDetails: stateProducts?.map((singleProduct) => ({
+        productId: singleProduct.id,
+        quantity: singleProduct.quantity,
+        pricePerUnit: singleProduct.price,
+      })),
+      ...(appliedCoupon?.code && { coupon: appliedCoupon.code }),
+    };
+
+    console.log(orderInfo);
+
+    try {
+      const response = await placeOrder(orderInfo);
+      console.log(response.data);
+
+      if (response?.data?.paymentSession?.result) {
+        toast.dismiss();
+        dispatch(clearCart());
+        dispatch(clearCoupon());
+        window.location.href = response.data.paymentSession.payment_url;
+      } else {
+        toast.error("Failed to process the payment!");
+      }
+    } catch (error) {
+      console.error("Error placing order:", error);
+      toast.error("An unexpected error occurred.");
+    }
+  };
+
+  useEffect(() => {
+    if (userData?.userData) {
+      reset({
+        name: userData.userData.name || "",
+        email: userData.userData.email || "",
+        address: userData.userData.address || "",
+        phone: userData.userData.phone || "",
+      });
+    }
+  }, [userData, reset]);
 
   return (
     <div>
@@ -80,7 +133,7 @@ const CheckOut = () => {
                 Complete Your Purchase
               </span>
             </div>
-            <h1 className="mt-2 text-4xl font-bold text-white text-center">
+            <h1 className="mt-2 text-4xl font-bold text-black text-center">
               Checkout Items
             </h1>
           </div>
@@ -88,14 +141,14 @@ const CheckOut = () => {
           <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
             <div>
               <div>
-                <h2 className="text-lg font-medium text-white">
+                <h2 className="text-lg font-medium text-black">
                   Contact information
                 </h2>
 
                 <div className="mt-4">
                   <label
                     htmlFor="email-address"
-                    className="block text-sm font-medium text-white"
+                    className="block text-sm font-medium text-black"
                   >
                     Email address
                   </label>
@@ -108,7 +161,8 @@ const CheckOut = () => {
                           message: "User Email is required",
                         },
                       })}
-                      className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary"
+                      readOnly
+                      className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-black"
                     />
                     <p className="text-sm text-red-600 font-medium  mt-2">
                       {errors?.email?.message as ReactNode}
@@ -118,7 +172,7 @@ const CheckOut = () => {
               </div>
 
               <div className="mt-10 border-t border-primary pt-10">
-                <h2 className="text-lg font-medium text-white">
+                <h2 className="text-lg font-medium text-black">
                   Shipping information
                 </h2>
 
@@ -126,7 +180,7 @@ const CheckOut = () => {
                   <div className="sm:col-span-2">
                     <label
                       htmlFor="first-name"
-                      className="block text-sm font-medium text-white"
+                      className="block text-sm font-medium text-black"
                     >
                       Full Name
                     </label>
@@ -139,7 +193,8 @@ const CheckOut = () => {
                             message: "Name is required",
                           },
                         })}
-                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary"
+                        readOnly
+                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-black"
                       />
                       <p className="text-sm text-red-600 font-medium  mt-2">
                         {errors?.name?.message as ReactNode}
@@ -150,9 +205,9 @@ const CheckOut = () => {
                   <div className="sm:col-span-2">
                     <label
                       htmlFor="address"
-                      className="block text-sm font-medium text-white"
+                      className="block text-sm font-medium text-black"
                     >
-                      Address
+                      Delivery Address
                     </label>
                     <div className="mt-1">
                       <input
@@ -163,7 +218,7 @@ const CheckOut = () => {
                             message: "Address is required",
                           },
                         })}
-                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary"
+                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-black"
                       />
                       <p className="text-sm text-red-600 font-medium  mt-2">
                         {errors?.address?.message as ReactNode}
@@ -174,7 +229,7 @@ const CheckOut = () => {
                   <div className="sm:col-span-2">
                     <label
                       htmlFor="phone"
-                      className="block text-sm font-medium text-white"
+                      className="block text-sm font-medium text-black"
                     >
                       Phone
                     </label>
@@ -187,7 +242,8 @@ const CheckOut = () => {
                             message: "Phone Number is required",
                           },
                         })}
-                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary"
+                        readOnly
+                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-black"
                       />
                     </div>
                   </div>
@@ -197,7 +253,7 @@ const CheckOut = () => {
               <div className="mt-10 border-t border-gray-200 pt-10">
                 <fieldset>
                   <div className="flex gap-3 flex-col md:flex-row">
-                    <legend className="text-lg font-medium text-white">
+                    <legend className="text-lg font-medium text-black">
                       Delivery method
                     </legend>
                     {!togglePayment && (
@@ -218,7 +274,7 @@ const CheckOut = () => {
                         <div className="flex flex-col">
                           <span
                             id="delivery-method-0-label"
-                            className="block text-sm font-medium text-white"
+                            className="block text-sm font-medium text-black"
                           >
                             {" "}
                             Cash on Delivery{" "}
@@ -232,7 +288,7 @@ const CheckOut = () => {
                           </span>
                           <span
                             id="delivery-method-0-description-1"
-                            className="mt-6 text-sm font-medium text-white"
+                            className="mt-6 text-sm font-medium text-black"
                           >
                             <span className="line-through">
                               <span>$</span>
@@ -260,7 +316,7 @@ const CheckOut = () => {
                         <div className="flex flex-col">
                           <span
                             id="delivery-method-1-label"
-                            className="block text-sm font-medium text-white"
+                            className="block text-sm font-medium text-black"
                           >
                             {" "}
                             AamarPay Payment{" "}
@@ -274,7 +330,7 @@ const CheckOut = () => {
                           </span>
                           <span
                             id="delivery-method-1-description-1"
-                            className="mt-6 text-sm font-medium text-white"
+                            className="mt-6 text-sm font-medium text-black"
                           >
                             {" "}
                             <span>
@@ -286,7 +342,7 @@ const CheckOut = () => {
                       </div>
 
                       <svg
-                        className={`h-5 w-5 text-[#e08534] ${togglePayment && "text-white"}`}
+                        className={`h-5 w-5 text-[#e08534] ${togglePayment && "text-black"}`}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -310,7 +366,7 @@ const CheckOut = () => {
             </div>
 
             <div className="mt-10 lg:mt-0">
-              <h2 className="text-lg font-medium text-white">Order summary</h2>
+              <h2 className="text-lg font-medium text-black">Order summary</h2>
 
               <div className="mt-4 border border-[#f5840c] rounded-lg shadow-sm">
                 <div>
@@ -333,12 +389,12 @@ const CheckOut = () => {
                                   <h4 className="text-sm">
                                     <a
                                       href="#"
-                                      className="text-white text-lg font-semibold"
+                                      className="text-black text-lg font-semibold"
                                     >
                                       {singleProduct.name}{" "}
                                     </a>
                                   </h4>
-                                  <p className="mt-1 text-sm text-white">
+                                  <p className="mt-1 text-sm text-black">
                                     x{quantities[singleProduct.id]}
                                   </p>
                                 </div>
@@ -354,7 +410,7 @@ const CheckOut = () => {
                               </div>
 
                               <div className="flex-1 pt-2 flex items-end justify-between">
-                                <p className="mt-1 text-sm font-medium text-white">
+                                <p className="mt-1 text-sm font-medium text-black">
                                   <span>$</span>
                                   {singleProduct.price}.00
                                 </p>
@@ -364,7 +420,7 @@ const CheckOut = () => {
                         </ul>
                       </div>
                     ))}
-                  {stateProducts?.length > 0 && (
+                  {stateProducts?.length > 0 && !appliedCoupon && (
                     <div
                       onClick={onOpen}
                       className={`flex gap-2 items-center text-primary font-bold ${stateProducts?.length > 0 && "border-t border-[#f5840c]"} px-4 sm:px-6 pt-4 cursor-pointer hover:underline`}
@@ -376,33 +432,50 @@ const CheckOut = () => {
                     </div>
                   )}
 
-                  <div className={`py-6 px-4 space-y-6 sm:px-6 `}>
+                  <div
+                    className={`${stateProducts?.length > 0 && appliedCoupon && "border-t border-[#f5840c]"}  py-6 px-4 space-y-6 sm:px-6 `}
+                  >
                     <div className="flex items-center justify-between">
-                      <dt className="text-sm text-white">Subtotal</dt>
-                      <dd className="text-sm font-medium text-white">
+                      <dt className="text-sm text-black">Subtotal</dt>
+                      <dd className="text-sm font-medium text-black">
                         <span>$</span>
                         {subtotal.toFixed(2)}
                       </dd>
                     </div>
                     <div className="flex items-center justify-between">
-                      <dt className="text-sm text-white">Shipping</dt>
-                      <dd className="text-sm font-medium text-white">
+                      <dt className="text-sm text-black">Shipping</dt>
+                      <dd className="text-sm font-medium text-black">
                         <span>$</span>
                         {shipping.toFixed(2)}
                       </dd>
                     </div>
                     <div className="flex items-center justify-between">
-                      <dt className="text-sm text-white">Taxes</dt>
-                      <dd className="text-sm font-medium text-white">
+                      <dt className="text-sm text-black">Taxes</dt>
+                      <dd className="text-sm font-medium text-black">
                         <span>$</span>
                         {taxes.toFixed(2)}
                       </dd>
                     </div>
+                    {appliedCoupon && (
+                      <div className="flex items-center justify-between">
+                        <dt className="text-sm text-black">
+                          Coupon Discount{" "}
+                          <span className="text-primary ml-3 font-semibold">
+                            {`(${appliedCoupon?.code})`}
+                          </span>
+                        </dt>{" "}
+                        <dd className="text-sm font-medium text-black">
+                          <span>$</span>
+                          {discount.toFixed(2)}
+                        </dd>
+                      </div>
+                    )}
+
                     <div className="flex items-center justify-between border-t border-[#f5840c] pt-6">
-                      <dt className="text-base font-medium  text-white">
+                      <dt className="text-base font-medium  text-black">
                         Total
                       </dt>
-                      <dd className="text-base font-medium text-white">
+                      <dd className="text-base font-medium text-black">
                         <span>$</span>
                         {total.toFixed(2)}
                       </dd>
@@ -413,7 +486,7 @@ const CheckOut = () => {
                 <div className="border-t border-[#f5840c] py-6 px-4 sm:px-6">
                   <button
                     type="submit"
-                    className="relative h-12 w-full origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3"
+                    className="relative h-12 w-full origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-black hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3"
                   >
                     Pay Now
                   </button>
@@ -423,7 +496,12 @@ const CheckOut = () => {
           </div>
         </form>
 
-        <MainModal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <MainModal
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
+          isDismissable={false}
+          isKeyboardDismissDisabled={true}
+        >
           <CouponModal />
         </MainModal>
       </main>

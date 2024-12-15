@@ -2,6 +2,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../redux/features/auth/auth.slice";
 import productReducer from "@/src/lib/redux/features/products/product.slice";
+import couponReducer from "@/src/lib/redux/features/coupon/couponSlice";
+import compareProductReducer from "@/src/lib/redux/features/compare/compare.slice";
 import {
   persistStore,
   persistReducer,
@@ -21,15 +23,35 @@ const persistConfig = {
   storage,
 };
 
+const productsPersistConfig = {
+  key: "products",
+  storage,
+};
+
+const couponPersistConfig = {
+  key: "coupon",
+  storage,
+};
+
 // Create persisted reducer
 const persistedReducer = persistReducer(persistConfig, authReducer);
+const persistedProductReducer = persistReducer(
+  productsPersistConfig,
+  productReducer
+);
+const persistedCouponReducer = persistReducer(
+  couponPersistConfig,
+  couponReducer
+);
 
 // Function to make the store
 export const store = configureStore({
   reducer: {
     [baseApi.reducerPath]: baseApi.reducer,
     auth: persistedReducer,
-    products: productReducer,
+    products: persistedProductReducer,
+    coupon: persistedCouponReducer,
+    compareProducts: compareProductReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

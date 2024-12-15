@@ -1,14 +1,14 @@
 "use client";
 
 import { protectedRoutes } from "@/src/constant";
-import { logout } from "@/src/lib/redux/features/auth/authSlice";
+import { logout } from "@/src/lib/redux/features/auth/auth.slice";
 import { clearCoupon } from "@/src/lib/redux/features/coupon/couponSlice";
-import { clearCart } from "@/src/lib/redux/features/products/productSlice";
+import { clearCart } from "@/src/lib/redux/features/products/product.slice";
 import { useAppDispatch } from "@/src/lib/redux/hooks";
 import { logoutService } from "@/src/utils/loginService";
 import { usePathname, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import logo from "@/src/assets/logo.png";
+import logo from "@/src/assets/store-logo.png";
 import Link from "next/link";
 import Image from "next/image";
 import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";

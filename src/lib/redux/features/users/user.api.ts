@@ -1,4 +1,3 @@
-
 import { TResponseRedux } from "@/src/types";
 import { baseApi } from "../../api/baseApi";
 
@@ -26,7 +25,28 @@ const userApi = baseApi.injectEndpoints({
       },
       invalidatesTags: ["users"],
     }),
+    updateCustomer: builder.mutation({
+      query: (customerInfo) => ({
+        url: "/users/update-customer",
+        method: "PATCH",
+        body: customerInfo,
+      }),
+      invalidatesTags: ["users"],
+    }),
+    updateVendor: builder.mutation({
+      query: (vendorInfo) => ({
+        url: "/users/update-customer",
+        method: "PATCH",
+        body: vendorInfo,
+      }),
+      invalidatesTags: ["users"],
+    }),
   }),
 });
 
-export const { useFollowUserMutation, useUnfollowUserMutation } = userApi;
+export const {
+  useFollowUserMutation,
+  useUnfollowUserMutation,
+  useUpdateCustomerMutation,
+  useUpdateVendorMutation,
+} = userApi;
