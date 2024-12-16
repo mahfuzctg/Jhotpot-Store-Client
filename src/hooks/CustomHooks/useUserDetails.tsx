@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 
 import { useAppSelector } from "@/src/lib/redux/hooks";
-import { selectCurrentToken } from "@/src/lib/redux/features/auth/auth.slice";
 import { useGetMyProfileQuery } from "@/src/lib/redux/features/auth/auth.api";
+import { selectCurrentToken } from "@/src/lib/redux/features/auth/auth.slice";
 
 const useUserDetails = () => {
   const token = useAppSelector(selectCurrentToken);
@@ -25,7 +25,7 @@ const useUserDetails = () => {
 
   const effectiveLoading = isLoading || isRefetching;
 
-  return { userData: data || null, isLoading: effectiveLoading };
+  return { userData: data || null, isLoading: effectiveLoading, refetch };
 };
 
 export default useUserDetails;

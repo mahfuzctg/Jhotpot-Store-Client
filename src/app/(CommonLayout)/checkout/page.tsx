@@ -31,10 +31,10 @@ const CheckOut = () => {
   const { userData } = useUserDetails();
   const { handleSubmit, formState, register, reset } = useForm<FieldValues>({
     defaultValues: {
-      name: "",
-      email: "",
-      address: "",
-      phone: "",
+      name: "xyz",
+      email: "xyz@gmail.com",
+      address: "ctg",
+      phone: "0187976777",
     },
   });
   const { errors } = formState;
@@ -243,7 +243,7 @@ const CheckOut = () => {
                           },
                         })}
                         readOnly
-                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-black"
+                        className="block w-full bg-transparent p-2 text-black  outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-black"
                       />
                     </div>
                   </div>

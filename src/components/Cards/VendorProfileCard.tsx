@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { useGetReviewsByIdQuery } from "@/src/lib/redux/features/reviews/reviewApi";
 import MainModal from "../modal/Reusable/MainModal";
 import { useGetAllOrdersQuery } from "@/src/lib/redux/features/orders/order.api";
+import VendorProfileLoading from "../LoadingCards/VendorProfileLoading";
+import UpdateVendorModal from "../modal/Reusable/UpdateVendorModal";
 
 const VendorProfileCard = () => {
   const { userData, isLoading } = useUserDetails();

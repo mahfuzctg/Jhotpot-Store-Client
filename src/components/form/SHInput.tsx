@@ -60,7 +60,7 @@ export default function SHInput({
         readonly ||
         (name === "email" && pathname !== "/login" && pathname !== "/register")
       }
-      className="focus:border-primary-500 border-red-300 text-white"
+      className="focus:border-primary-500 border-red-300 text-black"
       endContent={
         type === "password" && (
           <button

@@ -1,9 +1,9 @@
 "use client";
 
-import { Textarea } from "@nextui-org/input";
+import { Select, SelectItem } from "@nextui-org/select";
 import { useFormContext } from "react-hook-form";
 
-interface ITextareaProps {
+interface IProps {
   variant?: "flat" | "bordered" | "faded" | "underlined";
   size?: "sm" | "md" | "lg";
   required?: boolean;
@@ -17,29 +17,25 @@ interface ITextareaProps {
     | "warning"
     | "danger"
     | undefined;
-  placeholder?: string;
-  rows?: number;
-  readonly?: boolean;
+  items: { key: string | boolean; label: string }[];
 }
 
-export default function SHTextarea({
-  variant = "flat",
+export default function SHSelect({
+  variant = "underlined",
   size = "md",
   required = false,
   label,
   name,
   color = "primary",
-  placeholder = "Enter text...",
-  rows = 3,
-  readonly = false,
-}: ITextareaProps) {
+  items,
+}: IProps) {
   const {
     register,
     formState: { errors },
   } = useFormContext();
 
   return (
-    <Textarea
+    <Select
       {...register(name)}
       errorMessage={errors?.[name] ? (errors?.[name]?.message as string) : ""}
       isInvalid={!!errors?.[name]}
@@ -48,10 +44,17 @@ export default function SHTextarea({
       required={required}
       label={label}
       color={color}
-      readOnly={readonly}
-      placeholder={placeholder}
-      rows={rows}
-      className="focus:border-primary-500 border-red-300 text-black"
-    />
+      className=""
+    >
+      {items.map((item) => (
+        <SelectItem
+          key={String(item.key)}
+          value={String(item.key)}
+          className=""
+        >
+          {item.label}
+        </SelectItem>
+      ))}
+    </Select>
   );
 }

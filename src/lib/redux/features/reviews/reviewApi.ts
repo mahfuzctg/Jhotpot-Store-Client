@@ -17,9 +17,12 @@ const reviewApi = baseApi.injectEndpoints({
       invalidatesTags: ["reviews"],
     }),
     getReviewsById: builder.query({
-      query: (productId) => {
+      query: (params: Record<string, string>) => {
+        const queryString = new URLSearchParams(
+          params as Record<string, string>
+        ).toString();
         return {
-          url: `/reviews?productId=${productId}`,
+          url: `/reviews?${queryString}`,
           method: "GET",
         };
       },

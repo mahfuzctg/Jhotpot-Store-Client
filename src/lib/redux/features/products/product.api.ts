@@ -1,3 +1,4 @@
+
 import { TResponseRedux } from "@/src/types";
 import { baseApi } from "../../api/baseApi";
 
@@ -93,6 +94,32 @@ const productApi = baseApi.injectEndpoints({
       },
       providesTags: ["recent-products"],
     }),
+    addNewProduct: builder.mutation({
+      query: (productInfo) => {
+        return {
+          url: "/products",
+          method: "POST",
+          body: productInfo,
+        };
+      },
+      transformResponse: (response: TResponseRedux<any>) => {
+        return response.data;
+      },
+      invalidatesTags: ["products"],
+    }),
+    updateProduct: builder.mutation({
+      query: ({ productInfo, productId }) => {
+        return {
+          url: `/products/${productId}`,
+          method: "PATCH",
+          body: productInfo,
+        };
+      },
+      transformResponse: (response: TResponseRedux<any>) => {
+        return response.data;
+      },
+      invalidatesTags: ["products"],
+    }),
     addRecentProduct: builder.mutation({
       query: (productInfo) => {
         return {
@@ -128,4 +155,6 @@ export const {
   useGetRecentViewProductsQuery,
   useAddRecentProductMutation,
   useDeleteRecentProductMutation,
+  useAddNewProductMutation,
+  useUpdateProductMutation,
 } = productApi;

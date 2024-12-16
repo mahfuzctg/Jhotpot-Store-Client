@@ -4,11 +4,13 @@ import SHFileInput from "@/src/components/form/SHFileInput";
 import SHForm from "@/src/components/form/SHForm";
 import SHInput from "@/src/components/form/SHInput";
 import SHSelect from "@/src/components/form/SHSelect";
+
 import SHTextarea from "@/src/components/form/SHTextArea";
 import DashboardSectionTitle from "@/src/components/ui/components/DashboardSectionTitle";
 import envConfig from "@/src/config/envConfig";
 import { useCategories } from "@/src/hooks/CustomHooks/useCategories";
-import { useAddNewProductMutation } from "@/src/lib/redux/features/products/productApi";
+import { useAddNewProductMutation } from "@/src/lib/redux/features/products/product.api";
+
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { FieldValues, SubmitHandler } from "react-hook-form";

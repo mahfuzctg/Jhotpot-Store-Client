@@ -39,17 +39,10 @@ export default function Login() {
 
   useEffect(() => {
     if (isLogInSuccess) {
-      // Redirect user based on their role
-      if (selectedRole === "CUSTOMER") {
-        router.push("/customer-dashboard");
-      } else if (selectedRole === "Vendor") {
-        router.push("/vendor-dashboard");
-      } else if (selectedRole === "ADMIN") {
-        router.push("/admin-dashboard");
-      }
+      const target = redirect || "/";
+      router.push(target);
     }
-  }, [isLogInSuccess, selectedRole, router]);
-  
+  }, [isLogInSuccess, redirect, router]);
 
   const handleLogin: SubmitHandler<FieldValues> = async (data) => {
     toast.loading("Loading...");
@@ -62,10 +55,8 @@ export default function Login() {
         const user = verifyToken(res.data.accessToken) as TUser;
         dispatch(setUser({ user: user, token: res.data.accessToken }));
 
-        // Set the role and perform redirection
-        setSelectedRole(user.role);
         setIsLogInSuccess(true);
-        toast.success("Logged in successfully", { duration: 1000 });
+        toast.success("Logged in successfully", { duration: 3000 });
       }
     } catch (error: any) {
       console.log(error);
@@ -87,10 +78,8 @@ export default function Login() {
         const user = verifyToken(res.token) as TUser;
         dispatch(setUser({ user: user, token: res.token }));
 
-        // Set the role and perform redirection
-        setSelectedRole(user.role);
         setIsLogInSuccess(true);
-        toast.success("Account created successfully!", { duration: 1000 });
+        toast.success("Account created successfully!", { duration: 3000 });
       }
     } catch (error: any) {
       console.log(error);
@@ -125,7 +114,11 @@ export default function Login() {
         {/* Form Containers */}
         {/* Sign In Part */}
         <div
-          className={`absolute top-0 left-0 h-full transition-all duration-700 ${isActive ? "translate-x-full opacity-0 z-10" : "translate-x-0 opacity-100 z-20"} w-full lg:w-1/2`}
+          className={`absolute top-0 left-0 h-full transition-all duration-700 ${
+            isActive
+              ? "translate-x-full opacity-0 z-10"
+              : "translate-x-0 opacity-100 z-20"
+          } w-full lg:w-1/2`}
         >
           <div className="flex flex-col items-center justify-center h-full px-10 text-white">
             <Link href={"/"}>
@@ -152,9 +145,15 @@ export default function Login() {
                 <FaLinkedinIn className="w-6 h-6 text-gray-600" />
               </a>
             </div>
-            <span className="text-sm text-white mb-4">or use your email account</span>
+            <span className="text-sm text-white mb-4">
+              or use your email account
+            </span>
 
             <SHForm
+              // defaultValues={{
+              //   email: "nafizuddin.okc@gmail.com",
+              //   password: "villa123",
+              // }}
               onSubmit={handleLogin}
               resolver={zodResolver(loginValidationSchema)}
             >
@@ -200,7 +199,11 @@ export default function Login() {
 
         {/* Sign Up Part */}
         <div
-          className={`absolute top-0 left-0 h-full transition-all duration-700 ${isActive ? "translate-x-0 lg:translate-x-full opacity-100 z-20" : "translate-x-full lg:translate-x-0 opacity-100 lg:opacity-0 z-10"} w-full lg:w-1/2`}
+          className={`absolute top-0 left-0 h-full transition-all duration-700 ${
+            isActive
+              ? "translate-x-0 lg:translate-x-full opacity-100 z-20"
+              : "translate-x-full lg:translate-x-0 opacity-100 lg:opacity-0 z-10"
+          } w-full lg:w-1/2`}
         >
           <div className="flex flex-col items-center justify-center h-full px-10 text-white">
             <Link href={"/"}>
@@ -232,7 +235,7 @@ export default function Login() {
               {isOpen && (
                 <div
                   ref={dropdownRef}
-                  className="absolute top-[calc(100%+0.5rem)] left-0 border border-primary bg-black text-white shadow-lg rounded-md w-40 z-50"
+                  className="absolute top-[calc(100%+0.5rem)] left-0  border border-primary bg-black text-white shadow-lg rounded-md w-40 z-50"
                 >
                   <div
                     className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-white"
@@ -257,19 +260,31 @@ export default function Login() {
             </div>
 
             <SHForm
+              // defaultValues={{
+              //   email: "admin@gmail.com",
+              //   password: "admin123",
+              // }}
               onSubmit={handleSignUp}
               resolver={zodResolver(registerValidationSchema)}
             >
               <div className="py-2">
                 <SHInput
-                  name="email"
-                  label="Email"
-                  type="email"
-                  pathname="/register"
+                  name="name"
+                  label="Full Name"
+                  type="text"
                   variant="bordered"
                 />
               </div>
-              <div className="py-2">
+              <div className="pb-2">
+                <SHInput
+                  name="email"
+                  label="Email"
+                  type="email"
+                  pathname="/login"
+                  variant="bordered"
+                />
+              </div>
+              <div className="pb-2">
                 <SHInput
                   name="password"
                   label="Password"
@@ -277,16 +292,8 @@ export default function Login() {
                   variant="bordered"
                 />
               </div>
-              <div className="py-2">
-                <SHInput
-                  name="confirmPassword"
-                  label="Confirm Password"
-                  type="password"
-                  variant="bordered"
-                />
-              </div>
 
-              <div className="flex justify-center items-center mb-10">
+              <div className="flex justify-center items-center mt-3 mb-10">
                 <button
                   type="submit"
                   className="relative h-10 w-24 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
@@ -298,16 +305,50 @@ export default function Login() {
           </div>
         </div>
 
-        {/* Toggle between Sign In/Sign Up */}
-        <div className="absolute bottom-0 left-0 flex justify-center items-center py-5 w-full">
-          <button
-            className="text-primary font-bold"
-            onClick={() => setIsActive(!isActive)}
-          >
-            {isActive ? "Already have an account?" : "Create a new account?"}
-          </button>
+        {/* Toggle Panels */}
+        <div
+          className={`hidden absolute top-0 left-1/2 w-full h-1/2 md:h-full md:w-1/2 transition-all duration-700 bg-orange-500 text-white lg:flex flex-col items-center justify-center px-6 ${
+            isActive
+              ? "translate-x-[-100%] rounded-r-[30%]"
+              : "translate-x-0 rounded-l-[30%]"
+          }`}
+        >
+          <div className="text-center">
+            <h1 className="text-3xl font-bold mb-2">
+              {isActive ? "Welcome Back!" : "Welcome, Friend!"}
+            </h1>
+            <p className="mb-5">
+              {isActive
+                ? "Enter your personal details to sign in."
+                : "Create your account to get started."}
+            </p>
+            <button
+              onClick={() => setIsActive(!isActive)}
+              className="px-6 py-2 bg-transparent border-2 border-white rounded-lg uppercase font-bold"
+            >
+              {isActive ? "Sign In" : "Sign Up"}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Toggle Text */}
+        <div className="lg:hidden absolute bottom-5 left-1/2 transform  -translate-x-1/2 text-center z-50 w-60 md:w-auto">
+          <p>
+            {" "}
+            {isActive
+              ? "Already have an account?"
+              : "Don't have an account?"}{" "}
+            <button
+              onClick={() => setIsActive(!isActive)}
+              className="text-primary font-bold hover:underline"
+            >
+              {" "}
+              {isActive ? "Login Now!" : "Sign Up Now!"}{" "}
+            </button>{" "}
+          </p>
         </div>
       </div>
     </div>
   );
 }
+

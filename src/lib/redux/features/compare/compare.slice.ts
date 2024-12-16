@@ -1,6 +1,7 @@
-import { IProduct } from "@/src/types/schema";
+
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
+import { IProduct } from "@/src/types/schema";
 
 type TProductComparison = {
   comparisonProducts: IProduct[];
