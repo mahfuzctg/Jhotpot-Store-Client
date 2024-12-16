@@ -39,8 +39,13 @@ export default function Login() {
 
   useEffect(() => {
     if (isLogInSuccess) {
-      const target = redirect || "/";
-      router.push(target);
+      if (selectedRole === "User") {
+        const target = redirect || "/";
+        router.push(target);
+      } else {
+        const target = "/vendor-dashboard";
+        router.push(target);
+      }
     }
   }, [isLogInSuccess, redirect, router]);
 

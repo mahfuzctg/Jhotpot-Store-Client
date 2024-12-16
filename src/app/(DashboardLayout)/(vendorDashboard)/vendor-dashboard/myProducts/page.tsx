@@ -1,6 +1,4 @@
-
 "use client";
-
 
 import DashboardProductCard from "@/src/components/Cards/DashboardProductCard";
 import DashboardProductLoading from "@/src/components/LoadingCards/DashboardProductLoading";
@@ -13,7 +11,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const MyProducts = () => {
-  const { userData, isLoading } = useUserDetails();
+  const { userData, isLoading, refetch } = useUserDetails();
   const [currentPage, setCurrentPage] = useState(1);
   const dataPerPage = 6;
 
@@ -34,13 +32,13 @@ const MyProducts = () => {
 
       <div className="flex flex-col md:flex-row justify-between items-center mt-8 mb-4 gap-5">
         <div>
-          <h1 className="text-blacktext-2xl font-bold">
+          <h1 className="text-white text-2xl font-bold">
             Total Products: {userData?.userData?.products?.length || 0}
           </h1>
         </div>
         <div>
           <Link href={"/vendor-dashboard/addProduct"}>
-            <button className="relative h-9 w-30 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-blackhover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3">
+            <button className="relative h-9 w-30 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3">
               Add New Product
             </button>
           </Link>
@@ -58,6 +56,7 @@ const MyProducts = () => {
               <DashboardProductCard
                 key={singleProduct?.id}
                 singleProduct={singleProduct}
+                refetch={refetch}
               />
             ))}
       </div>

@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import {
   Home,
@@ -23,7 +22,7 @@ export default function VendorDashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const adminLinks = [
+  const vendorLinks = [
     {
       label: "Dashboard Home",
       href: "/vendor-dashboard",
@@ -41,7 +40,7 @@ export default function VendorDashboardLayout({
     },
     {
       label: "Security",
-      href: "/customer-dashboard/security",
+      href: "/vendor-dashboard/security",
       icon: <KeyRound size={20} />,
     },
   ];
@@ -72,7 +71,7 @@ export default function VendorDashboardLayout({
   return (
     <div className="flex min-h-screen">
       {/* Sidebar */}
-      <Sidebar links={adminLinks} commonLinks={commonLinks} />
+      <Sidebar links={vendorLinks} commonLinks={commonLinks} />
 
       {/* Dashboard Content */}
       <main className="flex-1 md:px-10 mt-6">{children}</main>

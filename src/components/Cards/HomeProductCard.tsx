@@ -47,7 +47,7 @@ const HomeProductCard = ({
   };
 
   const addProductToCart = () => {
-    if (userData?.userData) {
+    if (!userData?.userData) {
       router.push("/login");
       return;
     }

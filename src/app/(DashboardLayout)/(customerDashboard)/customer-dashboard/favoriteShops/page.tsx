@@ -5,7 +5,7 @@ import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";
 import { useUnfollowUserMutation } from "@/src/lib/redux/features/users/user.api";
 import { IFollow, IVendor } from "@/src/types/schema";
 import toast from "react-hot-toast";
-import shop from "@/src/assets/shop.png";
+import shop from "@/src/assets/store-logo.png";
 import Image from "next/image";
 
 const FavoriteShops = () => {
@@ -68,7 +68,7 @@ const FavoriteShops = () => {
                         onClick={() =>
                           handleunfollowVendor(singleFollow?.vendor)
                         }
-                        className="relative h-10 w-30 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3"
+                        className="relative h-10 w-30 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-black hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3"
                       >
                         Unfollow
                       </button>
@@ -79,7 +79,7 @@ const FavoriteShops = () => {
             ) : (
               <div className="h-[500px] flex flex-col items-center justify-center w-full">
                 <Image src={shop} alt="shop" width={160} height={160} />
-                <p className="text-3xl text-center text-white mt-4">
+                <p className="text-3xl text-center text-black mt-4">
                   You haven&apos;t followed any shop yet.
                 </p>
               </div>

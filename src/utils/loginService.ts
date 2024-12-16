@@ -56,7 +56,7 @@ export const registerUser = async (userInfo: Record<string, any>) => {
 
       if (data.success) {
         cookies().set("accessToken", data?.token);
-        cookies().set("refreshToken", data?.data?.refreshToken);
+        // cookies().set("refreshToken", data?.data?.refreshToken);
       }
 
       return data;

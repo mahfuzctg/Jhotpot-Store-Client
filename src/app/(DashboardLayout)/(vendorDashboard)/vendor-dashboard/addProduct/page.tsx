@@ -4,7 +4,6 @@ import SHFileInput from "@/src/components/form/SHFileInput";
 import SHForm from "@/src/components/form/SHForm";
 import SHInput from "@/src/components/form/SHInput";
 import SHSelect from "@/src/components/form/SHSelect";
-
 import SHTextarea from "@/src/components/form/SHTextArea";
 import DashboardSectionTitle from "@/src/components/ui/components/DashboardSectionTitle";
 import envConfig from "@/src/config/envConfig";
@@ -71,7 +70,9 @@ const AddProduct = () => {
       inventory: Number(data.inventory),
       categoryId: data.category,
       description: data.description,
-      ...(data?.flashSale && { flashSale: !!data.flashSale }),
+      ...(data?.flashSale && {
+        flashSale: data.flashSale === "true" ? true : false,
+      }),
       ...(data?.discount && { discount: Number(data.discount) }),
     };
     toast.dismiss();
@@ -81,7 +82,7 @@ const AddProduct = () => {
       const res = await addNewProduct(productInfo).unwrap();
       console.log(res);
       if (res) {
-        toast.success("Profile added successfully", { duration: 3000 });
+        toast.success("Product added successfully", { duration: 3000 });
         router.push("/vendor-dashboard/myProducts");
       }
     } catch (error: any) {
@@ -96,7 +97,8 @@ const AddProduct = () => {
 
       <div>
         <h1 className="mt-5 mb-2 font-bold text-primary">
-          Upload Product Images:
+          Upload Product Images:{" "}
+          <span className="text-gray-400">(Add upto 2 or 3 images)</span>
         </h1>
 
         <SHForm onSubmit={onSubmit}>
