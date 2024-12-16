@@ -1,17 +1,20 @@
+
 "use client";
 
+import DashboardSectionTitle from "@/src/components/ui/components/DashboardSectionTitle";
 import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { IOrder } from "@/src/types/schema";
+
 import { Pagination } from "@nextui-org/pagination";
+import TableLoadingSkeleton from "@/src/components/LoadingCards/TableLoading";
 import { useDisclosure } from "@nextui-org/modal";
+import { useGetAllOrdersQuery } from "@/src/lib/redux/features/orders/order.api";
 import MainModal from "@/src/components/modal/Reusable/MainModal";
 import ProductReviewModal from "@/src/components/modal/Reusable/ProductReviewModal";
-import { useGetAllOrdersQuery } from "@/src/lib/redux/features/orders/order.api";
-import TableLoadingSkeleton from "@/src/components/LoadingCards/TableLoading";
-import DashboardSectionTitle from "@/src/components/ui/components/DashboardSectionTitle";
+import { IOrder } from "@/src/types/schema";
+
 
 const MyOrders = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();

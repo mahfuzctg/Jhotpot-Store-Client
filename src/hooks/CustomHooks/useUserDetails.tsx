@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import { selectCurrentToken } from "@/src/lib/redux/features/auth/auth.slice";
 import { useAppSelector } from "@/src/lib/redux/hooks";
+import { selectCurrentToken } from "@/src/lib/redux/features/auth/auth.slice";
 import { useGetMyProfileQuery } from "@/src/lib/redux/features/auth/auth.api";
 
 const useUserDetails = () => {

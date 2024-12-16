@@ -1,3 +1,4 @@
+
 /* eslint-disable jsx-a11y/anchor-is-valid */
 "use client";
 
@@ -6,13 +7,11 @@ import { MdEmail } from "react-icons/md";
 import { MdOutlineLocationOn } from "react-icons/md";
 import { motion } from "framer-motion";
 import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";
-
-import { useDisclosure } from "@nextui-org/modal";
-
-
 import CustomerProfileLoading from "../LoadingCards/CustomerProfileLoading";
+import { useDisclosure } from "@nextui-org/modal";
 import MainModal from "../modal/Reusable/MainModal";
 import UpdateProfileModal from "../modal/Reusable/UpdateProfileModal";
+
 
 const CustomerProfile = () => {
   const { userData, isLoading } = useUserDetails();
@@ -31,7 +30,7 @@ const CustomerProfile = () => {
           {/* <!--Main Col--> */}
           <div
             id="profile"
-            className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl white px-5 lg:mx-0"
+            className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-gray-900 px-5 lg:mx-0"
           >
             <div className="p-4 md:p-12 text-center lg:text-left">
               {/* <!-- Image for mobile view--> */}
@@ -42,12 +41,11 @@ const CustomerProfile = () => {
                 className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 object-cover"
               />
 
-              <h1 className="text-3xl font-bold pt-8 lg:pt-0 text-gray-700">
+              <h1 className="text-3xl font-bold pt-8 lg:pt-0 text-white">
                 {userData?.userData?.name}
-            
               </h1>
               <div className="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-primary opacity-25" />
-              <p className="pt-4 text-sm font-medium flex items-center justify-start uppercase text-gray-700 ml-6 md:ml-14 lg:ml-0">
+              <p className="pt-4 text-sm font-medium flex items-center justify-start uppercase text-white ml-6 md:ml-14 lg:ml-0">
                 <svg
                   className="h-4 fill-current text-primary pr-4"
                   xmlns="http://www.w3.org/2000/svg"
@@ -57,11 +55,11 @@ const CustomerProfile = () => {
                 </svg>{" "}
                 <span className="">{userData?.userData?.role}</span>
               </p>
-              <p className="pt-3 text-gray-700 font-medium text-sm flex items-center justify-start ml-6 md:ml-14 lg:ml-0">
+              <p className="pt-3 text-white font-medium text-sm flex items-center justify-start ml-6 md:ml-14 lg:ml-0">
                 <MdEmail className="text-primary mr-4 text-lg" />
                 <span className="">Email: {userData?.userData?.email}</span>
               </p>
-              <p className="pt-3 text-gray-700 font-medium text-sm flex items-start md:items-center lg:items-start xl:items-center justify-start ml-6 md:ml-14 lg:ml-0 text-left">
+              <p className="pt-3 text-white font-medium text-sm flex items-start md:items-center lg:items-start xl:items-center justify-start ml-6 md:ml-14 lg:ml-0 text-left">
                 <MdOutlineLocationOn className="text-primary mr-3 text-4xl md:text-xl" />
                 <span className="">
                   Address:{" "}
@@ -70,7 +68,7 @@ const CustomerProfile = () => {
                     : "N/A"}
                 </span>
               </p>
-              <p className="pt-3 text-gray-700 font-medium text-sm flex items-center justify-start ml-6 md:ml-14 lg:ml-0">
+              <p className="pt-3 text-white font-medium text-sm flex items-center justify-start ml-6 md:ml-14 lg:ml-0">
                 <BsPhone className="text-primary mr-4 text-lg lg:text-xl xl:text-lg" />
                 <span className="">
                   Phone:{" "}
@@ -83,7 +81,7 @@ const CustomerProfile = () => {
               <div className="pt-12 pb-8 cursor-pointer">
                 <button
                   onClick={onOpen}
-                  className="bg-primary btn-custom text-gray-700 font-bold py-2 px-4 rounded-full hover:bg-[#c4650a]"
+                  className="bg-primary btn-custom text-white font-bold py-2 px-4 rounded-full hover:bg-[#c4650a]"
                 >
                   <span>Update Profile</span>
                 </button>
@@ -197,7 +195,7 @@ const CustomerProfile = () => {
                 </a>
               </div>
 
-     
+              {/* <!-- Use https://simpleicons.org/ to find the svg for your preferred product --> */}
             </div>
           </div>
 
@@ -210,7 +208,7 @@ const CustomerProfile = () => {
               loading="lazy"
               className="rounded-none lg:rounded-lg shadow-2xl hidden lg:block lg:h-[500px] object-cover"
             />
-       
+            {/* <!-- Image from: http://unsplash.com/photos/MP0IUfwrn0A --> */}
           </div>
         </div>
       )}
