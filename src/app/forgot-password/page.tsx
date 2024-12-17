@@ -1,6 +1,6 @@
 /* eslint-disable react/self-closing-comp */
 "use client";
-import logo from "@/src/assets/logo.png";
+import logo from "@/src/assets/store-logo.png";
 import { forgotPassword } from "@/src/utils/loginService";
 import { Input } from "@nextui-org/input";
 import Image from "next/image";

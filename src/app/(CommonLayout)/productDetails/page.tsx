@@ -30,6 +30,7 @@ import dynamic from "next/dynamic";
 import { addProduct, clearCart } from "@/src/lib/redux/features/products/product.slice";
 import { IProduct, IReview } from "@/src/types/schema";
 import { useAddRecentProductMutation, useGetAllProductsQuery, useGetSingleProductQuery } from "@/src/lib/redux/features/products/product.api";
+import { string } from "zod";
 
 const Loading = dynamic(() => import("@/src/components/Loading/Loading"), {
   ssr: false,
@@ -52,7 +53,7 @@ const ProductDetails = () => {
 
   const { data: productReview, isLoading: reviewLoading } =
     useGetReviewsByIdQuery(
-      { productId },
+      { productId: productId ?? '' },
       {
         skip: !productId,
       }
