@@ -2,7 +2,7 @@
    
    
    import Sidebar from "@/src/components/DashboardSidebar/Sidebar";
-import { Eye, House, Package2, ShoppingBag, Store, TicketPercent, User } from "lucide-react";
+import { Eye, House, KeyRound, Package2, ShoppingBag, Store, TicketPercent, User } from "lucide-react";
    import type { Metadata } from "next";
    
    
@@ -28,11 +28,17 @@ import { Eye, House, Package2, ShoppingBag, Store, TicketPercent, User } from "l
          href: "/customer-dashboard/MyOrders",
          icon: <ShoppingBag size={20} />,
        },
+       
        {
          label: "Favorite Shops",
          href: "/customer-dashboard/favoriteShops",
          icon: <Store size={20} />,
        },
+       {
+        label: "Security",
+        href: "/customer-dashboard/security",
+        icon: <KeyRound size={20} />,
+      },
      ];
    
      const commonLinks = [
