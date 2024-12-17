@@ -396,7 +396,7 @@ const AllProducts = () => {
       )}
 
       {/* Product Card Part */}
-      <div className="py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-3">
+      <div className="py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4  px-3">
         {isLoading
           ? Array.from({ length: dataPerPage }).map((_, index) => (
               <div key={index}>

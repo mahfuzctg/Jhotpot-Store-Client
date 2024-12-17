@@ -103,7 +103,7 @@ const HomeProductCard = ({
     : singleProduct.price;
 
   return (
-    <div className="relative max-w-[350px] space-y-4 rounded-lg p-4 shadow-lg md:w-[312px] bg-white border border-[#6DAD02] group">
+    <div className="relative max-w-[300px] space-y-4 rounded-lg p-4 shadow-lg md:w-[312px] bg-white border border-[#6DAD02] group">
       {/* Image Section */}
       <div className="relative overflow-hidden rounded-lg">
         {/* Discount Badge */}

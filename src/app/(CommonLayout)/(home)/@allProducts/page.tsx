@@ -35,11 +35,11 @@ const AllProducts = () => {
     const width = window.innerWidth;
 
     if (width >= 1280) {
-      setDataPerPage(8);
+      setDataPerPage(8); // Larger screens
     } else if (width >= 768 && width < 1280) {
-      setDataPerPage(6);
+      setDataPerPage(6); // Medium screens
     } else {
-      setDataPerPage(4);
+      setDataPerPage(4); // Small screens
     }
   };
 
@@ -64,10 +64,10 @@ const AllProducts = () => {
   }, [currentPage, dataPerPage, refetch]);
 
   return (
-    <div className="pb-14 px-8">
+    <div className="pb-14 mx-auto w-[95%]">
       <Title sub="Shop The Best" heading="Explore Our Collection" />
 
-      <div className="py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+      <div className="py-14 w-[95%]  mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 gap-y-8 ">
         {isLoading
           ? Array.from({ length: dataPerPage }).map((_, index) => (
               <div key={index}>
@@ -83,7 +83,7 @@ const AllProducts = () => {
 
       <div>
         {allProductsResponse?.data?.length > 0 && (
-          <div className="flex justify-center items-center mt-4">
+          <div className="flex justify-center items-center mt-4 ">
             <Pagination
               total={totalPages}
               initialPage={1}

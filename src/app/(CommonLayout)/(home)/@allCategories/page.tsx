@@ -28,9 +28,7 @@ const AllCategories = () => {
       {/* Section Header */}
       <div className="flex flex-col items-center text-center mb-10">
         <Title sub="Categories" heading="Discover Top Categories" />
-        <p className="text-gray-600 max-w-lg mt-2">
-          Explore our wide range of categories with the best options for you!
-        </p>
+       
       </div>
 
       {/* Swiper Section */}
@@ -67,18 +65,18 @@ const AllCategories = () => {
               ))
             : allCategories?.map((category: ICategory, index: number) => (
                 <SwiperSlide key={index}>
-                  <div className="bg-[#FFFFFF] border border-[#16AF9F] rounded-lg shadow-sm hover:shadow-md p-4 transition-shadow text-center">
+                  <div className="bg-[#FFFFFF] border border-[#82C408] rounded-lg shadow-sm hover:shadow-md p-4 transition-shadow text-center">
                     <img
                       src={category.image}
                       alt={category.name}
                       className="h-32 w-auto mx-auto mb-4"
                     />
-                    <h3 className="text-lg font-medium text-[#16AF9F]">
+                    <h3 className="text-lg font-medium text-[#82C408]">
                       {category.name}
                     </h3>
                     <button
                       onClick={() => navigateToCategory(category.name)}
-                      className="mt-4 px-4 py-2 bg-[#16AF9F] text-[#FFFFFF] rounded-md shadow hover:bg-[#13a193] transition"
+                      className="mt-4 px-4 py-2 bg-[#82C408] text-[#FFFFFF] rounded-md shadow hover:bg-[#A4D44C] transition"
                     >
                       View More
                     </button>
@@ -92,13 +90,13 @@ const AllCategories = () => {
       <div className="flex justify-center gap-4 mt-8">
         <button
           ref={prevRef}
-          className="w-12 h-12 bg-[#16AF9F] rounded-full text-[#FFFFFF] flex justify-center items-center hover:bg-[#13a193] transition"
+          className="w-12 h-12 bg-[#82C408] rounded-full text-[#FFFFFF] flex justify-center items-center hover:bg-[#A4D44C] transition"
         >
           &#9664;
         </button>
         <button
           ref={nextRef}
-          className="w-12 h-12 bg-[#16AF9F] rounded-full text-[#FFFFFF] flex justify-center items-center hover:bg-[#13a193] transition"
+          className="w-12 h-12 bg-[#82C408] rounded-full text-[#FFFFFF] flex justify-center items-center hover:bg-[#A4D44C] transition"
         >
           &#9654;
         </button>
