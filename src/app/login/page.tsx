@@ -115,7 +115,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 sm:px-8 py-10 xl:py-0">
-      <div className="relative border-2 border-primary text-white rounded-2xl shadow-lg overflow-hidden w-[850px] max-w-full lg:min-h-[570px] min-h-[620px] md:min-h-[580px]">
+      <div className="relative border-2 border-primary text-black rounded-2xl shadow-lg overflow-hidden w-[850px] max-w-full lg:min-h-[570px] min-h-[620px] md:min-h-[580px]">
         {/* Form Containers */}
         {/* Sign In Part */}
         <div
@@ -125,7 +125,7 @@ export default function Login() {
               : "translate-x-0 opacity-100 z-20"
           } w-full lg:w-1/2`}
         >
-          <div className="flex flex-col items-center justify-center h-full px-10 text-white">
+          <div className="flex flex-col items-center justify-center h-full px-10 text-black">
             <Link href={"/"}>
               <Image
                 src={logo}
@@ -150,15 +150,12 @@ export default function Login() {
                 <FaLinkedinIn className="w-6 h-6 text-gray-600" />
               </a>
             </div>
-            <span className="text-sm text-white mb-4">
+            <span className="text-sm text-black mb-4">
               or use your email account
             </span>
 
             <SHForm
-              // defaultValues={{
-              //   email: "nafizuddin.okc@gmail.com",
-              //   password: "villa123",
-              // }}
+             
               onSubmit={handleLogin}
               resolver={zodResolver(loginValidationSchema)}
             >
@@ -183,7 +180,7 @@ export default function Login() {
               <div className="flex items-center justify-end">
                 <Link href={"/forgot-password"}>
                   <button type="reset" className="-mr-3 w-max p-2 mb-4">
-                    <span className="text-sm tracking-wide text-white">
+                    <span className="text-sm tracking-wide text-black">
                       Forgot password ?
                     </span>
                   </button>
@@ -193,7 +190,7 @@ export default function Login() {
               <div className="flex justify-center items-center mb-10">
                 <button
                   type="submit"
-                  className="relative h-10 w-24 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
+                  className="relative h-10 w-24 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-black hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
                 >
                   Sign In
                 </button>
@@ -210,7 +207,7 @@ export default function Login() {
               : "translate-x-full lg:translate-x-0 opacity-100 lg:opacity-0 z-10"
           } w-full lg:w-1/2`}
         >
-          <div className="flex flex-col items-center justify-center h-full px-10 text-white">
+          <div className="flex flex-col items-center justify-center h-full px-10 text-black">
             <Link href={"/"}>
               <Image
                 src={logo}
@@ -240,10 +237,10 @@ export default function Login() {
               {isOpen && (
                 <div
                   ref={dropdownRef}
-                  className="absolute top-[calc(100%+0.5rem)] left-0  border border-primary bg-black text-white shadow-lg rounded-md w-40 z-50"
+                  className="absolute top-[calc(100%+0.5rem)] left-0  border border-primary bg-black text-black shadow-lg rounded-md w-40 z-50"
                 >
                   <div
-                    className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-white"
+                    className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-black"
                     onClick={() => handleSelection("User")}
                   >
                     User
@@ -252,7 +249,7 @@ export default function Login() {
                     )}
                   </div>
                   <div
-                    className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-white"
+                    className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-black"
                     onClick={() => handleSelection("Vendor")}
                   >
                     Vendor
@@ -265,10 +262,7 @@ export default function Login() {
             </div>
 
             <SHForm
-              // defaultValues={{
-              //   email: "admin@gmail.com",
-              //   password: "admin123",
-              // }}
+         
               onSubmit={handleSignUp}
               resolver={zodResolver(registerValidationSchema)}
             >
@@ -301,7 +295,7 @@ export default function Login() {
               <div className="flex justify-center items-center mt-3 mb-10">
                 <button
                   type="submit"
-                  className="relative h-10 w-24 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
+                  className="relative h-10 w-24 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-black hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
                 >
                   Sign Up
                 </button>
@@ -310,31 +304,42 @@ export default function Login() {
           </div>
         </div>
 
-        {/* Toggle Panels */}
-        <div
-          className={`hidden absolute top-0 left-1/2 w-full h-1/2 md:h-full md:w-1/2 transition-all duration-700 bg-orange-500 text-white lg:flex flex-col items-center justify-center px-6 ${
-            isActive
-              ? "translate-x-[-100%] rounded-r-[30%]"
-              : "translate-x-0 rounded-l-[30%]"
-          }`}
-        >
-          <div className="text-center">
-            <h1 className="text-3xl font-bold mb-2">
-              {isActive ? "Welcome Back!" : "Welcome, Friend!"}
-            </h1>
-            <p className="mb-5">
-              {isActive
-                ? "Enter your personal details to sign in."
-                : "Create your account to get started."}
-            </p>
-            <button
-              onClick={() => setIsActive(!isActive)}
-              className="px-6 py-2 bg-transparent border-2 border-white rounded-lg uppercase font-bold"
-            >
-              {isActive ? "Sign In" : "Sign Up"}
-            </button>
-          </div>
-        </div>
+  
+{/* Toggle Panels */}
+
+<div
+  className={`hidden absolute top-0 left-1/2 w-full h-1/2 md:h-full md:w-1/2 transition-all duration-700 bg-cover bg-center lg:flex items-center justify-center px-8 py-12 ${
+    isActive
+      ? "translate-x-[-100%] shadow-2xl"
+      : "translate-x-0 shadow-2xl"
+  } border-l-[8px] border-l-[#82C408]`}
+  style={{
+    backgroundImage: "url('https://i.postimg.cc/jjzFhTp0/www-concept-illustration-114360-2143.jpg')",
+  }}
+>
+  {/* Overlay to improve text visibility */}
+  <div className="absolute inset-0 bg-black opacity-30"></div>
+
+  {/* Button */}
+  <div className="relative z-10">
+    <button
+      onClick={() => setIsActive(!isActive)}
+      className="px-10 py-4 bg-white text-[#6A9B04] border-[3px] border-[#6A9B04] rounded-full text-xl font-semibold transition-all duration-300 shadow-lg hover:bg-[#82C408] hover:text-white transform hover:scale-110"
+    >
+      {isActive ? (
+        <>
+          <span role="img" aria-label="sign-in">🔑</span> Sign In
+        </>
+      ) : (
+        <>
+          <span role="img" aria-label="sign-up">📝</span> Sign Up
+        </>
+      )}
+    </button>
+  </div>
+</div>
+
+
 
         {/* Mobile Toggle Text */}
         <div className="lg:hidden absolute bottom-5 left-1/2 transform  -translate-x-1/2 text-center z-50 w-60 md:w-auto">
