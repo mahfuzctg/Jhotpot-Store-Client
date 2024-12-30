@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 import {
   Home,
   User,
-  MessageSquareQuote,
-  Contact,
-  ContactRound,
-  BookOpenText,
+  SquareMenu,
+  CirclePercent,
+  House,
+  Package2,
+  TicketPercent,
+  Eye,
+  ShoppingBag,
   BadgeDollarSign,
 } from "lucide-react";
 import Sidebar from "@/src/components/DashboardSidebar/Sidebar";
-
 
 export const metadata: Metadata = {
   title: "Admin Dashboard",
@@ -30,36 +32,57 @@ export default function AdminDashboardLayout({
     },
     {
       label: "User Management",
-      href: "/admin-dashboard/users",
       icon: <User size={20} />,
+      children: [
+        {
+          label: "Customer Management",
+          href: "/admin-dashboard/customers",
+          icon: <User size={20} />,
+        },
+        {
+          label: "Vendor Management",
+          href: "/admin-dashboard/vendors",
+          icon: <ShoppingBag size={20} />,
+        },
+      ],
     },
     {
-      label: "Content Management",
-      href: "/admin-dashboard/posts",
-      icon: <BookOpenText size={20} />,
+      label: "Category Management",
+      href: "/admin-dashboard/category",
+      icon: <SquareMenu size={20} />,
     },
     {
       label: "Payment Management",
       href: "/admin-dashboard/payments",
       icon: <BadgeDollarSign size={20} />,
     },
+    {
+      label: "Coupon Management",
+      href: "/admin-dashboard/coupon",
+      icon: <CirclePercent size={20} />,
+    },
   ];
 
   const commonLinks = [
     {
-      label: "NewsFeed",
+      label: "Home",
       href: "/",
-      icon: <MessageSquareQuote size={20} />,
+      icon: <House size={20} />,
     },
     {
-      label: "About",
-      href: "/about",
-      icon: <ContactRound size={20} />,
+      label: "All Products",
+      href: "/allProducts",
+      icon: <Package2 size={20} />,
     },
     {
-      label: "Contact",
-      href: "/contact",
-      icon: <Contact size={20} />,
+      label: "Flash Sale",
+      href: "/flashSale",
+      icon: <TicketPercent size={20} />,
+    },
+    {
+      label: "Recent Viewed",
+      href: "/recentView",
+      icon: <Eye size={20} />,
     },
   ];
 

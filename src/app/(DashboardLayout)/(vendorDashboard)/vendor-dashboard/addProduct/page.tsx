@@ -16,7 +16,7 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 
 const AddProduct = () => {
-  const { categories } = useCategories();
+  const { categories = [] } = useCategories(); // Ensure fallback for categories
   const [addNewProduct] = useAddNewProductMutation();
   const router = useRouter();
 
@@ -27,12 +27,24 @@ const AddProduct = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     toast.loading("Adding product...");
+
     const files =
       data.image instanceof FileList ? Array.from(data.image) : data.image;
 
-    let imageUrls: string[] = [];
+    if (!files || files.length === 0) {
+      toast.error("Please upload at least one product image.");
+      return;
+    }
 
-    if (files && files.length > 0) {
+    // Validate Cloudinary configuration
+    if (!envConfig.cloudinary_upload_preset || !envConfig.cloudinary_url) {
+      toast.error("Cloudinary configuration is missing.");
+      return;
+    }
+
+    let imageUrls: string[] = [];
+    try {
+      // Upload images
       const uploadPromises = files.map(async (file: File) => {
         const formData = new FormData();
         formData.append("file", file);
@@ -41,26 +53,26 @@ const AddProduct = () => {
           envConfig.cloudinary_upload_preset as string
         );
 
-        try {
-          const response = await axios.post(
-            envConfig.cloudinary_url as string,
-            formData,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            }
-          );
-          return response.data.secure_url;
-        } catch (error: any) {
-          console.error("File upload error:", error.message);
-          return null;
-        }
+        const response = await axios.post(envConfig.cloudinary_url as string, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        return response.data.secure_url;
       });
 
       imageUrls = (await Promise.all(uploadPromises)).filter(
-        (url) => url !== null
+        (url): url is string => !!url // Filter out null or undefined values
       );
+
+      if (imageUrls.length === 0) {
+        toast.error("Failed to upload images. Please try again.");
+        return;
+      }
+    } catch (error) {
+      console.error("File upload error:", error);
+      toast.error("An error occurred while uploading images.");
+      return;
     }
 
     const productInfo = {
@@ -71,41 +83,38 @@ const AddProduct = () => {
       categoryId: data.category,
       description: data.description,
       ...(data?.flashSale && {
-        flashSale: data.flashSale === "true" ? true : false,
+        flashSale: data.flashSale === "true",
       }),
       ...(data?.discount && { discount: Number(data.discount) }),
     };
-    toast.dismiss();
-    console.log("productInfo:", productInfo);
 
     try {
       const res = await addNewProduct(productInfo).unwrap();
-      console.log(res);
       if (res) {
         toast.success("Product added successfully", { duration: 3000 });
         router.push("/vendor-dashboard/myProducts");
       }
     } catch (error: any) {
-      console.log(error);
-      toast.error(error.message);
+      console.error("Product submission error:", error);
+      toast.error("Failed to add the product. Please try again.");
+    } finally {
+      toast.dismiss();
     }
   };
 
   return (
     <div>
       <DashboardSectionTitle heading="Add New Product" />
-
       <div>
         <h1 className="mt-5 mb-2 font-bold text-primary">
           Upload Product Images:{" "}
-          <span className="text-gray-400">(Add upto 2 or 3 images)</span>
+          <span className="text-gray-400">(Add up to 2 or 3 images)</span>
         </h1>
 
         <SHForm onSubmit={onSubmit}>
           <SHFileInput
             name="image"
-            label="Click to upload or drag
-                and drop"
+            label="Click to upload or drag and drop"
             allowMultiple
           />
 
@@ -120,7 +129,6 @@ const AddProduct = () => {
               />
             </div>
             <div className="flex-1">
-              {" "}
               <SHInput
                 name="price"
                 label="Product Price*"
@@ -142,7 +150,6 @@ const AddProduct = () => {
               />
             </div>
             <div className="flex-1">
-              {" "}
               <SHSelect
                 name="category"
                 label="Select a category*"
@@ -155,10 +162,9 @@ const AddProduct = () => {
 
           <div className="flex flex-col md:flex-row my-3 gap-3">
             <div className="flex-1">
-              {" "}
               <SHSelect
                 name="flashSale"
-                label="FlashSale"
+                label="Flash Sale"
                 items={flashSale}
                 variant="bordered"
               />

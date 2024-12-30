@@ -64,10 +64,10 @@ const AllProducts = () => {
   }, [currentPage, dataPerPage, refetch]);
 
   return (
-    <div className="pb-14 mx-auto w-[95%]">
+    <div className="pb-14 mx-auto ">
       <Title sub="Shop The Best" heading="Explore Our Collection" />
 
-      <div className="py-14 w-[95%]  mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 gap-y-8 ">
+      <div className="py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-y-8 ">
         {isLoading
           ? Array.from({ length: dataPerPage }).map((_, index) => (
               <div key={index}>
@@ -83,7 +83,7 @@ const AllProducts = () => {
 
       <div>
         {allProductsResponse?.data?.length > 0 && (
-          <div className="flex justify-center items-center mt-4 ">
+          <div className="flex justify-center items-center ">
             <Pagination
               total={totalPages}
               initialPage={1}

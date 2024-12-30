@@ -4,6 +4,7 @@
 import { protectedRoutes } from "@/src/constant";
 
 import { clearCoupon } from "@/src/lib/redux/features/coupon/couponSlice";
+
 import { useAppDispatch } from "@/src/lib/redux/hooks";
 import { logoutService } from "@/src/utils/loginService";
 import { usePathname, useRouter } from "next/navigation";
@@ -14,13 +15,16 @@ import Image from "next/image";
 import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";
 import { Avatar } from "@nextui-org/avatar";
 import { Divider } from "@nextui-org/divider";
+import { useState } from "react";
+import { CircleChevronDown, CircleChevronUp } from "lucide-react";
 import { logout } from "@/src/lib/redux/features/auth/auth.slice";
 import { clearCart } from "@/src/lib/redux/features/products/product.slice";
 
 interface SidebarLink {
   label: string;
-  href: string;
+  href?: string;
   icon: React.ReactNode;
+  children?: SidebarLink[];
 }
 
 interface SidebarProps {
@@ -33,6 +37,12 @@ const Sidebar = ({ links, commonLinks }: SidebarProps) => {
   const router = useRouter();
   const pathname = usePathname();
   const { userData, isLoading } = useUserDetails();
+
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  const toggleDropdown = (label: string) => {
+    setOpenDropdown(openDropdown === label ? null : label);
+  };
 
   const handleLogout = () => {
     dispatch(logout());
@@ -57,7 +67,7 @@ const Sidebar = ({ links, commonLinks }: SidebarProps) => {
       >
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div
-          className="drawer-content flex flex-col items-start mt-5 ml-2"
+          className="drawer-content mt-5"
           style={{ backgroundColor: "white !important" }}
         >
           <label htmlFor="my-drawer-2" className="drawer-button lg:hidden">
@@ -127,6 +137,7 @@ const Sidebar = ({ links, commonLinks }: SidebarProps) => {
                       <Avatar
                         src={userData?.userData?.profilePhoto}
                         className="w-16 h-16 text-large"
+                        alt="profile photo"
                       />
                     )}
                   </>
@@ -140,14 +151,55 @@ const Sidebar = ({ links, commonLinks }: SidebarProps) => {
 
               <nav className="p-2 space-y-3">
                 {links.map((link, index) => (
-                  <a
-                    key={index}
-                    href={link.href}
-                    className="flex items-start md:items-center space-x-2 py-2 px-2 hover:bg-primary hover:text-white rounded font-bold"
-                  >
-                    {link.icon}
-                    <span>{link.label}</span>
-                  </a>
+                  <div key={index}>
+                    {/* Parent Links */}
+                    {link.children ? (
+                      <div
+                        onClick={() => toggleDropdown(link.label)}
+                        className={`flex items-start md:items-center space-x-2 py-2 px-2 hover:bg-primary justify-between hover:text-white rounded font-bold cursor-pointer`}
+                      >
+                        <span className="flex items-center gap-2">
+                          {link.icon}
+                          <span>{link.label}</span>
+                        </span>
+                        <span>
+                          <span className="ml-auto">
+                            {openDropdown === link.label ? (
+                              <CircleChevronUp />
+                            ) : (
+                              <CircleChevronDown />
+                            )}
+                          </span>
+                        </span>
+                      </div>
+                    ) : (
+                      <a
+                        href={link.href || "#"}
+                        className="flex items-start md:items-center space-x-2 py-2 px-2 hover:bg-primary justify-between hover:text-white rounded font-bold cursor-pointer"
+                      >
+                        <span className="flex items-center gap-2">
+                          {link.icon}
+                          <span>{link.label}</span>
+                        </span>
+                      </a>
+                    )}
+
+                    {/* Dropdown for Child Links */}
+                    {link.children && openDropdown === link.label && (
+                      <div className="ml-6 mt-2 space-y-2 transition-all duration-300">
+                        {link.children.map((child, idx) => (
+                          <a
+                            key={idx}
+                            href={child.href}
+                            className="flex items-start md:items-center space-x-2 py-2 px-2 hover:bg-primary hover:text-white rounded font-bold cursor-pointer"
+                          >
+                            {link.icon}
+                            {child.label}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 ))}
               </nav>
 

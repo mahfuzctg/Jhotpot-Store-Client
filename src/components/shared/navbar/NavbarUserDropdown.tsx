@@ -2,17 +2,15 @@
 
 import { protectedRoutes } from "@/src/constant";
 import { logout } from "@/src/lib/redux/features/auth/auth.slice";
+import { clearCoupon } from "@/src/lib/redux/features/coupon/couponSlice";
+import { clearCart } from "@/src/lib/redux/features/products/product.slice";
 
 import { useAppDispatch } from "@/src/lib/redux/hooks";
 import { logoutService } from "@/src/utils/loginService";
 import { Avatar } from "@nextui-org/avatar";
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-} from "@nextui-org/dropdown";
-import { LayoutDashboard, LogOut } from "lucide-react";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/dropdown";
+
+import { LayoutDashboard, LogOut, User, Settings } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
@@ -24,6 +22,8 @@ export default function NavbarUserDropdown({ user }: { user: any }) {
 
   const handleLogout = () => {
     dispatch(logout());
+    dispatch(clearCart());
+    dispatch(clearCoupon());
     logoutService();
 
     if (protectedRoutes.some((route) => pathname.match(route))) {
@@ -38,48 +38,75 @@ export default function NavbarUserDropdown({ user }: { user: any }) {
   };
 
   return (
-    <div className="flex justify-start w-[50%] gap-4">
+    <div className="flex items-center gap-4">
       <Dropdown placement="bottom-end">
         <DropdownTrigger>
           <Avatar
             isBordered
             as="button"
-            className="transition-transform hover:scale-110 border-2 border-gray-200 shadow-lg"
-            src={userData?.profilePhoto}
-            size="lg"
+            className="transition-transform duration-300 transform hover:scale-110 cursor-pointer border-2 border-blue-500"
+            src={userData?.role === "VENDOR" ? userData?.logo : userData?.profilePhoto}
+            alt="User Avatar"
           />
         </DropdownTrigger>
         <DropdownMenu
           aria-label="Profile Actions"
           variant="flat"
-          className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg shadow-2xl p-3"
+          className="bg-gradient-to-r from-[#4c6ef5] to-[#4c9aff] rounded-lg p-3 shadow-lg"
         >
-          <DropdownItem key="profile" className="flex flex-col gap-1 px-4 py-2">
-            <span className="text-sm font-semibold">Signed in as</span>
-            <span className="text-sm font-medium">{userData?.email}</span>
+          <DropdownItem key="profile" className="h-14 gap-2 px-4 py-2 rounded-lg hover:bg-[#82C408] transition-colors duration-200">
+            <p className="font-semibold text-gray-100">Signed in as</p>
+            <p className="font-semibold text-black">{userData?.email}</p>
           </DropdownItem>
+
           <DropdownItem
-            key="dashboard"
             onClick={() =>
               handleNavigation(
-                userData?.role === "USER"
-                  ? "/user-dashboard"
+                userData?.role === "CUSTOMER"
+                  ? "/customer-dashboard"
+                  : userData?.role === "VENDOR"
+                  ? "/vendor-dashboard"
                   : "/admin-dashboard"
               )
             }
-            className="flex items-center gap-2 px-4 py-2 hover:bg-green-500 rounded-md transition duration-200 ease-in-out"
+            key="dashboard"
+            className="px-4 py-2 rounded-lg hover:bg-[#82C408] transition-colors duration-200"
           >
-            <LayoutDashboard size={16} />
-            <span>Dashboard</span>
+            <span className="flex items-center gap-2 text-black">
+              <LayoutDashboard size={18} />
+              <span>Dashboard</span>
+            </span>
           </DropdownItem>
+
           <DropdownItem
-            key="logout"
             onClick={handleLogout}
+            key="logout"
             color="danger"
-            className="flex items-center gap-2 px-4 py-2 hover:bg-red-500 rounded-md transition duration-200 ease-in-out"
+            className="px-4 py-2 rounded-lg hover:bg-[#ff6b6b] transition-colors duration-200"
           >
-            <LogOut size={16} />
-            <span>Logout</span>
+            <span className="flex items-center gap-2 text-black">
+              <LogOut size={18} />
+              <span>Logout</span>
+            </span>
+          </DropdownItem>
+
+          <DropdownItem
+            onClick={() => handleNavigation("/settings")}
+            key="settings"
+            className="px-4 py-2 rounded-lg hover:bg-[#82C408] transition-colors duration-200"
+          >
+            <span className="flex items-center gap-2 text-black">
+              <Settings size={18} />
+              <span>Settings</span>
+            </span>
+          </DropdownItem>
+          
+          {/* Add a fun emoji for more interaction */}
+          <DropdownItem key="help" className="px-4 py-2 rounded-lg hover:bg-[#82C408] transition-colors duration-200">
+            <span className="flex items-center gap-2 text-black">
+              <User size={18} />
+              <span>Need Help? 🤔</span>
+            </span>
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>

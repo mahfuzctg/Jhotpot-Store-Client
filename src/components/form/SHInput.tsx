@@ -32,7 +32,7 @@ export default function SHInput({
   type = "text",
   label,
   name,
-  color = "primary",
+  color = "warning",
   pathname,
   readonly = false,
 }: IProps) {

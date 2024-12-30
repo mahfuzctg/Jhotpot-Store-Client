@@ -6,10 +6,10 @@ import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-;
+
 import { Pagination } from "@nextui-org/pagination";
-import { IOrder } from "@/src/types/schema";
 import { useGetAllOrdersQuery } from "@/src/lib/redux/features/orders/order.api";
+import { IOrder } from "@/src/types/schema";
 
 const OrderList = () => {
   const { userData } = useUserDetails();
@@ -105,7 +105,11 @@ const OrderList = () => {
                               <span>$</span>
                               {(singleOrder?.totalPrice).toFixed(2)}
                             </td>
-                       
+                            {/* <td className="">
+                              <button className="relative h-10 w-30 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3 text-xs">
+                                Add Review
+                              </button>
+                            </td> */}
                           </tr>
                         );
                       }

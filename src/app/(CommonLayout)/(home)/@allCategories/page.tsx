@@ -65,7 +65,7 @@ const AllCategories = () => {
               ))
             : allCategories?.map((category: ICategory, index: number) => (
                 <SwiperSlide key={index}>
-                  <div className="bg-[#FFFFFF] border border-[#82C408] rounded-lg shadow-sm hover:shadow-md p-4 transition-shadow text-center">
+                  <div className="bg-[#FFFFFF] border border-[#ddf5b8] rounded-lg shadow-sm hover:shadow-md p-4 transition-shadow text-center">
                     <img
                       src={category.image}
                       alt={category.name}

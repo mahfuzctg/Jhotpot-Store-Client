@@ -1,3 +1,4 @@
+
 "use client";
 
 import DashboardProductCard from "@/src/components/Cards/DashboardProductCard";
@@ -5,7 +6,7 @@ import DashboardProductLoading from "@/src/components/LoadingCards/DashboardProd
 import DashboardSectionTitle from "@/src/components/ui/components/DashboardSectionTitle";
 import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";
 import { IProduct } from "@/src/types/schema";
-
+;
 import { Pagination } from "@nextui-org/pagination";
 import Link from "next/link";
 import { useState } from "react";

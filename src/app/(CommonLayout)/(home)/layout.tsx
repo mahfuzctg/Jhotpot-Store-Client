@@ -1,5 +1,6 @@
 import DealOffer from "@/src/components/Home/DealOffer/DealOffer";
 import FeatureSection from "@/src/components/Home/Feature/ChooseUs";
+import GallerySection from "@/src/components/Home/Gallery/Gallery";
 import { ReactNode } from "react";
 
 const HomeLayout = ({
@@ -16,11 +17,11 @@ const HomeLayout = ({
   return (
     <>
       {children}
+      <GallerySection></GallerySection>
       {flashSale}
       {allProducts}
       {allCategories}
       <FeatureSection />
-      
       <DealOffer />
     </>
   );

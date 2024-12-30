@@ -199,7 +199,7 @@ const AllProducts = () => {
             placeholder="Search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full rounded-xl border-2 border-primary py-[6px] px-6 text-base font-medium outline-none focus:border-primary focus:ring-1 focus:ring-primary text-white placeholder-white"
+            className="w-full rounded-xl border-2 border-primary py-[6px] px-6 text-base font-medium outline-none focus:border-primary focus:ring-1 focus:ring-primary text-gray-800 placeholder-gray-600"
           />
 
           {/* Category filter part */}
@@ -209,7 +209,7 @@ const AllProducts = () => {
                 <Button
                   color="primary"
                   variant="bordered"
-                  className="capitalize font-medium text-white"
+                  className="capitalize font-medium text-gray-800"
                 >
                   {category || "Select Product Category"}
                 </Button>
@@ -221,7 +221,7 @@ const AllProducts = () => {
                 onAction={handleCategorySelect}
               >
                 {allCategories?.map((category: ICategory) => (
-                  <DropdownItem key={category.name} className="text-white">
+                  <DropdownItem key={category.name} className="text-gray-800">
                     {category.name}
                   </DropdownItem>
                 ))}
@@ -236,7 +236,7 @@ const AllProducts = () => {
                 <Button
                   color="primary"
                   variant="bordered"
-                  className="capitalize font-medium text-white"
+                  className="capitalize font-medium text-gray-800"
                 >
                   Sort By Price
                 </Button>
@@ -247,10 +247,10 @@ const AllProducts = () => {
                 variant="bordered"
                 onAction={handleSortSelect} // Handle sort selection
               >
-                <DropdownItem key="asc" className="text-white">
+                <DropdownItem key="asc" className="text-gray-800">
                   Low to High
                 </DropdownItem>
-                <DropdownItem key="desc" className="text-white">
+                <DropdownItem key="desc" className="text-gray-800">
                   High to Low
                 </DropdownItem>
               </DropdownMenu>
@@ -262,20 +262,20 @@ const AllProducts = () => {
             {productsForComparison?.length >= 2 ? (
               <button
                 onClick={onOpen}
-                className="flex gap-2 justify-center items-center rounded-2xl border-2 border-primary text-white py-2 px-3 font-medium w-full xl:w-auto"
+                className="flex gap-2 justify-center items-center rounded-2xl border-2 border-primary text-gray-800 py-2 px-3 font-medium w-full xl:w-auto"
               >
                 <span>
-                  <GrCompare className="text-xl text-white" />
+                  <GrCompare className="text-xl text-gray-800" />
                 </span>
                 <span>Compare Selected</span>
               </button>
             ) : (
               <button
                 onClick={handleCompareButton}
-                className="flex gap-2 justify-center items-center rounded-2xl border-2 border-primary text-white py-2 px-3 font-medium w-full xl:w-auto"
+                className="flex gap-2 justify-center items-center rounded-2xl border-2 border-primary text-gray-800 py-2 px-3 font-medium w-full xl:w-auto"
               >
                 <span>
-                  <GrCompare className="text-xl text-white" />
+                  <GrCompare className="text-xl text-gray-800" />
                 </span>
                 <span>Compare Products</span>
               </button>
@@ -291,7 +291,7 @@ const AllProducts = () => {
               onChange={handleSliderChange}
             />
 
-            <p className="xl:text-xl font-medium text-white text-center">
+            <p className="xl:text-xl font-medium text-gray-800 text-center">
               Price Range: ${minPrice} - ${maxPrice}
             </p>
           </div>
@@ -301,13 +301,13 @@ const AllProducts = () => {
       {/* Filter show part */}
       {filterApplied && (
         <div className="border border-primary mt-4 p-4 flex gap-3 items-center md:w-[95%] mx-auto rounded-md shadow">
-          <p className="font-semibold text-white">Filtered By:</p>
+          <p className="font-semibold text-gray-800">Filtered By:</p>
           <div
             onClick={() => setSearchTerm("")}
             className="flex flex-wrap gap-2"
           >
             {debouncedSearchTerm && (
-              <span className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center text-white cursor-pointer">
+              <span className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center text-gray-800 cursor-pointer">
                 <span>{debouncedSearchTerm}</span>
                 <span>
                   <ImCross className="text-sm" />
@@ -317,7 +317,7 @@ const AllProducts = () => {
             {category && (
               <span
                 onClick={() => setCategory("")}
-                className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center text-white cursor-pointer"
+                className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center text-gray-800 cursor-pointer"
               >
                 <span>{category}</span>
                 <span>
@@ -337,7 +337,7 @@ const AllProducts = () => {
                     `?${params.toString()}`
                   );
                 }}
-                className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center text-white cursor-pointer"
+                className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center bg-red-500 text-gray-800 cursor-pointer"
               >
                 <span>{selectedCategory}</span>
                 <span>
@@ -348,7 +348,7 @@ const AllProducts = () => {
             {sort && (
               <span
                 onClick={() => setSort("")}
-                className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center text-white cursor-pointer"
+                className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center text-gray-800 cursor-pointer"
               >
                 <span>{sort === "asc" ? "Low to High" : "High to Low"}</span>
                 <span>
@@ -362,7 +362,7 @@ const AllProducts = () => {
                   setMinPrice(500);
                   setMaxPrice(7000);
                 }}
-                className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center text-white cursor-pointer"
+                className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center text-gray-800 cursor-pointer"
               >
                 <span>
                   Price: {minPrice}-{maxPrice}
@@ -373,7 +373,7 @@ const AllProducts = () => {
               </span>
             )}
             <button
-              className="px-3 py-2 flex items-center gap-2 text-white border border-primary rounded-2xl"
+              className="px-3 py-2 flex items-center gap-2 text-gray-800 border border-primary rounded-2xl"
               onClick={() => {
                 setSearchTerm("");
                 setCategory("");
@@ -396,7 +396,7 @@ const AllProducts = () => {
       )}
 
       {/* Product Card Part */}
-      <div className="py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4  px-3">
+      <div className="py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-y-8">
         {isLoading
           ? Array.from({ length: dataPerPage }).map((_, index) => (
               <div key={index}>

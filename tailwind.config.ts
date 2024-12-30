@@ -22,7 +22,7 @@ export default {
       },
     },
   },
-  darkMode: "class",
+  lightMode: "class",
   plugins: [
     nextui({
       prefix: "nextui",
@@ -32,19 +32,23 @@ export default {
       layout: {},
       themes: {
         light: {
-          layout: {},
-          colors: {},
-        },
-        dark: {
-          layout: {},
+          layout: {
+
+          },
           colors: {
             primary: {
-              DEFAULT: "#f5840c",
+              DEFAULT: "#82C408",
             },
             secondary: {
               DEFAULT: "#0c84f5",
             },
           },
+        },
+        dark: {
+          layout: {},
+          colors: 
+            {}
+          
         },
       },
     }),

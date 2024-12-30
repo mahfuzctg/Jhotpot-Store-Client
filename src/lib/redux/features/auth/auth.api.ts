@@ -1,4 +1,3 @@
-
 import { TResponseRedux } from "@/src/types";
 import { baseApi } from "../../api/baseApi";
 
@@ -32,19 +31,28 @@ const authApi = baseApi.injectEndpoints({
       invalidatesTags: ["users"],
     }),
     getAllUsers: builder.query({
-      query: (queryData) => {
-        const params = queryData ? { ...queryData } : {};
+      query: (queryObj) => {
+        const { page, limit, role } = queryObj;
+
+        let url = "/users";
+        let params = new URLSearchParams();
+
+        if (role) {
+          params.append("role", role);
+        }
+
+        if (page && limit) {
+          params.append("page", page);
+          params.append("limit", limit);
+        }
+
+        if (params.toString()) {
+          url += `?${params.toString()}`;
+        }
 
         return {
-          url: "/auth/users",
+          url,
           method: "GET",
-          params,
-        };
-      },
-      transformResponse: (response: TResponseRedux<any>) => {
-        return {
-          usersData: response.data.result,
-          meta: response.data.meta,
         };
       },
       providesTags: ["users"],

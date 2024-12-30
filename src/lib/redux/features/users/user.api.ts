@@ -41,6 +41,20 @@ const userApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["users"],
     }),
+    blockUser: builder.mutation({
+      query: (email) => ({
+        url: `/users/block-user/${email}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["users"],
+    }),
+    unblockUser: builder.mutation({
+      query: (email) => ({
+        url: `/users/unblock-user/${email}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["users"],
+    }),
   }),
 });
 
@@ -49,4 +63,6 @@ export const {
   useUnfollowUserMutation,
   useUpdateCustomerMutation,
   useUpdateVendorMutation,
+  useBlockUserMutation,
+  useUnblockUserMutation,
 } = userApi;

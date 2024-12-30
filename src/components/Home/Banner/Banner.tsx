@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation"; // For navigation in Next.js
 
 const Banner = () => {
   // Background images for the slider
@@ -11,6 +12,7 @@ const Banner = () => {
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
+  const router = useRouter(); // Hook for navigation
 
   // Change the background image every 5 seconds
   useEffect(() => {
@@ -54,9 +56,14 @@ const Banner = () => {
     return () => clearInterval(interval); // Cleanup interval on component unmount
   }, [targetDate]);
 
+  // Navigation handler for the "Buy Now" button
+  const handleBuyNow = () => {
+    router.push("/allProducts"); // Redirect to the 'allProducts' page
+  };
+
   return (
     <div
-      className="relative bg-cover bg-center h-[100vh] flex flex-col items-center justify-center text-white transition-all duration-1000 ease-in-out"
+      className="relative  bg-cover bg-center h-[60vh] sm:h-[100vh] lg:h-[60vh] flex flex-col items-center justify-center text-white transition-all duration-1000 ease-in-out"
       style={{
         backgroundImage: `url(${images[currentImage]})`, // Automatically sliding background
       }}
@@ -67,39 +74,39 @@ const Banner = () => {
       {/* Content */}
       <div className="relative z-10 max-w-4xl text-center px-4 sm:px-6 lg:px-8 w-full">
         {/* Welcome Text */}
-        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#82C408]">
+        <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-[#82C408]">
           Welcome to Jhotpot Store
         </h1>
-        <p className="mt-4 text-base sm:text-lg lg:text-xl text-gray-300">
+        <p className="mt-4 text-sm sm:text-base lg:text-lg text-gray-300">
           Limited Offer / Yearly Offer - Grab the best deals now!
         </p>
 
         {/* Countdown Timer */}
         <div className="mt-6 sm:mt-8">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#82C408] mb-4">
+          <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-[#82C408] mb-4">
             Start Your New Year Buy Something Fresh!
           </h2>
-          <div className="flex flex-wrap justify-center gap-6 sm:gap-8 text-sm sm:text-lg font-semibold">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm lg:text-lg font-semibold">
             <div className="text-center">
-              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-3xl sm:text-4xl font-bold">
+              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-2xl sm:text-3xl font-bold">
                 {timeLeft.days}
               </p>
               <p className="text-gray-300">Days</p>
             </div>
             <div className="text-center">
-              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-3xl sm:text-4xl font-bold">
+              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-2xl sm:text-3xl font-bold">
                 {timeLeft.hours}
               </p>
               <p className="text-gray-300">Hours</p>
             </div>
             <div className="text-center">
-              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-3xl sm:text-4xl font-bold">
+              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-2xl sm:text-3xl font-bold">
                 {timeLeft.minutes}
               </p>
               <p className="text-gray-300">Minutes</p>
             </div>
             <div className="text-center">
-              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-3xl sm:text-4xl font-bold">
+              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-2xl sm:text-3xl font-bold">
                 {timeLeft.seconds}
               </p>
               <p className="text-gray-300">Seconds</p>
@@ -109,7 +116,10 @@ const Banner = () => {
 
         {/* Buy Now Button */}
         <div className="mt-6 sm:mt-8">
-          <button className="px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-[#82C408] to-[#82C408] text-white font-bold text-lg sm:text-xl rounded-lg shadow-lg hover:scale-105 transition">
+          <button
+            onClick={handleBuyNow} // Attach the navigation handler
+            className="px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-[#82C408] to-[#82C408] text-white font-bold text-sm sm:text-lg lg:text-xl rounded-lg shadow-lg hover:scale-105 transition"
+          >
             Buy Now
           </button>
         </div>

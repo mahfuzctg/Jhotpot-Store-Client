@@ -7,10 +7,10 @@ export default function CommonLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
+    <>
       <Navbar />
       {children}
       <Footer />
-    </div>
+    </>
   );
 }

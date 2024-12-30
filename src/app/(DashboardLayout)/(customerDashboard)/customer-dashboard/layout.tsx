@@ -74,7 +74,7 @@ import { Eye, House, KeyRound, Package2, ShoppingBag, Store, TicketPercent, User
    
              {/* Customer Links */}
              <div className="mb-8">
-               <h3 className="text-lg font-semibold text-[#78BA05] mb-4">Customer</h3>
+               <h3 className="text-lg font-semibold text-[#70B103] mb-4">Customer</h3>
                <ul>
                  {customerLinks.map((link) => (
                    <li key={link.label} className="mb-4">

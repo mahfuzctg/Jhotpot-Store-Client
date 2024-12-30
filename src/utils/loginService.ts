@@ -21,8 +21,8 @@ export const loginUser = async (userData: Record<string, any>) => {
     const data = await response.json();
 
     if (data.success) {
-      cookies().set("accessToken", data?.data?.accessToken);
-      cookies().set("refreshToken", data?.data?.refreshToken);
+      (await cookies()).set("accessToken", data?.data?.accessToken);
+      (await cookies()).set("refreshToken", data?.data?.refreshToken);
     }
 
     return data;
@@ -55,7 +55,7 @@ export const registerUser = async (userInfo: Record<string, any>) => {
       const data = await response.json();
 
       if (data.success) {
-        cookies().set("accessToken", data?.token);
+        (await cookies()).set("accessToken", data?.token);
         // cookies().set("refreshToken", data?.data?.refreshToken);
       }
 
@@ -80,7 +80,7 @@ export const registerUser = async (userInfo: Record<string, any>) => {
       const data = await response.json();
 
       if (data.success) {
-        cookies().set("accessToken", data?.token);
+        (await cookies()).set("accessToken", data?.token);
         // cookies().set("refreshToken", data?.data?.refreshToken);
       }
 
@@ -91,13 +91,13 @@ export const registerUser = async (userInfo: Record<string, any>) => {
   }
 };
 
-export const logoutService = () => {
-  cookies().delete("accessToken");
-  cookies().delete("refreshToken");
+export const logoutService = async () => {
+  (await cookies()).delete("accessToken");
+  (await cookies()).delete("refreshToken");
 };
 
 export const getAccessToken = async () => {
-  const accessToken = cookies().get("accessToken")?.value;
+  const accessToken = (await cookies()).get("accessToken")?.value;
 
   return accessToken;
 };

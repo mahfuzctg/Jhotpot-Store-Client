@@ -9,3 +9,60 @@ body {
         sans-serif;
 }
 
+.slider {
+    width: 100%;
+    height: 3px;
+    background-color: #e08534;
+}
+
+.slider .thumb {
+    width: 23px;
+    height: 23px;
+    cursor: grab;
+    background: #fff;
+    border-radius: 50%;
+    border: 2px solid #e08534;
+    top: -10px;
+}
+
+.track-0 {
+    height: 100%;
+    background-color: #fff;
+}
+
+.track-2 {
+    height: 100%;
+    background-color: #fff;
+}
+
+.swiper-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    /* Adjust this value to increase the distance between bullets */
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background-color: #d3d3d3 !important;
+    /* Light gray color for inactive bullets */
+    border-radius: 50%;
+    opacity: 1 !important;
+    outline: none;
+    box-shadow: none;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #f5840c !important;
+    /* Orange color for the active bullet */
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px transparent, 0 0 0 6px #f5840c !important;
+    /* Creates an orange circle around the bullet */
+    outline: none;
+    box-shadow: 0 0 0 4px #fff, 0 0 0 6px #f5840c !important;
+    /* Creates an orange circle around the bullet */
+}

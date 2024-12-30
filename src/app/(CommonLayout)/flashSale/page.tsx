@@ -151,7 +151,7 @@ const FlashSale = () => {
             placeholder="Search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full rounded-xl border-2 border-primary py-[6px] px-6 text-base font-medium outline-none focus:border-primary focus:ring-1 focus:ring-primary text-white placeholder-white"
+            className="w-full rounded-xl border-2 border-primary py-[6px] px-6 text-base font-medium outline-none focus:border-primary focus:ring-1 focus:ring-primary gray-800 placeholder-gray-600"
           />
 
           {/* Category filter part */}
@@ -161,7 +161,7 @@ const FlashSale = () => {
                 <Button
                   color="primary"
                   variant="bordered"
-                  className="capitalize font-medium text-white"
+                  className="capitalize font-medium gray-800"
                 >
                   {category || "Select Product Category"}
                 </Button>
@@ -173,7 +173,7 @@ const FlashSale = () => {
                 onAction={handleCategorySelect}
               >
                 {allCategories?.map((category: ICategory) => (
-                  <DropdownItem key={category.name} className="text-white">
+                  <DropdownItem key={category.name} className="gray-800">
                     {category.name}
                   </DropdownItem>
                 ))}
@@ -188,7 +188,7 @@ const FlashSale = () => {
                 <Button
                   color="primary"
                   variant="bordered"
-                  className="capitalize font-medium text-white"
+                  className="capitalize font-medium gray-800"
                 >
                   Sort By Price
                 </Button>
@@ -199,10 +199,10 @@ const FlashSale = () => {
                 variant="bordered"
                 onAction={handleSortSelect} // Handle sort selection
               >
-                <DropdownItem key="asc" className="text-white">
+                <DropdownItem key="asc" className="gray-800">
                   Low to High
                 </DropdownItem>
-                <DropdownItem key="desc" className="text-white">
+                <DropdownItem key="desc" className="gray-800">
                   High to Low
                 </DropdownItem>
               </DropdownMenu>
@@ -211,9 +211,9 @@ const FlashSale = () => {
         </div>
         <div className="flex-1 w-full flex flex-col lg:flex-row gap-5 items-center">
           <div className=" flex lg:justify-start items-center w-full lg:w-96 xl:w-80">
-            <button className="flex gap-2 justify-center items-center rounded-2xl border-2 border-primary text-white py-2 px-3 font-medium w-full xl:w-auto">
+            <button className="flex gap-2 justify-center items-center rounded-2xl border-2 border-primary gray-800 py-2 px-3 font-medium w-full xl:w-auto">
               <span>
-                <GrCompare className="text-xl text-white" />
+                <GrCompare className="text-xl gray-800" />
               </span>
               <span>Compare Products</span>
             </button>
@@ -228,7 +228,7 @@ const FlashSale = () => {
               onChange={handleSliderChange}
             />
 
-            <p className="xl:text-xl font-medium text-white text-center">
+            <p className="xl:text-xl font-medium gray-800 text-center">
               Price Range: ${minPrice} - ${maxPrice}
             </p>
           </div>
@@ -238,13 +238,13 @@ const FlashSale = () => {
       {/* Filter show part */}
       {filterApplied && (
         <div className="border border-primary mt-4 p-4 flex gap-3 items-center md:w-[95%] mx-auto rounded-md shadow">
-          <p className="font-semibold text-white">Filtered By:</p>
+          <p className="font-semibold gray-800">Filtered By:</p>
           <div
             onClick={() => setSearchTerm("")}
             className="flex flex-wrap gap-2"
           >
             {debouncedSearchTerm && (
-              <span className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center text-white cursor-pointer">
+              <span className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center gray-800 cursor-pointer">
                 <span>{debouncedSearchTerm}</span>
                 <span>
                   <ImCross className="text-sm" />
@@ -254,7 +254,7 @@ const FlashSale = () => {
             {category && (
               <span
                 onClick={() => setCategory("")}
-                className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center text-white cursor-pointer"
+                className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center gray-800 cursor-pointer"
               >
                 <span>{category}</span>
                 <span>
@@ -265,7 +265,7 @@ const FlashSale = () => {
             {sort && (
               <span
                 onClick={() => setSort("")}
-                className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center text-white cursor-pointer"
+                className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center gray-800 cursor-pointer"
               >
                 <span>{sort === "asc" ? "Low to High" : "High to Low"}</span>
                 <span>
@@ -279,7 +279,7 @@ const FlashSale = () => {
                   setMinPrice(500);
                   setMaxPrice(7000);
                 }}
-                className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center text-white cursor-pointer"
+                className="border border-primary px-3 py-2 rounded-2xl flex gap-2 items-center gray-800 cursor-pointer"
               >
                 <span>
                   Price: {minPrice}-{maxPrice}
@@ -290,7 +290,7 @@ const FlashSale = () => {
               </span>
             )}
             <button
-              className="px-3 py-2 flex items-center gap-2 text-white border border-primary rounded-2xl"
+              className="px-3 py-2 flex items-center gap-2 gray-800 border border-primary rounded-2xl"
               onClick={() => {
                 setSearchTerm("");
                 setCategory("");
@@ -310,7 +310,7 @@ const FlashSale = () => {
       )}
 
       {/* Product Card Part */}
-      <div className="py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-3">
+      <div className="py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-y-8">
         {isLoading
           ? Array.from({ length: dataPerPage }).map((_, index) => (
               <div key={index}>

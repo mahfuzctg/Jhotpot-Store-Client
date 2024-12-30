@@ -1,6 +1,6 @@
 import "@/src/styles/globals.css";
-import clsx from "clsx";
 import { Metadata, Viewport } from "next";
+import clsx from "clsx";
 
 import { siteConfig } from "@/src/config/site";
 import { Providers } from "../lib/providers";
@@ -32,7 +32,7 @@ export default function RootLayout({
     <html suppressHydrationWarning lang="en" data-theme="">
       <head />
       <body
-        className={clsx("min-h-screen bg-background antialiased  lg:mx-0")}
+        className={clsx("min-h-screen bg-background  antialiased  lg:mx-0")}
       >
         <Providers>{children}</Providers>
       </body>

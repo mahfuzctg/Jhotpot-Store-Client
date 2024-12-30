@@ -16,7 +16,7 @@ export const siteConfig = {
     },
     {
       label: "Recent Viewed",
-      href: "/recentProductsView",
+      href: "/recentView",
     },
    
     {
@@ -27,7 +27,10 @@ export const siteConfig = {
       label: "Shop",
       href: "/shop",
     },
-    
+    {
+      label: "Contact",
+      href: "/contact",
+    },
    
      
      

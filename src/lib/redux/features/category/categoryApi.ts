@@ -15,7 +15,41 @@ const categoryApi = baseApi.injectEndpoints({
       },
       providesTags: ["category"],
     }),
+    createCategory: builder.mutation({
+      query: (categoryInfo) => {
+        return {
+          url: "/category",
+          method: "POST",
+          body: categoryInfo,
+        };
+      },
+      invalidatesTags: ["category"],
+    }),
+    updateCategory: builder.mutation({
+      query: ({ id, categoryInfo }) => {
+        return {
+          url: `/category/${id}`,
+          method: "PATCH",
+          body: categoryInfo,
+        };
+      },
+      invalidatesTags: ["category"],
+    }),
+    deleteCategory: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/category/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["category"],
+    }),
   }),
 });
 
-export const { useGetAllCategoriesQuery } = categoryApi;
+export const {
+  useGetAllCategoriesQuery,
+  useCreateCategoryMutation,
+  useUpdateCategoryMutation,
+  useDeleteCategoryMutation,
+} = categoryApi;

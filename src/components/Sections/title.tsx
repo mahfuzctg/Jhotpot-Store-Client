@@ -15,24 +15,24 @@ const Title = ({ sub, heading }: { sub: string; heading: string }) => {
       transition={{ duration: 0.6, ease: "easeInOut" }}
       className="relative  sm:py-24  bg-[#fff] text-[#82C408] overflow-hidden"
     >
-      {/* Bird-Shaped Background */}
+      {/* Bird-Shaped Background
       <div className="absolute inset-0  flex justify-center items-center">
         <motion.img
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: isInView ? 1 : 0.8, opacity: isInView ? 0.2 : 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          src="https://i.postimg.cc/CKmJLqMP/31009.png"
-          alt="Bird Shape"
+          // src="https://i.postimg.cc/CKmJLqMP/31009.png"
+         
           className="absolute w-[80%] h-[20%] "
         />
-      </div>
+      </div> */}
 
       {/* Heading */}
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
         transition={{ duration: 0.6, delay: 0.3, ease: "easeInOut" }}
-        className="text-3xl sm:text-5xl lg:text-7xl text-center font-extrabold leading-tight"
+        className="text-3xl sm:text-3xl lg:text-4xl text-center font-extrabold leading-tight"
       >
         {heading}
       </motion.h1>

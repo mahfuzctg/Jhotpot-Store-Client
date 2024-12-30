@@ -7,14 +7,13 @@ import { IFollow, IVendor } from "@/src/types/schema";
 import toast from "react-hot-toast";
 import shop from "@/src/assets/store-logo.png";
 import Image from "next/image";
+import Title from "@/src/components/Sections/title";
 
 const FavoriteShops = () => {
   const { userData, isLoading } = useUserDetails();
   const [unfollowUser] = useUnfollowUserMutation();
 
-  console.log(userData?.userData?.follows);
-
-  const handleunfollowVendor = async (vendor: IVendor) => {
+  const handleUnfollowVendor = async (vendor: IVendor) => {
     const vendorInfo = {
       vendorId: vendor.id,
     };
@@ -27,48 +26,48 @@ const FavoriteShops = () => {
   };
 
   return (
-    <div>
-      <DashboardSectionTitle heading="Favorite Shops" />
+    <div className="p-6">
+      <Title sub="Manage and view all the shops you've followed. Unfollow them at any time with ease." heading="Favorite Shops" />
 
-      <div>
+      <div className="mt-6">
         {isLoading ? (
-          "Loading"
+          <div className="text-center text-lg text-gray-600">Loading...</div>
         ) : (
           <div>
             {userData?.userData?.follows?.length > 0 ? (
-              <div
-                className={`w-full grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 items-center justify-center`}
-              >
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {userData?.userData?.follows?.map((singleFollow: IFollow) => (
                   <div
                     key={singleFollow?.id}
-                    className="relative w-full max-w-2xl my-5 md:my-16 flex flex-col items-start space-y-2 sm:space-x-6 px-4 py-4 border-2 border-dashed border-primary shadow-lg rounded-lg"
+                    className="relative flex flex-col items-start bg-white p-6 rounded-xl shadow-lg border border-gray-300 hover:border-[#70B103] transition-all duration-300"
                   >
-                    <span className="absolute text-xs font-medium top-0 left-0 rounded-br-lg rounded-tl-lg px-2 py-1 bg-primary text-gray-300 border-primary border-b-2 border-r-2 border-dashed">
+                    <span className="absolute text-xs font-medium top-2 left-2 px-2 py-1 bg-[#70B103] text-white rounded-full">
                       Shop
                     </span>
-                    <div className="w-full flex justify-center sm:justify-start sm:w-auto">
-                      <img
-                        className="object-cover h-16 mt-3 mr-3"
-                        src={singleFollow?.vendor?.logo}
-                        alt="Author"
+
+                    <div className="flex justify-center sm:justify-start w-full mb-4">
+                      <Image
+                        className="object-cover h-20 w-20 rounded-full"
+                        src={singleFollow?.vendor?.logo || shop}
+                        alt="Shop Logo"
+                        width={80}
+                        height={80}
                       />
                     </div>
-                    <div className="w-full sm:w-auto flex flex-col items-center sm:items-start">
-                      <p
-                        className="font-display mb-2 text-xl font-semibold text-gray-200"
-                        itemProp="author"
-                      >
+
+                    <div className="text-center sm:text-left">
+                      <h3 className="text-xl font-semibold text-gray-800">
                         {singleFollow?.vendor?.shopName}
+                      </h3>
+                      <p className="mt-2 text-gray-600 text-sm h-16 overflow-hidden">
+                        {singleFollow?.vendor?.description}
                       </p>
-                      <div className="mb-4 text-gray-300 h-12">
-                        <p>{singleFollow?.vendor?.description}</p>
-                      </div>
+
                       <button
                         onClick={() =>
-                          handleunfollowVendor(singleFollow?.vendor)
+                          handleUnfollowVendor(singleFollow?.vendor)
                         }
-                        className="relative h-10 w-30 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-black hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3"
+                        className="mt-4 py-2 px-6 bg-[#70B103] text-white rounded-lg hover:bg-green-600 transition-colors duration-300"
                       >
                         Unfollow
                       </button>
@@ -79,8 +78,8 @@ const FavoriteShops = () => {
             ) : (
               <div className="h-[500px] flex flex-col items-center justify-center w-full">
                 <Image src={shop} alt="shop" width={160} height={160} />
-                <p className="text-3xl text-center text-black mt-4">
-                  You haven&apos;t followed any shop yet.
+                <p className="text-3xl text-center text-gray-700 mt-4">
+                  You haven't followed any shop yet.
                 </p>
               </div>
             )}

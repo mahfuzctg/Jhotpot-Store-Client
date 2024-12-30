@@ -112,7 +112,7 @@ const CheckOut = () => {
         name: userData.userData.name || "",
         email: userData.userData.email || "",
         address: userData.userData.address || "",
-        phone: userData.userData.phone || "",
+        phone: userData.userData.phone || "01889-656320",
       });
     }
   }, [userData, reset]);
@@ -131,7 +131,7 @@ const CheckOut = () => {
                 Complete Your Purchase
               </span>
             </div>
-            <h1 className="mt-2 text-4xl font-bold text-white text-center">
+            <h1 className="mt-2 text-4xl font-bold text-gray-800 text-center">
               Checkout Items
             </h1>
           </div>
@@ -139,14 +139,14 @@ const CheckOut = () => {
           <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
             <div>
               <div>
-                <h2 className="text-lg font-medium text-white">
+                <h2 className="text-lg font-medium text-gray-800">
                   Contact information
                 </h2>
 
                 <div className="mt-4">
                   <label
                     htmlFor="email-address"
-                    className="block text-sm font-medium text-white"
+                    className="block text-sm font-medium text-gray-800"
                   >
                     Email address
                   </label>
@@ -160,7 +160,7 @@ const CheckOut = () => {
                         },
                       })}
                       readOnly
-                      className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-white"
+                      className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-gray-800"
                     />
                     <p className="text-sm text-red-600 font-medium  mt-2">
                       {errors?.email?.message as ReactNode}
@@ -170,7 +170,7 @@ const CheckOut = () => {
               </div>
 
               <div className="mt-10 border-t border-primary pt-10">
-                <h2 className="text-lg font-medium text-white">
+                <h2 className="text-lg font-medium text-gray-800">
                   Shipping information
                 </h2>
 
@@ -178,7 +178,7 @@ const CheckOut = () => {
                   <div className="sm:col-span-2">
                     <label
                       htmlFor="first-name"
-                      className="block text-sm font-medium text-white"
+                      className="block text-sm font-medium text-gray-800"
                     >
                       Full Name
                     </label>
@@ -192,7 +192,7 @@ const CheckOut = () => {
                           },
                         })}
                         readOnly
-                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-white"
+                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-gray-800"
                       />
                       <p className="text-sm text-red-600 font-medium  mt-2">
                         {errors?.name?.message as ReactNode}
@@ -203,7 +203,7 @@ const CheckOut = () => {
                   <div className="sm:col-span-2">
                     <label
                       htmlFor="address"
-                      className="block text-sm font-medium text-white"
+                      className="block text-sm font-medium text-gray-800"
                     >
                       Delivery Address
                     </label>
@@ -216,7 +216,7 @@ const CheckOut = () => {
                             message: "Address is required",
                           },
                         })}
-                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-white"
+                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-gray-800"
                       />
                       <p className="text-sm text-red-600 font-medium  mt-2">
                         {errors?.address?.message as ReactNode}
@@ -227,7 +227,7 @@ const CheckOut = () => {
                   <div className="sm:col-span-2">
                     <label
                       htmlFor="phone"
-                      className="block text-sm font-medium text-white"
+                      className="block text-sm font-medium text-gray-800"
                     >
                       Phone
                     </label>
@@ -241,7 +241,7 @@ const CheckOut = () => {
                           },
                         })}
                         readOnly
-                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-white"
+                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-gray-800"
                       />
                     </div>
                   </div>
@@ -251,7 +251,7 @@ const CheckOut = () => {
               <div className="mt-10 border-t border-gray-200 pt-10">
                 <fieldset>
                   <div className="flex gap-3 flex-col md:flex-row">
-                    <legend className="text-lg font-medium text-white">
+                    <legend className="text-lg font-medium text-gray-800">
                       Delivery method
                     </legend>
                     {!togglePayment && (
@@ -272,7 +272,7 @@ const CheckOut = () => {
                         <div className="flex flex-col">
                           <span
                             id="delivery-method-0-label"
-                            className="block text-sm font-medium text-white"
+                            className="block text-sm font-medium text-gray-800"
                           >
                             {" "}
                             Cash on Delivery{" "}
@@ -286,7 +286,7 @@ const CheckOut = () => {
                           </span>
                           <span
                             id="delivery-method-0-description-1"
-                            className="mt-6 text-sm font-medium text-white"
+                            className="mt-6 text-sm font-medium text-gray-800"
                           >
                             <span className="line-through">
                               <span>$</span>
@@ -314,7 +314,7 @@ const CheckOut = () => {
                         <div className="flex flex-col">
                           <span
                             id="delivery-method-1-label"
-                            className="block text-sm font-medium text-white"
+                            className="block text-sm font-medium text-gray-800"
                           >
                             {" "}
                             AamarPay Payment{" "}
@@ -328,7 +328,7 @@ const CheckOut = () => {
                           </span>
                           <span
                             id="delivery-method-1-description-1"
-                            className="mt-6 text-sm font-medium text-white"
+                            className="mt-6 text-sm font-medium text-gray-800"
                           >
                             {" "}
                             <span>
@@ -340,7 +340,7 @@ const CheckOut = () => {
                       </div>
 
                       <svg
-                        className={`h-5 w-5 text-[#e08534] ${togglePayment && "text-white"}`}
+                        className={`h-5 w-5 text-[#e08534] ${togglePayment && "text-gray-800"}`}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -364,7 +364,7 @@ const CheckOut = () => {
             </div>
 
             <div className="mt-10 lg:mt-0">
-              <h2 className="text-lg font-medium text-white">Order summary</h2>
+              <h2 className="text-lg font-medium text-gray-800">Order summary</h2>
 
               <div className="mt-4 border border-[#f5840c] rounded-lg shadow-sm">
                 <div>
@@ -387,12 +387,12 @@ const CheckOut = () => {
                                   <h4 className="text-sm">
                                     <a
                                       href="#"
-                                      className="text-white text-lg font-semibold"
+                                      className="text-gray-800 text-lg font-semibold"
                                     >
                                       {singleProduct.name}{" "}
                                     </a>
                                   </h4>
-                                  <p className="mt-1 text-sm text-white">
+                                  <p className="mt-1 text-sm text-gray-800">
                                     x{quantities[singleProduct.id]}
                                   </p>
                                 </div>
@@ -408,7 +408,7 @@ const CheckOut = () => {
                               </div>
 
                               <div className="flex-1 pt-2 flex items-end justify-between">
-                                <p className="mt-1 text-sm font-medium text-white">
+                                <p className="mt-1 text-sm font-medium text-gray-800">
                                   <span>$</span>
                                   {singleProduct.price}.00
                                 </p>
@@ -434,35 +434,35 @@ const CheckOut = () => {
                     className={`${stateProducts?.length > 0 && appliedCoupon && "border-t border-[#f5840c]"}  py-6 px-4 space-y-6 sm:px-6 `}
                   >
                     <div className="flex items-center justify-between">
-                      <dt className="text-sm text-white">Subtotal</dt>
-                      <dd className="text-sm font-medium text-white">
+                      <dt className="text-sm text-gray-800">Subtotal</dt>
+                      <dd className="text-sm font-medium text-gray-800">
                         <span>$</span>
                         {subtotal.toFixed(2)}
                       </dd>
                     </div>
                     <div className="flex items-center justify-between">
-                      <dt className="text-sm text-white">Shipping</dt>
-                      <dd className="text-sm font-medium text-white">
+                      <dt className="text-sm text-gray-800">Shipping</dt>
+                      <dd className="text-sm font-medium text-gray-800">
                         <span>$</span>
                         {shipping.toFixed(2)}
                       </dd>
                     </div>
                     <div className="flex items-center justify-between">
-                      <dt className="text-sm text-white">Taxes</dt>
-                      <dd className="text-sm font-medium text-white">
+                      <dt className="text-sm text-gray-800">Taxes</dt>
+                      <dd className="text-sm font-medium text-gray-800">
                         <span>$</span>
                         {taxes.toFixed(2)}
                       </dd>
                     </div>
                     {appliedCoupon && (
                       <div className="flex items-center justify-between">
-                        <dt className="text-sm text-white">
+                        <dt className="text-sm text-gray-800">
                           Coupon Discount{" "}
                           <span className="text-primary ml-3 font-semibold">
                             {`(${appliedCoupon?.code})`}
                           </span>
                         </dt>{" "}
-                        <dd className="text-sm font-medium text-white">
+                        <dd className="text-sm font-medium text-gray-800">
                           <span>$</span>
                           {discount.toFixed(2)}
                         </dd>
@@ -470,10 +470,10 @@ const CheckOut = () => {
                     )}
 
                     <div className="flex items-center justify-between border-t border-[#f5840c] pt-6">
-                      <dt className="text-base font-medium  text-white">
+                      <dt className="text-base font-medium  text-gray-800">
                         Total
                       </dt>
-                      <dd className="text-base font-medium text-white">
+                      <dd className="text-base font-medium text-gray-800">
                         <span>$</span>
                         {total.toFixed(2)}
                       </dd>
@@ -484,7 +484,7 @@ const CheckOut = () => {
                 <div className="border-t border-[#f5840c] py-6 px-4 sm:px-6">
                   <button
                     type="submit"
-                    className="relative h-12 w-full origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3"
+                    className="relative h-12 w-full origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-gray-800 hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3"
                   >
                     Pay Now
                   </button>

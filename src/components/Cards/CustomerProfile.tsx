@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 "use client";
 
-import { BsPhone } from "react-icons/bs";
-import { MdEmail, MdOutlineLocationOn } from "react-icons/md";
 import { motion } from "framer-motion";
 import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";
 import CustomerProfileLoading from "../LoadingCards/CustomerProfileLoading";
@@ -34,57 +32,60 @@ const CustomerProfile = () => {
       {isLoading ? (
         <CustomerProfileLoading />
       ) : (
-        <div className="w-80 md:w-auto flex items-center h-auto flex-wrap mx-auto my-20 lg:my-0 mr-10 md:mr-0">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-20 mx-auto">
           {/* Profile Container */}
           <div
             id="profile"
-            className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-gray-900 px-5 lg:mx-0"
+            className="w-full max-w-3xl rounded-2xl shadow-2xl border-t-4 border-[#70B103] bg-white relative px-10 py-8"
+            style={{
+              clipPath:
+                "polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%)", // Unique bottom shape
+            }}
           >
-            <div className="p-4 md:p-12 text-center lg:text-left">
-              {/* Mobile Profile Photo */}
+            {/* Profile Photo */}
+            <div className="absolute -top-4 mb-8 left-1/2 transform -translate-x-1/2">
               <img
-                // src={profile.profilePhoto || "/default-profile.png"}
+                src={profile.profilePhoto || "/default-profile.png"}
                 alt="Customer"
                 loading="lazy"
-                className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 object-cover"
+                className="rounded-full shadow-lg h-32 w-32 object-cover border-4 border-[#70B103] bg-white"
               />
+            </div>
 
+            <div className="mt-16 text-center">
               {/* User Name */}
-              <h1 className="text-3xl font-bold pt-8 lg:pt-0 text-white">
-                {profile.name || "N/A"}
+              <h1 className="text-2xl font-bold text-black mb-2 mt-10 pt-8">
+                {profile.name || "N/A"} <span className="ml-1">👤</span>
               </h1>
-              <div className="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-primary opacity-25" />
 
-              {/* User Role */}
-              <p className="pt-4 text-sm font-medium flex items-center justify-start uppercase text-white ml-6 md:ml-14 lg:ml-0">
-                <span>{profile.role || "Customer"}</span>
+              {/* Role */}
+              <p className="uppercase text-sm font-semibold text-[#70B103]">
+                {profile.role || "Customer"}
               </p>
 
-              {/* Email */}
-              <p className="pt-3 text-white font-medium text-sm flex items-center justify-start ml-6 md:ml-14 lg:ml-0">
-                <MdEmail className="text-primary mr-4 text-lg" />
-                <span>Email: {profile.email || "N/A"}</span>
-              </p>
+              {/* Divider */}
+              <div className="w-20 border-t-2 border-[#70B103] my-4 mx-auto"></div>
 
-              {/* Address */}
-              <p className="pt-3 text-white font-medium text-sm flex items-center ml-6 md:ml-14 lg:ml-0">
-                <MdOutlineLocationOn className="text-primary mr-3 text-4xl md:text-xl" />
-                <span>Address: {profile.address || "N/A"}</span>
-              </p>
-
-              {/* Phone */}
-              <p className="pt-3 text-white font-medium text-sm flex items-center ml-6 md:ml-14 lg:ml-0">
-                <BsPhone className="text-primary mr-4 text-lg" />
-                <span>Phone: {profile.phone || "N/A"}</span>
-              </p>
+              {/* Contact Details */}
+              <div className="flex flex-col gap-3 text-gray-700 text-sm">
+                <p className="flex items-center justify-center gap-2">
+                  📧 <span>Email: {profile.email || "N/A"}</span>
+                </p>
+                <p className="flex items-center justify-center gap-2">
+                  🏠 <span>Address: {profile.address || "N/A"}</span>
+                </p>
+                <p className="flex items-center justify-center gap-2">
+                  📞 <span>Phone: {profile.phone || "N/A"}</span>
+                </p>
+              </div>
 
               {/* Update Button */}
-              <div className="pt-12 pb-8 cursor-pointer">
+              <div className="mt-6">
                 <button
                   onClick={onOpen}
-                  className="bg-primary btn-custom text-white font-bold py-2 px-4 rounded-full hover:bg-[#c4650a]"
+                  className="bg-[#70B103] text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-[#5a9002] transition-all duration-300"
                 >
-                  Update Profile
+                  ✏️ Update Profile
                 </button>
               </div>
             </div>

@@ -5,7 +5,7 @@ import { RootState } from "../store";
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `https://jhotpot-store-server.vercel.app/api`, // Ensure this is the correct base URL for your API
+    baseUrl: `https://jhotpot-store-server.vercel.app/api`,
     credentials: "include", // Ensures cookies are included with the request
     prepareHeaders: (headers, { getState }) => {
       // Retrieve the token from the store
@@ -31,7 +31,7 @@ export const baseApi = createApi({
   endpoints: (builder) => ({
     // Example endpoint: Get a list of users
     getUsers: builder.query({
-      query: () => "/users", // Assuming `/users` is your endpoint for getting users
+      query: () => "/users", // Assuming `/users` 
       providesTags: ["users"], // Useful for cache invalidation
     }),
     // Example endpoint: Get categories

@@ -1,5 +1,4 @@
 
-// components/ModalComponent.tsx
 import React, { ReactNode } from "react";
 import {
   Modal,
@@ -13,7 +12,7 @@ import { Button } from "@nextui-org/button";
 interface ModalComponentProps {
   isOpen: boolean;
   isDismissable?: boolean;
-  isKeyboardDismissDisabled?: boolean
+  isKeyboardDismissDisabled?: boolean;
   onOpenChange: (open: boolean) => void;
   title?: string;
   children: ReactNode;
@@ -29,44 +28,52 @@ interface ModalComponentProps {
     | "4xl"
     | "5xl"
     | "full";
+  backdrop?: "blur" | "transparent" | "opaque";
+  scrollBehavior?: "inside" | "outside";
 }
 
-const MainModal = ({
+const MainModal: React.FC<ModalComponentProps> = ({
   isOpen,
+  isDismissable = true,
+  isKeyboardDismissDisabled = false,
   onOpenChange,
-  
   title,
   children,
   footerContent,
   size = "2xl",
-}: ModalComponentProps) => {
+  backdrop = "blur",
+  scrollBehavior = "inside",
+}) => {
   return (
     <Modal
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       size={size}
-      backdrop={"blur"}
-      className="bg-[#18181B]"
-      isDismissable={false}
-      isKeyboardDismissDisabled={true}
-      scrollBehavior={"inside"}
+      backdrop={backdrop}
+      className="bg-[#fff]"
+      isDismissable={isDismissable}
+      isKeyboardDismissDisabled={isKeyboardDismissDisabled}
+      scrollBehavior={scrollBehavior}
     >
       <ModalContent>
-        <ModalHeader>{title}</ModalHeader>
+        {title && <ModalHeader>{title}</ModalHeader>}
         <ModalBody>{children}</ModalBody>
-        <ModalFooter>
-          {footerContent || (
-            <>
-              <Button
-                variant="light"
-                color="primary"
-                onPress={() => onOpenChange(false)}
-              >
-                Close
-              </Button>
-            </>
-          )}
-        </ModalFooter>
+        {footerContent && (
+          <ModalFooter>
+            {footerContent}
+          </ModalFooter>
+        )}
+        {!footerContent && (
+          <ModalFooter>
+            <Button
+              variant="light"
+              color="warning"
+              onPress={() => onOpenChange(false)}
+            >
+              Close
+            </Button>
+          </ModalFooter>
+        )}
       </ModalContent>
     </Modal>
   );
