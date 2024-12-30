@@ -3,13 +3,13 @@ const CategoryLoading = () => {
     <div className="flex justify-center items-center space-x-4 py-8">
       <div className="flex flex-col items-center relative">
         {/* Image Skeleton */}
-        <div className="w-[235px] h-[235px] bg-gray-500 animate-pulse rounded-lg" />
+        <div className="w-[235px] h-[235px] bg-gray-100 animate-pulse rounded-lg" />
 
         {/* Text Skeleton */}
-        <div className="absolute w-[185px] h-8 bg-gray-600 animate-pulse rounded-full -bottom-6" />
+        <div className="absolute w-[185px] h-8 bg-gray-100 animate-pulse rounded-full -bottom-6" />
       </div>
       {/* Divider Skeleton */}
-      <div className="border-l-2 border-dotted border-gray-700 h-48 hidden md:block" />
+      <div className="border-l-2 border-dotted border-gray-100 h-48 hidden md:block" />
     </div>
   );
 };

@@ -55,7 +55,7 @@ const DealOffer = () => {
             placeholder="Enter your email here to stay tuned"
             className="p-3 rounded-l-lg w-2/3 max-w-md text-gray-900"
           />
-          <button className="p-3 rounded-r-lg bg-[#FFA900] text-white font-bold hover:bg-red-600">
+          <button className="p-3 rounded-r-lg bg-[#82C408] text-white font-bold hover:bg-[#82c408c5]">
             DO IT!
           </button>
         </div>

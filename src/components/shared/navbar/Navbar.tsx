@@ -26,6 +26,7 @@ import { totalProductsCount } from "@/src/lib/redux/features/products/product.sl
 import MainModal from "../../modal/Reusable/MainModal";
 import NavSearchModal from "../../modal/Reusable/NavSearchModal";
 import { useState } from "react";
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -40,6 +41,39 @@ export default function Navbar() {
 
   return (
     <>
+    
+  
+    <>
+      {/* Top Navigation Bar */}
+      <div className="bg-[#ffff] py-2 text-[#82C408] text-sm">
+        <div className="max-w-6xl mx-auto flex justify-between items-center px-6">
+          <div className="flex flex-wrap space-x-6 sm:space-x-4 gap-2 sm:gap-4">
+            <span className="block sm:inline">123 Main Street, Ctg, Bangladesh</span>
+            <span className="block sm:inline">+123 456 7890</span>
+            <span className="block sm:inline">jhotpot@gmail.com</span>
+          </div>
+          <div className="flex space-x-4 sm:space-x-3">
+            {/* Social Media Icons */}
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+              <FaFacebook className="text-[#82C408] text-lg hover:text-gray-300 transition duration-200" />
+            </a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              <FaTwitter className="text-[#82C408] text-lg hover:text-gray-300 transition duration-200" />
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <FaInstagram className="text-#82C408 text-lg hover:text-gray-300 transition duration-200" />
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+              <FaLinkedin className="text-#82C408 text-lg hover:text-gray-300 transition duration-200" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </>
+
+
+
+      {/* Main Navbar */}
       <NextUINavbar
         maxWidth="xl"
         position="sticky"
@@ -158,9 +192,8 @@ export default function Navbar() {
 
         {/* Search Modal */}
         <MainModal isOpen={isSearchOpen} onOpenChange={onSearchChange}>
-  <NavSearchModal />
-</MainModal>
-               
+          <NavSearchModal />
+        </MainModal>
       </NextUINavbar>
 
       {/* Cart Drawer */}
