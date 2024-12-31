@@ -1,11 +1,10 @@
 "use client";
 
-import DashboardSectionTitle from "@/src/components/ui/components/DashboardSectionTitle";
 import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";
 import { useUnfollowUserMutation } from "@/src/lib/redux/features/users/user.api";
 import { IFollow, IVendor } from "@/src/types/schema";
 import toast from "react-hot-toast";
-import shop from "@/src/assets/store-logo.png";
+import shop from "@/src/assets/logo.jpg";
 import Image from "next/image";
 import Title from "@/src/components/Sections/title";
 

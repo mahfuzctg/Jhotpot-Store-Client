@@ -1,6 +1,5 @@
 export const protectedRoutes = [
-  "/login",
-  "/productDetails",
+
   "/recentView",
   "/shop",
   "/checkout",

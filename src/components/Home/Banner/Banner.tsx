@@ -63,7 +63,7 @@ const Banner = () => {
 
   return (
     <div
-      className="relative  bg-cover bg-center h-[60vh] sm:h-[100vh] lg:h-[60vh] flex flex-col items-center justify-center text-white transition-all duration-1000 ease-in-out"
+      className="relative bg-cover bg-center h-[60vh] sm:h-[100vh] lg:h-[60vh] flex flex-col items-center justify-center text-white transition-all duration-1000 ease-in-out"
       style={{
         backgroundImage: `url(${images[currentImage]})`, // Automatically sliding background
       }}

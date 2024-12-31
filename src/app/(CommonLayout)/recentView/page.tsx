@@ -3,7 +3,7 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import Image from "next/image";
-import brand from "@/src/assets/store-logo.png";
+import brand from "@/src/assets/logo.jpg";
 import Link from "next/link";
 
 import { PiStarFourFill } from "react-icons/pi";

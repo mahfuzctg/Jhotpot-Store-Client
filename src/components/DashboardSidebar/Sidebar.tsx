@@ -9,7 +9,7 @@ import { useAppDispatch } from "@/src/lib/redux/hooks";
 import { logoutService } from "@/src/utils/loginService";
 import { usePathname, useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import logo from "@/src/assets/store-logo.png";
+import logo from "@/src/assets/logo.jpg";
 import Link from "next/link";
 import Image from "next/image";
 import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";

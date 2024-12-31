@@ -4,7 +4,7 @@
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import { FaGoogle, FaFacebookF, FaGithub, FaLinkedinIn } from "react-icons/fa";
-import logo from "@/src/assets/store-logo.png";
+import logo from "@/src/assets/logo.jpg";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FieldValues, SubmitHandler } from "react-hook-form";
@@ -115,7 +115,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 sm:px-8 py-10 xl:py-0">
-      <div className="relative border-2 border-primary text-white rounded-2xl shadow-lg overflow-hidden w-[850px] max-w-full lg:min-h-[570px] min-h-[620px] md:min-h-[580px]">
+      <div className="relative border-2 border-primary text-gray-700 rounded-2xl shadow-lg overflow-hidden w-[850px] max-w-full lg:min-h-[570px] min-h-[620px] md:min-h-[580px]">
         {/* Form Containers */}
         {/* Sign In Part */}
         <div
@@ -125,7 +125,7 @@ export default function Login() {
               : "translate-x-0 opacity-100 z-20"
           } w-full lg:w-1/2`}
         >
-          <div className="flex flex-col items-center justify-center h-full px-10 text-white">
+          <div className="flex flex-col items-center justify-center h-full px-10 text-gray-700">
             <Link href={"/"}>
               <Image
                 src={logo}
@@ -150,7 +150,7 @@ export default function Login() {
                 <FaLinkedinIn className="w-6 h-6 text-gray-600" />
               </a>
             </div>
-            <span className="text-sm text-white mb-4">
+            <span className="text-sm text-gray-700 mb-4">
               or use your email account
             </span>
 
@@ -180,7 +180,7 @@ export default function Login() {
               <div className="flex items-center justify-end">
                 <Link href={"/forgot-password"}>
                   <button type="reset" className="-mr-3 w-max p-2 mb-4">
-                    <span className="text-sm tracking-wide text-white">
+                    <span className="text-sm tracking-wide text-gray-700">
                       Forgot password ?
                     </span>
                   </button>
@@ -190,7 +190,7 @@ export default function Login() {
               <div className="flex justify-center items-center mb-10">
                 <button
                   type="submit"
-                  className="relative h-10 w-24 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
+                  className="relative h-10 w-24 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-gray-700 hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
                 >
                   Sign In
                 </button>
@@ -207,7 +207,7 @@ export default function Login() {
               : "translate-x-full lg:translate-x-0 opacity-100 lg:opacity-0 z-10"
           } w-full lg:w-1/2`}
         >
-          <div className="flex flex-col items-center justify-center h-full px-10 text-white">
+          <div className="flex flex-col items-center justify-center h-full px-10 text-gray-700">
             <Link href={"/"}>
               <Image
                 src={logo}
@@ -237,10 +237,10 @@ export default function Login() {
               {isOpen && (
                 <div
                   ref={dropdownRef}
-                  className="absolute top-[calc(100%+0.5rem)] left-0  border border-primary bg-black text-white shadow-lg rounded-md w-40 z-50"
+                  className="absolute top-[calc(100%+0.5rem)] left-0  border border-primary bg-black text-gray-700 shadow-lg rounded-md w-40 z-50"
                 >
                   <div
-                    className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-white"
+                    className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-gray-700"
                     onClick={() => handleSelection("User")}
                   >
                     User
@@ -249,7 +249,7 @@ export default function Login() {
                     )}
                   </div>
                   <div
-                    className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-white"
+                    className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-gray-700"
                     onClick={() => handleSelection("Vendor")}
                   >
                     Vendor
@@ -295,7 +295,7 @@ export default function Login() {
               <div className="flex justify-center items-center mt-3 mb-10">
                 <button
                   type="submit"
-                  className="relative h-10 w-24 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
+                  className="relative h-10 w-24 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-gray-700 hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
                 >
                   Sign Up
                 </button>
@@ -306,14 +306,14 @@ export default function Login() {
 
         {/* Toggle Panels */}
         <div
-          className={`hidden absolute top-0 left-1/2 w-full h-1/2 md:h-full md:w-1/2 transition-all duration-700 bg-orange-500 text-white lg:flex flex-col items-center justify-center px-6 ${
+          className={`hidden absolute top-0 left-1/2 w-full h-1/2 md:h-full md:w-1/2 transition-all duration-700 bg-[#82C408] text-white  lg:flex flex-col items-center justify-center px-6 ${
             isActive
               ? "translate-x-[-100%] rounded-r-[30%]"
               : "translate-x-0 rounded-l-[30%]"
           }`}
         >
           <div className="text-center">
-            <h1 className="text-3xl font-bold mb-2">
+            <h1 className="text-4xl font-bold mb-2">
               {isActive ? "Welcome Back!" : "Welcome, Friend!"}
             </h1>
             <p className="mb-5">

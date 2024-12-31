@@ -35,7 +35,7 @@ const AllProducts = () => {
     const width = window.innerWidth;
 
     if (width >= 1280) {
-      setDataPerPage(8); // Larger screens
+      setDataPerPage(14); // Larger screens
     } else if (width >= 768 && width < 1280) {
       setDataPerPage(6); // Medium screens
     } else {

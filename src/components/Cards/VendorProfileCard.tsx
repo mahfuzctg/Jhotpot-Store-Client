@@ -43,21 +43,21 @@ const VendorProfileCard = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
-          className="flex flex-col sm:flex-row sm:max-w-2xl max-w-xs mx-auto overflow-hidden rounded-lg shadow-lg bg-[#18181B] p-2 my-16"
+          className="flex flex-col sm:flex-row sm:max-w-2xl max-w-xs mx-auto overflow-hidden rounded-lg shadow-lg bg-[#ffffff] p-2 my-16"
         >
           <div className="p-2 sm:w-1/2">
           <Image
   className="rounded sm:h-80 object-contain border-2 border-dashed border-primary px-3"
   src={
     userData?.userData?.logo ||
-    "https://i.postimg.cc/d1tv6W8n/Please-Update-Your-Shop-Logo.png"
+    "https://res.cloudinary.com/dxv10xebz/image/upload/v1725440747/samples/smile.jpg"
   }
   alt="Article"
   width={300} // Set an appropriate width for your image
   height={300} // Set an appropriate height for your image
   priority // Add this to prioritize the image for faster loading
 />
-console.log(userData?.userData?.logo);
+
 
             
           </div>
@@ -65,30 +65,30 @@ console.log(userData?.userData?.logo);
             <div>
               <a
                 href="#"
-                className="block sm:mt-2 text-2xl font-semibold text-white"
+                className="block sm:mt-2 text-2xl font-semibold text-black"
               >
                 {userData?.userData?.shopName || "[Provide Shop Name]"}
               </a>
-              <p className="mt-2 text-sm text-gray-200 dark:text-gray-400">
+              <p className="mt-2 text-sm text-gray-700 dark:text-gray-600">
                 {userData?.userData?.description ||
                   "[Provide Shop Description]"}
               </p>
             </div>
             <div className="flex flex-wrap items-center justify-between my-6">
               <div className="space-y-1">
-                <p className="text-sm text-white/70 font-medium">Products</p>
+                <p className="text-sm text-black/70 font-medium">Products</p>
                 <p className="text-2xl tracking-wider text-primary lg:text-3xl text-center">
                   {totalProducts}
                 </p>
               </div>
               <div className="space-y-1">
-                <p className="text-sm text-white/70 font-medium">Orders</p>
+                <p className="text-sm text-black/70 font-medium">Orders</p>
                 <p className="text-2xl tracking-wider text-primary lg:text-3xl text-center">
                   {totalVendorOrders}
                 </p>
               </div>
               <div className="space-y-1">
-                <p className="text-sm text-white/70 font-medium">Reviews</p>
+                <p className="text-sm text-black/70 font-medium">Reviews</p>
                 <p className="text-2xl tracking-wider text-primary lg:text-3xl text-center">
                   {totalVendorReviews}
                 </p>

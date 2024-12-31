@@ -104,13 +104,13 @@ const ShopPage = () => {
               </div>
 
               <div className="space-y-2 flex flex-col justify-center items-center">
-                <h2 className="text-4xl font-semibold text-white">
+                <h2 className="text-4xl font-semibold text-gray-800">
                   {singleVendor?.shopName || "Shop Name"}
                 </h2>
-                <p className="text-white/80 text-lg max-w-lg mx-auto text-center">
+                <p className="text-gray-800/80 text-lg max-w-lg mx-auto text-center">
                   {singleVendor?.description || "No description available."}
                 </p>
-                <p className="text-white/70 text-lg flex gap-2 items-center">
+                <p className="text-gray-800/70 text-lg flex gap-2 items-center">
                   <span>
                     <FaUserFriends className="text-xl" />
                   </span>{" "}
@@ -122,14 +122,14 @@ const ShopPage = () => {
                 ) ? (
                   <button
                     onClick={handleFollowVendor}
-                    className="relative h-10 w-30 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3"
+                    className="relative h-10 w-30 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-gray-800 hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3"
                   >
                     Follow
                   </button>
                 ) : (
                   <button
                     onClick={handleUnfollowVendor}
-                    className="relative h-10 w-30 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3"
+                    className="relative h-10 w-30 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-gray-800 hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3"
                   >
                     Unfollow
                   </button>

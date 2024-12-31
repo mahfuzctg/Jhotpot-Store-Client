@@ -352,7 +352,7 @@ const AllProducts = () => {
               >
                 <span>{sort === "asc" ? "Low to High" : "High to Low"}</span>
                 <span>
-                  <ImCross className="text-sm" />
+                  <ImCross className="text-sm bg-red" />
                 </span>
               </span>
             )}

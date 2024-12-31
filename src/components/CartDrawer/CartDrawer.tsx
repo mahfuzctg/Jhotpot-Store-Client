@@ -13,7 +13,6 @@ interface CartDrawerProps {
   onClose: () => void;
 }
 
-
 const CartDrawer: React.FC<CartDrawerProps> = ({ onClose }) => {
   const { products, quantities, subtotal } = useAppSelector(
     (state) => state.products
@@ -53,7 +52,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ onClose }) => {
 
   return (
     <div
-      className="fixed top-0 right-0 w-1/5 h-full bg-white/70 backdrop-blur-lg text-gray-800 shadow-lg transform transition-transform duration-300 z-50 flex flex-col"
+      className="fixed top-0 right-0 w-full sm:w-2/5 md:w-1/4 h-full bg-white/70 backdrop-blur-lg text-gray-800 shadow-lg transform transition-transform duration-300 z-50 flex flex-col"
       aria-label="Cart Drawer"
     >
       {/* Header */}
@@ -66,8 +65,8 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ onClose }) => {
         />
       </div>
 
-      {/* Content */}
-      <div className="p-6 flex-1 flex flex-col justify-center items-center text-center">
+      {/* Content with Scrolling */}
+      <div className="flex-1 overflow-y-scroll p-6">
         {products?.length > 0 ? (
           <div className="w-full">
             {/* Cart Items */}
@@ -102,7 +101,9 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ onClose }) => {
                       </button>
                     </div>
                     <span className="font-bold text-lg text-gray-800">
-                      ${(product.price * (quantities[product.id] || 1)).toFixed(2)}
+                      ${(product.price * (quantities[product.id] || 1)).toFixed(
+                        2
+                      )}
                     </span>
                     <FaCircleXmark
                       onClick={() => handleRemoveFromCart(product.id)}
@@ -115,32 +116,28 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ onClose }) => {
             ))}
           </div>
         ) : (
-          <p className="text-lg mb-4">Your Cart is currently empty</p>
-        )}
-
-        {/* Checkout Button */}
-        {products.length > 0 && (
-          <button
-            onClick={handleCheckout}
-            className="w-full bg-gradient-to-r from-[#82C408] to-green-500 text-white px-6 py-2 rounded-full mt-4 hover:from-green-600 hover:to-green-700 shadow-lg transform hover:scale-105 transition duration-300"
-          >
-            Proceed to Checkout
-          </button>
+          <p className="text-lg mb-4 text-center">Your Cart is currently empty</p>
         )}
       </div>
 
       {/* Footer */}
-      <div className="p-4 text-sm text-gray-500 text-center">
-        {products.length === 0 ? (
-          <p>Don’t forget to check out our latest collections for exciting deals!</p>
-        ) : (
-          <div className="mt-4">
+      <div className="p-4 bg-white">
+        {products.length > 0 ? (
+          <div>
             <h3 className="text-lg font-semibold text-gray-800">Subtotal</h3>
             <p className="font-semibold text-gray-800">${subtotal.toFixed(2)}</p>
             <p className="text-sm text-gray-500">
               Shipping and taxes calculated at checkout.
             </p>
+            <button
+              onClick={handleCheckout}
+              className="w-full bg-gradient-to-r from-[#82C408] to-green-500 text-white px-6 py-2 rounded-full mt-4 hover:from-green-600 hover:to-green-700 shadow-lg transform hover:scale-105 transition duration-300"
+            >
+              Proceed to Checkout
+            </button>
           </div>
+        ) : (
+          <p>Don’t forget to check out our latest collections for exciting deals!</p>
         )}
       </div>
     </div>

@@ -168,9 +168,9 @@ const HomeProductCard = ({
 
           <div className="flex justify-between items-center">
             <div>
-              <span className="text-lg font-bold text-red-500">
-                ${discountedPrice}
-              </span>
+            <span className="text-lg font-bold text-red-500">
+        ${discountedPrice?.toFixed(2)}
+      </span>
               {singleProduct.flashSale && (
                 <span className="text-sm font-semibold text-gray-400 line-through ml-2">
                   ${singleProduct.price}

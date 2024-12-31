@@ -27,10 +27,9 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import ReactStars from "react-stars";
 import dynamic from "next/dynamic";
+import { useAddRecentProductMutation, useGetAllProductsQuery, useGetSingleProductQuery } from "@/src/lib/redux/features/products/product.api";
 import { addProduct, clearCart } from "@/src/lib/redux/features/products/product.slice";
 import { IProduct, IReview } from "@/src/types/schema";
-import { useAddRecentProductMutation, useGetAllProductsQuery, useGetSingleProductQuery } from "@/src/lib/redux/features/products/product.api";
-import { string } from "zod";
 
 const Loading = dynamic(() => import("@/src/components/Loading/Loading"), {
   ssr: false,
@@ -53,7 +52,7 @@ const ProductDetails = () => {
 
   const { data: productReview, isLoading: reviewLoading } =
     useGetReviewsByIdQuery(
-      { productId: productId ?? '' },
+      { productId: productId ?? "" },
       {
         skip: !productId,
       }
@@ -242,7 +241,7 @@ const ProductDetails = () => {
               <p className="text-gray-400 max-w-lg text-center lg:text-left">
                 {data?.description}
               </p>
-              <div className="flex text-white  gap-2 items-end">
+              <div className="flex text-gray-800  gap-2 items-end">
                 <p
                   className={`text-${data?.flashSale ? "xl" : "3xl"} ${data?.flashSale && "line-through text-2xl"}`}
                 >
@@ -259,7 +258,7 @@ const ProductDetails = () => {
 
               <p
                 id="helper-text-explanation"
-                className=" text-white text-2xl mt-5"
+                className=" text-gray-800 text-2xl mt-5"
               >
                 Select the quantity of products:
               </p>
@@ -288,7 +287,7 @@ const ProductDetails = () => {
                     >
                       <span
                         onClick={handleAddToCart}
-                        className="flex items-center gap-2 px-6 py-3  rounded-lg w-full justify-center cursor-pointer relative h-12 w-30 origin-top transform border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
+                        className="flex items-center gap-2 px-6 py-3  rounded-lg w-full justify-center cursor-pointer relative h-12 w-30 origin-top transform border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-gray-800 hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
                       >
                         <BsCart3 className="font-bold" />{" "}
                         <span>Add to cart</span>
@@ -298,12 +297,12 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-              <h1 className="text-white my-3 text-2xl">
+              <h1 className="text-gray-800 my-3 text-2xl">
                 <span className="font-bold">Category:</span>{" "}
                 <span className="text-gray-400">{data?.category?.name}</span>
               </h1>
 
-              <h1 className="text-white my-3 text-2xl">
+              <h1 className="text-gray-800 my-3 text-2xl">
                 <span className="font-bold">Shop Name:</span>{" "}
                 <span
                   className="relative inline-block text-2xl font-medium text-gray-400
@@ -386,7 +385,7 @@ const ProductDetails = () => {
               {activeTab === "Related Products" && (
                 <div>
                   {/* Your Code Tab Content */}
-                  <div className="w-full lg:w-11/12 xl:w-4/5 mx-auto my-8">
+                  <div className="w-full lg:w-11/12 xl:w-4/5  mx-auto my-8">
                     <Swiper
                       spaceBetween={30}
                       loop={true}
@@ -413,7 +412,7 @@ const ProductDetails = () => {
 
                             if (filteredProducts?.length === 0) {
                               return (
-                                <div className="text-center text-white text-2xl font-bold mt-6">
+                                <div className="text-center text-gray-800 text-2xl font-bold mt-6">
                                   Sorry, no related products available.
                                 </div>
                               );
@@ -441,7 +440,7 @@ const ProductDetails = () => {
               {activeTab === "Reviews" && (
                 <div>
                   {productReview?.length === 0 ? (
-                    <div className="text-center text-white text-2xl font-bold mt-6">
+                    <div className="text-center text-gray-800 text-2xl font-bold mt-6">
                       Sorry, no product review available.
                     </div>
                   ) : (
@@ -527,7 +526,7 @@ const ProductDetails = () => {
                                         </svg>
                                       </div>
                                       <div>
-                                        <h1 className="text-2xl font-semibold text-white">
+                                        <h1 className="text-2xl font-semibold text-gray-800">
                                           {singleReview?.customer?.name}
                                         </h1>
                                         <ReactStars
@@ -540,7 +539,7 @@ const ProductDetails = () => {
                                       </div>
                                     </div>
                                     <div className="mt-8">
-                                      <p className="md:text-lg text-left text-gray-300">
+                                      <p className="md:text-lg text-left text-gray-600">
                                         &quot;{singleReview?.comment}&quot;
                                       </p>
                                     </div>

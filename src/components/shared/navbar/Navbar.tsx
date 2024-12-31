@@ -14,7 +14,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { siteConfig } from "@/src/config/site";
-import logo from "@/src/assets/store-logo.png";
+import logo from "@/src/assets/logo.jpg";
 import useUserDetails from "@/src/hooks/CustomHooks/useUserDetails";
 import NavbarUserDropdown from "./NavbarUserDropdown";
 import { IoSearch } from "react-icons/io5";
@@ -41,36 +41,35 @@ export default function Navbar() {
 
   return (
     <>
-    
-  
-    <>
-      {/* Top Navigation Bar */}
-      <div className="bg-[#ffff] py-2 text-[#82C408] text-sm">
-        <div className="max-w-6xl mx-auto flex justify-between items-center px-6">
-          <div className="flex flex-wrap space-x-6 sm:space-x-4 gap-2 sm:gap-4">
-            <span className="block sm:inline">123 Main Street, Ctg, Bangladesh</span>
-            <span className="block sm:inline">+123 456 7890</span>
-            <span className="block sm:inline">jhotpot@gmail.com</span>
-          </div>
-          <div className="flex space-x-4 sm:space-x-3">
-            {/* Social Media Icons */}
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-              <FaFacebook className="text-[#82C408] text-lg hover:text-gray-300 transition duration-200" />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <FaTwitter className="text-[#82C408] text-lg hover:text-gray-300 transition duration-200" />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-              <FaInstagram className="text-#82C408 text-lg hover:text-gray-300 transition duration-200" />
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-              <FaLinkedin className="text-#82C408 text-lg hover:text-gray-300 transition duration-200" />
-            </a>
-          </div>
-        </div>
+<>
+  {/* Top Navigation Bar */}
+  <div className="bg-[#fff] py-2 text-[#82C408] text-sm hidden lg:flex">
+    <div className="max-w-7xl mx-auto flex justify-between items-center px-6">
+      {/* Left Side: Contact Information */}
+      <div className="flex flex-wrap space-x-6 sm:space-x-4 gap-2 sm:gap-4">
+        <span className="block sm:inline">123 Main Street, Ctg, Bangladesh</span>
+        <span className="block sm:inline">+123 456 7890</span>
+        <span className="block sm:inline">jhotpot@gmail.com</span>
       </div>
-    </>
 
+      {/* Right Side: Social Media Icons */}
+      <div className="flex space-x-4 sm:space-x-3">
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+          <FaFacebook className="text-[#82C408] text-xl hover:text-gray-300 transition duration-200" />
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <FaTwitter className="text-[#82C408] text-xl hover:text-gray-300 transition duration-200" />
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <FaInstagram className="text-[#82C408] text-xl hover:text-gray-300 transition duration-200" />
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <FaLinkedin className="text-[#82C408] text-xl hover:text-gray-300 transition duration-200" />
+        </a>
+      </div>
+    </div>
+  </div>
+</>
 
 
       {/* Main Navbar */}
@@ -82,7 +81,7 @@ export default function Navbar() {
           item: [
             "flex",
             "relative",
-            "h-full",
+       
             "items-center",
             "data-[active=true]:after:content-['']",
             "data-[active=true]:after:absolute",
@@ -106,9 +105,9 @@ export default function Navbar() {
               alt="logo"
               height={50}
               width={50}
-              className="py-1 rounded-full"
+              className="hidden lg:flex py-1 rounded-full"
             />
-            <span className="ml-2 text-white font-semibold text-lg">
+            <span className="ml-4 text-white font-semibold text-lg">
               JHOTPOT <span className="text-black">STORE</span>
             </span>
           </Link>
