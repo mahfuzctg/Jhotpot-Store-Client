@@ -43,8 +43,8 @@ export default function Navbar() {
     <>
 <>
   {/* Top Navigation Bar */}
-  <div className="bg-[#fff] py-2 text-[#82C408] text-sm hidden lg:flex">
-    <div className="max-w-7xl mx-auto flex justify-between items-center px-6">
+  <div className="bg-[#fff] py-2 text-[#82C408] text-sm hidden lg:flex ">
+    <div className="w-9/12 mx-auto flex justify-between items-center px-24">
       {/* Left Side: Contact Information */}
       <div className="flex flex-wrap space-x-6 sm:space-x-4 gap-2 sm:gap-4">
         <span className="block sm:inline">123 Main Street, Ctg, Bangladesh</span>
@@ -53,7 +53,7 @@ export default function Navbar() {
       </div>
 
       {/* Right Side: Social Media Icons */}
-      <div className="flex space-x-4 sm:space-x-3">
+      <div className="flex space-x-4 sm:space-x-3 ml-4">
         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
           <FaFacebook className="text-[#82C408] text-xl hover:text-gray-300 transition duration-200" />
         </a>
@@ -76,7 +76,7 @@ export default function Navbar() {
       <NextUINavbar
         maxWidth="xl"
         position="sticky"
-        className="bg-[#82C408] pt-2 pb-1 lg:pb-4"
+        className="bg-[#82C408]  pb-1 "
         classNames={{
           item: [
             "flex",
@@ -157,7 +157,7 @@ export default function Navbar() {
               <NavbarUserDropdown user={userData} />
             ) : (
               <Link href="/login">
-                <div className="hidden md:block">
+                <div className=" md:block mx-2">
                   <button className="relative h-10 w-30 origin-top transform rounded-lg border-2 border-white text-white before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-black hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3">
                     Login
                   </button>

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import logo from "@/src/assets/store-logo.pn";
+import logo from "@/src/assets/logo.jpg";
 import toast from "react-hot-toast";
 import SHForm from "@/src/components/form/SHForm";
 import SHInput from "@/src/components/form/SHInput";

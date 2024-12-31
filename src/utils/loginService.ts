@@ -5,7 +5,7 @@ import envConfig from "../config/envConfig";
 
 export const loginUser = async (userData: Record<string, any>) => {
   try {
-    const response = await fetch(`${envConfig.baseApi}/auth/login`, {
+    const response = await fetch(`https://jhotpot-store-server.vercel.app/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export const registerUser = async (userInfo: Record<string, any>) => {
   try {
     if (role === "User") {
       const response = await fetch(
-        `${envConfig.baseApi}/users/create-customer`,
+        `https://jhotpot-store-server.vercel.app/users/create-customer`,
         {
           method: "POST",
           headers: {
@@ -56,13 +56,13 @@ export const registerUser = async (userInfo: Record<string, any>) => {
 
       if (data.success) {
         (await cookies()).set("accessToken", data?.token);
-        // cookies().set("refreshToken", data?.data?.refreshToken);
+    
       }
 
       return data;
     } else {
       const response = await fetch(
-        `${envConfig.baseApi}/api/users/create-customer`,
+        `https://jhotpot-store-server.vercel.app/users/create-customer`,
         {
           method: "POST",
           headers: {
@@ -81,7 +81,7 @@ export const registerUser = async (userInfo: Record<string, any>) => {
 
       if (data.success) {
         (await cookies()).set("accessToken", data?.token);
-        // cookies().set("refreshToken", data?.data?.refreshToken);
+
       }
 
       return data;
@@ -138,7 +138,7 @@ export const resetPassword = async (
     const response = await fetch(`${envConfig.baseApi}/auth/reset-password`, {
       method: "POST",
       headers: {
-        Authorization: `${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(userData),

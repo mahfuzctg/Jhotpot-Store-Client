@@ -1,10 +1,10 @@
 "use client";
 
-import { MdDiscount } from "react-icons/md";
+
 import Countdown from "react-countdown";
 
 const DealOffer = () => {
-  const targetDate = new Date("2024-12-31T23:59:59");
+  const targetDate = new Date("2025-01-31T23:59:59");
 
   const renderer = ({ days, hours, minutes, seconds }: any) => (
     <div className="flex justify-center gap-4 text-center">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation"; // For navigation in Next.js
+import { useRouter } from "next/navigation";
 
 const Banner = () => {
   // Background images for the slider
@@ -12,7 +12,7 @@ const Banner = () => {
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
-  const router = useRouter(); // Hook for navigation
+  const router = useRouter();
 
   // Change the background image every 5 seconds
   useEffect(() => {
@@ -23,7 +23,7 @@ const Banner = () => {
   }, [images.length]);
 
   // Set the target date for the countdown
-  const targetDate = new Date("2024-12-31T23:59:59").getTime();
+  const targetDate = new Date("2025-01-31T23:59:59").getTime();
 
   // State to hold the time remaining
   const [timeLeft, setTimeLeft] = useState({
@@ -41,15 +41,14 @@ const Banner = () => {
 
       if (difference > 0) {
         const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
         setTimeLeft({ days, hours, minutes, seconds });
       } else {
-        clearInterval(interval);
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        clearInterval(interval); // Stop the interval once the countdown reaches 0
       }
     }, 1000);
 
@@ -58,14 +57,14 @@ const Banner = () => {
 
   // Navigation handler for the "Buy Now" button
   const handleBuyNow = () => {
-    router.push("/allProducts"); // Redirect to the 'allProducts' page
+    router.push("/allProducts");
   };
 
   return (
     <div
       className="relative bg-cover bg-center h-[60vh] sm:h-[100vh] lg:h-[60vh] flex flex-col items-center justify-center text-white transition-all duration-1000 ease-in-out"
       style={{
-        backgroundImage: `url(${images[currentImage]})`, // Automatically sliding background
+        backgroundImage: `url(${images[currentImage]})`,
       }}
     >
       {/* Overlay */}
@@ -117,7 +116,7 @@ const Banner = () => {
         {/* Buy Now Button */}
         <div className="mt-6 sm:mt-8">
           <button
-            onClick={handleBuyNow} // Attach the navigation handler
+            onClick={handleBuyNow}
             className="px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-[#82C408] to-[#82C408] text-white font-bold text-sm sm:text-lg lg:text-xl rounded-lg shadow-lg hover:scale-105 transition"
           >
             Buy Now
