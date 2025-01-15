@@ -105,9 +105,9 @@ export default function Navbar() {
               alt="logo"
               height={50}
               width={50}
-              className="hidden lg:flex py-1 rounded-full"
+              className="hidden lg:flex  rounded-full"
             />
-            <span className="ml-4 text-white font-semibold text-lg">
+            <span className="ml-4 text-white font-semibold ">
               JHOTPOT <span className="text-black">STORE</span>
             </span>
           </Link>

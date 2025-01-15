@@ -4,11 +4,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const Banner = () => {
-  // Background images for the slider
   const images = [
-    "https://i.postimg.cc/vmJT7tR4/istockphoto-471254900-612x612.jpg",
-    "https://i.postimg.cc/3RfLbNB0/77cd8cd5c72f7900be1557a2b9122a4d.avif",
-    "https://i.postimg.cc/SNMZDyzj/man-offers-vegetables-266732-15670.jpg",
+    "https://i.postimg.cc/nz7jzVMp/fruits-products.jpg",
+    "https://i.postimg.cc/3wz0Y08t/d24041f9ff122f1c52f0c73f5a9fe703.jpg",
+    "https://i.postimg.cc/52WrYX6R/afdan-slider-1.jpg",
   ];
 
   const [currentImage, setCurrentImage] = useState(0);
@@ -22,10 +21,8 @@ const Banner = () => {
     return () => clearInterval(interval);
   }, [images.length]);
 
-  // Set the target date for the countdown
+  // Countdown logic
   const targetDate = new Date("2025-01-31T23:59:59").getTime();
-
-  // State to hold the time remaining
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -33,7 +30,6 @@ const Banner = () => {
     seconds: 0,
   });
 
-  // Function to calculate the remaining time
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -48,68 +44,60 @@ const Banner = () => {
         setTimeLeft({ days, hours, minutes, seconds });
       } else {
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-        clearInterval(interval); // Stop the interval once the countdown reaches 0
+        clearInterval(interval);
       }
     }, 1000);
 
-    return () => clearInterval(interval); // Cleanup interval on component unmount
+    return () => clearInterval(interval);
   }, [targetDate]);
 
-  // Navigation handler for the "Buy Now" button
   const handleBuyNow = () => {
     router.push("/allProducts");
   };
 
   return (
-    <div
-      className="relative bg-cover bg-center h-[60vh] sm:h-[100vh] lg:h-[60vh] flex flex-col items-center justify-center text-white transition-all duration-1000 ease-in-out"
-      style={{
-        backgroundImage: `url(${images[currentImage]})`,
-      }}
-    >
+    <div className="relative w-full h-[60vh] sm:h-[100vh] lg:h-[65vh] overflow-hidden">
+      <div
+        className="absolute top-0 left-0 h-full w-full flex transition-transform duration-1000 ease-in-out"
+        style={{
+          transform: `translateX(-${currentImage * 100}%)`,
+        }}
+      >
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className="min-w-full h-full bg-cover bg-center"
+            style={{ backgroundImage: `url(${image})` }}
+          ></div>
+        ))}
+      </div>
+
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl text-center px-4 sm:px-6 lg:px-8 w-full">
-        {/* Welcome Text */}
-        <h1 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-[#82C408]">
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-white  px-4">
+        <h1 className="text-3xl md:text-5xl text-center font-bold uppercase">
           Welcome to Jhotpot Store
         </h1>
-        <p className="mt-4 text-sm sm:text-base lg:text-lg text-gray-300">
-          Limited Offer / Yearly Offer - Grab the best deals now!
-        </p>
 
         {/* Countdown Timer */}
-        <div className="mt-6 sm:mt-8">
-          <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-[#82C408] mb-4">
+        <div className="mt-6 sm:mt-8 text-center">
+          <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4">
             Start Your New Year Buy Something Fresh!
           </h2>
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm lg:text-lg font-semibold">
-            <div className="text-center">
-              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-2xl sm:text-3xl font-bold">
-                {timeLeft.days}
-              </p>
-              <p className="text-gray-300">Days</p>
-            </div>
-            <div className="text-center">
-              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-2xl sm:text-3xl font-bold">
-                {timeLeft.hours}
-              </p>
-              <p className="text-gray-300">Hours</p>
-            </div>
-            <div className="text-center">
-              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-2xl sm:text-3xl font-bold">
-                {timeLeft.minutes}
-              </p>
-              <p className="text-gray-300">Minutes</p>
-            </div>
-            <div className="text-center">
-              <p className="bg-gradient-to-r from-[#82C408] to-[#F3901E] text-transparent bg-clip-text text-2xl sm:text-3xl font-bold">
-                {timeLeft.seconds}
-              </p>
-              <p className="text-gray-300">Seconds</p>
-            </div>
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-8">
+            {["Days", "Hours", "Minutes", "Seconds"].map((unit, index) => (
+              <div key={unit} className="text-center flex flex-col items-center">
+                {/* Countdown Value */}
+                <p className="bg-gradient-to-b from-[#82C408] to-[#71AA07] rounded-lg text-white text-3xl  font-bold  lg:w-28 py-2 px-4">
+                  {[timeLeft.days, timeLeft.hours, timeLeft.minutes, timeLeft.seconds][index]}
+                </p>
+                
+                {/* Countdown Unit */}
+                <p className="mt-2 text-gray-200 font-medium text-sm sm:text-lg">{unit}</p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -117,7 +105,7 @@ const Banner = () => {
         <div className="mt-6 sm:mt-8">
           <button
             onClick={handleBuyNow}
-            className="px-4 py-2 sm:px-6 sm:py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-[#82C408] to-[#82C408] text-white font-bold text-sm sm:text-lg lg:text-xl rounded-lg shadow-lg hover:scale-105 transition"
+            className="px-4 py-2 sm:px-6 sm:py-2 lg:px-8 lg:py-3 bg-gradient-to-r from-[#82C408] to-[#82C408] text-white font-bold text-sm sm:text-lg lg:text-xl rounded-lg shadow-lg hover:scale-105 transition"
           >
             Buy Now
           </button>

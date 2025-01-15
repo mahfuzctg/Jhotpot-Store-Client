@@ -32,7 +32,7 @@ export default function RootLayout({
     <html suppressHydrationWarning lang="en" data-theme="">
       <head />
       <body
-        className={clsx("min-h-screen bg-background  antialiased  lg:mx-0")}
+        className={clsx("min-h-screen bg-background  antialiased  ")}
       >
         <Providers>{children}</Providers>
       </body>

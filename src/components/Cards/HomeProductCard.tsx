@@ -166,7 +166,7 @@ const HomeProductCard = ({
           </h1>
           <p className="text-black">{singleProduct?.category?.name}</p>
 
-          <div className="flex justify-between items-center">
+          {/* <div className="flex justify-between items-center">
             <div>
             <span className="text-lg font-bold text-red-500">
         ${discountedPrice?.toFixed(2)}
@@ -177,7 +177,7 @@ const HomeProductCard = ({
                 </span>
               )}
             </div>
-          </div>
+          </div> */}
 
           <Link href={`/productDetails?${params.toString()}`}>
             <button className="relative h-10 w-full origin-top transform rounded-lg border-2 border-[#e4f5c7] text-[#6DAD02] before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-[#6DAD02] uppercase font-bold px-3">

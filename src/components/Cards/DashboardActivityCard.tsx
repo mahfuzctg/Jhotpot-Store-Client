@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/product.api";
@@ -27,8 +26,6 @@ const DashboardActivityCard = () => {
   useEffect(() => {
     if (!allProductsResponse?.data) return;
 
-    // console.log("Total Products Received:", allProductsResponse.data.length);
-
     const groupedData = allProductsResponse.data.reduce(
       (acc: Record<string, ChartData>, product: IProduct) => {
         const vendorName =
@@ -44,41 +41,57 @@ const DashboardActivityCard = () => {
       {} as Record<string, ChartData>
     );
 
-    // console.log("Grouped Data:", groupedData);
-
     const formattedData = Object.values(groupedData) as ChartData[];
-
-    // console.log("Formatted Chart Data:", formattedData);
 
     setChartData(formattedData);
   }, [allProductsResponse]);
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4 text-gray-800 text-center lg:text-left lg:ml-8">
+    <div className=" shadow-lg rounded-xl p-6 mb-8 w-full h-[50vh] mx-auto transition-transform transform hover:scale-105">
+      <h1 className="text-3xl font-semibold text-center text-gray-800 mb-4">
         Product Count by Vendor
       </h1>
-      <div className="w-full h-[400px] sm:h-[500px]">
+      <div className="w-full h-full rounded-xl overflow-hidden">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={chartData}
             margin={{
               top: 20,
               right: 40,
-              bottom: 5,
+              bottom: 20,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" tick={{ fontSize: 12 }} interval={0} />
-            <YAxis
-              domain={[
-                0,
-                Math.max(...chartData.map((d) => d.productCount), 20),
-              ]}
-              tick={{ fontSize: 12 }}
+            <CartesianGrid strokeDasharray="5 5" stroke="#ccc" />
+            <XAxis
+              dataKey="name"
+              tick={{ fontSize: 14, fill: "#444" }}
+              axisLine={{ stroke: "#ddd" }}
+              tickLine={{ stroke: "#ddd" }}
+              interval={0}
             />
-            <Tooltip contentStyle={{ fontSize: "12px" }} />
-            <Bar dataKey="productCount" fill="#f5840c" barSize={30} />
+            <YAxis
+              domain={[0, Math.max(...chartData.map((d) => d.productCount), 20)]}
+              tick={{ fontSize: 14, fill: "#444" }}
+              axisLine={{ stroke: "#ddd" }}
+              tickLine={{ stroke: "#ddd" }}
+            />
+            <Tooltip
+              contentStyle={{
+                fontSize: "14px",
+                backgroundColor: "#333",
+                color: "#fff",
+                borderRadius: "8px",
+              }}
+              labelStyle={{ fontWeight: "bold" }}
+            />
+            <Bar
+              dataKey="productCount"
+              fill="#82C408"
+              barSize={35}
+              radius={[8, 8, 0, 0]}
+              background={{ fill: "#f5f5f5" }}
+              animationDuration={1000}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>

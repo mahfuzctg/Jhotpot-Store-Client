@@ -238,7 +238,7 @@ const ProductDetails = () => {
               <h1 className="text-primary text-3xl md:text-4xl">
                 {data?.name}
               </h1>
-              <p className="text-gray-400 max-w-lg text-center lg:text-left">
+              <p className="text-gray-700 max-w-lg text-center lg:text-left">
                 {data?.description}
               </p>
               <div className="flex text-gray-800  gap-2 items-end">
@@ -251,7 +251,7 @@ const ProductDetails = () => {
                 {data?.flashSale && (
                   <h2 className="font-medium text-3xl text-primary ml-3">
                     <span>$</span>
-                    {discountedPrice}
+                    {discountedPrice?.toFixed(2)}
                   </h2>
                 )}
               </div>

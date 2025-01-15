@@ -1,4 +1,3 @@
-/* eslint-disable react/self-closing-comp */
 "use client";
 
 import DashboardActivityCard from "@/src/components/Cards/DashboardActivityCard";
@@ -7,7 +6,7 @@ import StatCardLoading from "@/src/components/LoadingCards/StatCardLoading";
 import DashboardSectionTitle from "@/src/components/ui/components/DashboardSectionTitle";
 import { useGetAllUsersQuery } from "@/src/lib/redux/features/auth/auth.api";
 import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/product.api";
-import { PackageOpen, Users } from "lucide-react";
+import { PackageOpen, Store, Users } from "lucide-react";
 
 const AdminDashboardHome = () => {
   const { data: allCustomers, isLoading: customerLoading } =
@@ -27,77 +26,50 @@ const AdminDashboardHome = () => {
   const totalCustomers = allCustomers?.meta?.total || 0;
 
   return (
-    <div>
-      <DashboardSectionTitle heading="Website Overview" />
+    <div className="min-h-screen bg-white px-10 py-12">
+      <div className="text-center mb-10">
+        <DashboardSectionTitle heading="Website Overview" />
+      </div>
 
-      <div>
+      {/* Cards Section */}
+      <div className="flex flex-wrap justify-center gap-8 mb-10">
         {customerLoading || vendorLoading || productLoading ? (
           <StatCardLoading />
         ) : (
-          <div className="flex flex-col md:flex-row justify-center my-7">
-            <div className="grid grid-cols-1 md:grid-cols-8 xl:grid-cols-12 mr-5 gap-6 xl:gap-8">
-              <div className="shadow-md p-4 flex-1 border-2 border-primary rounded-md md:col-span-4 xl:col-span-4">
-                <div className="flex justify-between items-center w-full md:w-56">
-                  <div>
-                    <div className="uppercase text-sm text-gray-800 font-semibold">
-                      Total Vendors
-                    </div>
-                    <div className="mt-1 text-2xl text-gray-500 font-bold">
-                      {totalVendors}
-                    </div>
-                  </div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="lucide lucide-shopping-cart h-16 w-20 text-gray-600"
-                  >
-                    <circle cx="8" cy="21" r="1" />
-                    <circle cx="19" cy="21" r="1" />
-                    <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-                  </svg>
-                </div>
-              </div>
+          <>
+         {/* Total Vendors Card */}
+<div className="flex flex-col items-center justify-center bg-white text-gray-800 shadow-lg rounded-2xl p-6 transition-transform transform hover:scale-105 hover:shadow-2xl border border-gray-300 w-[300px]">
+  <div className="text-xl font-semibold mb-3">Total Vendors</div>
+  <div className="text-4xl font-bold">{totalVendors}</div>
+  <div className="mt-4 text-gray-800">
+    <Store className="h-16 w-16 text-[#82C408]" /> {/* Green icon color */}
+  </div>
+</div>
 
-              <div className="shadow-md p-4 flex-1 border-2 border-primary rounded-md md:col-span-4 xl:col-span-4">
-                <div className="flex justify-between items-center w-full md:w-56">
-                  <div>
-                    <div className="uppercase text-sm text-gray-800 font-semibold">
-                      Total Products
-                    </div>
-                    <div className="mt-1 text-2xl text-gray-500 font-bold">
-                      {totalProducts}
-                    </div>
-                  </div>
-                  <PackageOpen className="h-16 w-20 text-gray-600" />
-                </div>
-              </div>
 
-              <div className="shadow-md p-4 flex-1 border-2 border-primary rounded-md md:col-start-3 md:col-span-4 xl:col-span-4">
-                <div className="flex justify-between items-center w-full md:w-56">
-                  <div>
-                    <div className="uppercase text-sm text-gray-800 font-semibold">
-                      Total Customers
-                    </div>
-                    <div className="mt-1 text-2xl font-bold text-gray-500">
-                      {totalCustomers}
-                    </div>
-                  </div>
-                  <Users className="h-16 w-20 text-gray-600" />
-                </div>
+            {/* Total Products Card */}
+            <div className="flex flex-col items-center justify-center bg-white text-gray-800 shadow-lg rounded-2xl p-6 transition-transform transform hover:scale-105 hover:shadow-2xl border border-gray-300 w-[300px]">
+              <div className="text-xl font-semibold mb-3">Total Products</div>
+              <div className="text-4xl font-bold">{totalProducts}</div>
+              <div className="mt-4 text-gray-800">
+                <PackageOpen className="h-16 w-16 text-[#82C408]" /> {/* Green icon color */}
               </div>
             </div>
-          </div>
+
+            {/* Total Customers Card */}
+            <div className="flex flex-col items-center justify-center bg-white text-gray-800 shadow-lg rounded-2xl p-6 transition-transform transform hover:scale-105 hover:shadow-2xl border border-gray-300 w-[300px]">
+              <div className="text-xl font-semibold mb-3">Total Customers</div>
+              <div className="text-4xl font-bold">{totalCustomers}</div>
+              <div className="mt-4 text-gray-800">
+                <Users className="h-16 w-16 text-[#82C408]" /> {/* Green icon color */}
+              </div>
+            </div>
+          </>
         )}
       </div>
 
-      <div className="my-5">
+      {/* Chart Section */}
+      <div className="my-12">
         {productLoading ? <DashboardChartLoading /> : <DashboardActivityCard />}
       </div>
     </div>
