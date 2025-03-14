@@ -67,7 +67,7 @@ import { Eye, House, KeyRound, Package2, ShoppingBag, Store, TicketPercent, User
      return (
        <div className="flex min-h-screen bg-white text-black">
          {/* Sidebar */}
-         <div className="bg-black text-white w-64 p-4 shadow-lg fixed left-0 top-0 h-full flex flex-col justify-between">
+         <div className="bg-[#FFFFFF] border-r-2 text-black w-64 p-4 shadow-lg fixed left-0 top-0 h-full flex flex-col justify-between">
            <div>
              {/* Logo or Sidebar Title */}
              <h2 className="text-2xl font-bold mb-8 text-center">JHOTPOT-STORE</h2>
@@ -80,7 +80,7 @@ import { Eye, House, KeyRound, Package2, ShoppingBag, Store, TicketPercent, User
                    <li key={link.label} className="mb-4">
                      <a
                        href={link.href}
-                       className="flex items-center space-x-2 text-gray-300 hover:text-[#78BA05] transition-colors"
+                       className="flex items-center space-x-2 text-black hover:text-[#78BA05] transition-colors"
                      >
                        {link.icon}
                        <span>{link.label}</span>
@@ -98,7 +98,7 @@ import { Eye, House, KeyRound, Package2, ShoppingBag, Store, TicketPercent, User
                    <li key={link.label} className="mb-4">
                      <a
                        href={link.href}
-                       className="flex items-center space-x-2 text-gray-300 hover:text-[#78BA05] transition-colors"
+                       className="flex items-center space-x-2 text-black hover:text-[#78BA05] transition-colors"
                      >
                        {link.icon}
                        <span>{link.label}</span>
@@ -123,7 +123,7 @@ import { Eye, House, KeyRound, Package2, ShoppingBag, Store, TicketPercent, User
     </div>
  
          {/* Dashboard Content */}
-         <main className="ml-64 flex-1 p-6">
+         <main className=" flex-1 p-6 ">
            <div className="container mx-auto">{children}</div>
          </main>
        </div>

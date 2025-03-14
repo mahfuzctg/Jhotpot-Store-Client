@@ -27,67 +27,57 @@ const CustomerProfile = () => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
+      transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+      className="flex justify-center items-center min-h-screen"
     >
       {isLoading ? (
         <CustomerProfileLoading />
       ) : (
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-20 mx-auto">
-          {/* Profile Container */}
+        <div className="relative  p-6 bg-white rounded-2xl shadow-xl border border-gray-200">
+          {/* Unique Hexagonal Profile Shape */}
           <div
-            id="profile"
-            className="w-full max-w-3xl rounded-2xl shadow-2xl border-t-4 border-[#70B103] bg-white relative px-10 py-8"
+            className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-10 bg-white p-1 rounded-full border-4 border-[#70B103] shadow-lg"
             style={{
               clipPath:
-                "polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%)", // Unique bottom shape
+                "polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)",
             }}
           >
-            {/* Profile Photo */}
-            <div className="absolute -top-4 mb-8 left-1/2 transform -translate-x-1/2">
-              <img
-                src={profile.profilePhoto || "/default-profile.png"}
-                alt="Customer"
-                loading="lazy"
-                className="rounded-full shadow-lg h-32 w-32 object-cover border-4 border-[#70B103] bg-white"
-              />
+            <img
+              src={profile.profilePhoto || "/default-profile.png"}
+              alt="Customer"
+              loading="lazy"
+              className="w-32 h-32 object-cover rounded-full transition-transform duration-300 hover:scale-110"
+            />
+          </div>
+
+          <div className="mt-20 text-center">
+            <h1 className="text-2xl font-bold text-gray-800">{profile.name || "N/A"}</h1>
+            <p className="uppercase text-sm font-semibold text-[#70B103]">{profile.role || "Customer"}</p>
+
+            {/* Divider */}
+            <div className="w-20 border-t-2 border-[#70B103] my-4 mx-auto"></div>
+
+            {/* Contact Details */}
+            <div className="flex flex-col gap-3 text-gray-700 text-sm">
+              <p className="flex items-center justify-center gap-2">
+                📧 <span>{profile.email || "N/A"}</span>
+              </p>
+              <p className="flex items-center justify-center gap-2">
+                🏠 <span>{profile.address || "N/A"}</span>
+              </p>
+              <p className="flex items-center justify-center gap-2">
+                📞 <span>{profile.phone || "N/A"}</span>
+              </p>
             </div>
 
-            <div className="mt-16 text-center">
-              {/* User Name */}
-              <h1 className="text-2xl font-bold text-black mb-2 mt-10 pt-8">
-                {profile.name || "N/A"} <span className="ml-1">👤</span>
-              </h1>
-
-              {/* Role */}
-              <p className="uppercase text-sm font-semibold text-[#70B103]">
-                {profile.role || "Customer"}
-              </p>
-
-              {/* Divider */}
-              <div className="w-20 border-t-2 border-[#70B103] my-4 mx-auto"></div>
-
-              {/* Contact Details */}
-              <div className="flex flex-col gap-3 text-gray-700 text-sm">
-                <p className="flex items-center justify-center gap-2">
-                  📧 <span>Email: {profile.email || "N/A"}</span>
-                </p>
-                <p className="flex items-center justify-center gap-2">
-                  🏠 <span>Address: {profile.address || "N/A"}</span>
-                </p>
-                <p className="flex items-center justify-center gap-2">
-                  📞 <span>Phone: {profile.phone || "N/A"}</span>
-                </p>
-              </div>
-
-              {/* Update Button */}
-              <div className="mt-6">
-                <button
-                  onClick={onOpen}
-                  className="bg-[#70B103] text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-[#5a9002] transition-all duration-300"
-                >
-                  ✏️ Update Profile
-                </button>
-              </div>
+            {/* Update Button */}
+            <div className="mt-6">
+              <button
+                onClick={onOpen}
+                className="bg-[#70B103] text-white font-semibold py-2 px-6 rounded-full shadow-md hover:bg-[#5a9002] transition-all duration-300 transform hover:scale-105"
+              >
+                ✏️ Update Profile
+              </button>
             </div>
           </div>
         </div>
