@@ -44,7 +44,7 @@ export default function NavbarUserDropdown({ user }: { user: any }) {
           <Avatar
             isBordered
             as="button"
-            className="transition-transform duration-300 transform hover:scale-110 cursor-pointer border-2 border-blue-500"
+            className="transition-transform duration-300 transform hover:scale-110 cursor-pointer border-2 border-[#82C408]"
             src={userData?.role === "VENDOR" ? userData?.logo : userData?.profilePhoto}
             alt="User Avatar"
           />
@@ -52,11 +52,11 @@ export default function NavbarUserDropdown({ user }: { user: any }) {
         <DropdownMenu
           aria-label="Profile Actions"
           variant="flat"
-          className="bg-gradient-to-r from-[#4c6ef5] to-[#4c9aff] rounded-lg p-3 shadow-lg"
+          className="bg-gradient-to-r from-[#82C408] to-[#82C408] rounded-lg  shadow-lg"
         >
           <DropdownItem key="profile" className="h-14 gap-2 px-4 py-2 rounded-lg hover:bg-[#82C408] transition-colors duration-200">
             <p className="font-semibold text-gray-100">Signed in as</p>
-            <p className="font-semibold text-black">{userData?.email}</p>
+            <p className="font-semibold text-gray-100">{userData?.email}</p>
           </DropdownItem>
 
           <DropdownItem
@@ -72,7 +72,7 @@ export default function NavbarUserDropdown({ user }: { user: any }) {
             key="dashboard"
             className="px-4 py-2 rounded-lg hover:bg-[#82C408] transition-colors duration-200"
           >
-            <span className="flex items-center gap-2 text-black">
+            <span className="flex items-center gap-2 text-gray-100">
               <LayoutDashboard size={18} />
               <span>Dashboard</span>
             </span>
@@ -84,12 +84,12 @@ export default function NavbarUserDropdown({ user }: { user: any }) {
             color="danger"
             className="px-4 py-2 rounded-lg hover:bg-[#ff6b6b] transition-colors duration-200"
           >
-            <span className="flex items-center gap-2 text-black">
+            <span className="flex items-center gap-2 text-gray-100">
               <LogOut size={18} />
               <span>Logout</span>
             </span>
           </DropdownItem>
-
+{/* 
           <DropdownItem
             onClick={() => handleNavigation("/settings")}
             key="settings"
@@ -99,15 +99,15 @@ export default function NavbarUserDropdown({ user }: { user: any }) {
               <Settings size={18} />
               <span>Settings</span>
             </span>
-          </DropdownItem>
+          </DropdownItem> */}
           
           {/* Add a fun emoji for more interaction */}
-          <DropdownItem key="help" className="px-4 py-2 rounded-lg hover:bg-[#82C408] transition-colors duration-200">
+          {/* <DropdownItem key="help" className="px-4 py-2 rounded-lg hover:bg-[#82C408] transition-colors duration-200">
             <span className="flex items-center gap-2 text-black">
               <User size={18} />
               <span>Need Help? 🤔</span>
             </span>
-          </DropdownItem>
+          </DropdownItem> */}
         </DropdownMenu>
       </Dropdown>
     </div>

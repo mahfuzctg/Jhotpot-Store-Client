@@ -54,7 +54,7 @@ const FlashSale = () => {
 <div className=" md:px-6 relative">
 
       {/* Flash Sale Section with Grid of Products */}
-      <div className="py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-y-8 ">
+      <div className="py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-y-8 ">
         {isLoading
           ? Array.from({ length: dataPerPage }).map((_, index) => (
               <div key={index}>

@@ -318,7 +318,7 @@ const AllProducts = () => {
     </div>
 
     {/* Products Section */}
-    <div className="w-full xl:w-[80%] space-y-6">
+    <div className="w-full xl:w-[80%] space-y-6 mx-auto">
       {/* Product Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8">
         {isLoading

@@ -76,7 +76,7 @@ export default function Navbar() {
       <NextUINavbar
         maxWidth="xl"
         position="sticky"
-        className="bg-[#82C408]  pb-1 "
+        className="bg-[#82C408]   "
         classNames={{
           item: [
             "flex",
@@ -85,7 +85,7 @@ export default function Navbar() {
             "items-center",
             "data-[active=true]:after:content-['']",
             "data-[active=true]:after:absolute",
-            "data-[active=true]:after:-bottom-3",
+            "data-[active=true]:after:-bottom-1",
             "data-[active=true]:after:left-0",
             "data-[active=true]:after:right-0",
             "data-[active=true]:after:h-[3px]",
@@ -95,7 +95,7 @@ export default function Navbar() {
         }}
       >
         {/* Logo Section - Left */}
-        <NavbarBrand className="mt-3 flex items-center">
+        <NavbarBrand className=" flex items-center">
           <div className="lg:hidden">
             <NavbarMenuToggle />
           </div>

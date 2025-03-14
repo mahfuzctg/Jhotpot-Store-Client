@@ -87,18 +87,24 @@ const Banner = () => {
             Start Your New Year Buy Something Fresh!
           </h2>
           <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-8">
-            {["Days", "Hours", "Minutes", "Seconds"].map((unit, index) => (
-              <div key={unit} className="text-center flex flex-col items-center">
-                {/* Countdown Value */}
-                <p className="bg-gradient-to-b from-[#82C408] to-[#71AA07] rounded-lg text-white text-3xl  font-bold  lg:w-28 py-2 px-4">
-                  {[timeLeft.days, timeLeft.hours, timeLeft.minutes, timeLeft.seconds][index]}
-                </p>
-                
-                {/* Countdown Unit */}
-                <p className="mt-2 text-gray-200 font-medium text-sm sm:text-lg">{unit}</p>
-              </div>
-            ))}
-          </div>
+  {["Days", "Hours", "Minutes", "Seconds"].map((unit, index) => (
+    <div key={unit} className="text-center flex flex-col items-center">
+      {/* Countdown Value */}
+      <div className="relative flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28  rounded-full shadow-lg">
+        <span className="text-white text-4xl font-extrabold">
+          {[timeLeft.days, timeLeft.hours, timeLeft.minutes, timeLeft.seconds][index]}
+        </span>
+        <div className="absolute inset-0 rounded-lg border-2 border-[#82C408] "></div>
+      </div>
+
+      {/* Countdown Unit */}
+      <p className="mt-3 text-gray-200 font-semibold text-sm sm:text-lg uppercase tracking-wide">
+        {unit}
+      </p>
+    </div>
+  ))}
+</div>
+
         </div>
 
         {/* Buy Now Button */}

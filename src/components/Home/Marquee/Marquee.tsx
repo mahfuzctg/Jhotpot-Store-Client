@@ -25,7 +25,7 @@ const ScrollingMarquee = () => {
   ));
 
   return (
-    <div className=" overflow-hidden bg-gradient-to-l from-[#82C408] via-[#82C408] to-[#000] shadow-xl">
+    <div className=" overflow-hidden py-3 bg-gradient-to-b from-[#82C408] via-[#82C408] to-[#334A08]  ">
       <Marquee gradient={true} speed={80}>
         <div className="flex items-center space-x-12 mx-6">
           {groupedKeywords}
