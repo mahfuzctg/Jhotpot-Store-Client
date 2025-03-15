@@ -36,7 +36,8 @@ export default function Login() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [isLogInSuccess, setIsLogInSuccess] = useState(false);
-
+   // Demo credentials for testing
+   const [demoUser, setDemoUser] = useState<{ email?: string; password?: string }>({});
   useEffect(() => {
     if (isLogInSuccess) {
       if (selectedRole === "User") {
@@ -51,6 +52,7 @@ export default function Login() {
 
   const handleLogin: SubmitHandler<FieldValues> = async (data) => {
     toast.loading("Loading...");
+    
 
     try {
       const res = await loginUser(data);
@@ -117,6 +119,7 @@ export default function Login() {
     <div className="min-h-screen flex items-center justify-center px-4 sm:px-8 py-10 xl:py-0">
       <div className="relative border-2 border-primary text-gray-700 rounded-2xl shadow-lg overflow-hidden w-[850px] max-w-full lg:min-h-[570px] min-h-[620px] md:min-h-[580px]">
         {/* Form Containers */}
+        
         {/* Sign In Part */}
         <div
           className={`absolute top-0 left-0 h-full transition-all duration-700 ${
@@ -135,24 +138,23 @@ export default function Login() {
                 className="flex py-1"
               />
             </Link>
-            <h1 className="text-2xl font-semibold my-5">Sign In</h1>
-            <div className="flex space-x-3 mb-5">
-              <a href="#" className="icon">
-                <FaGoogle className="w-6 h-6 text-gray-600" />
-              </a>
-              <a href="#" className="icon">
-                <FaFacebookF className="w-6 h-6 text-gray-600" />
-              </a>
-              <a href="#" className="icon">
-                <FaGithub className="w-6 h-6 text-gray-600" />
-              </a>
-              <a href="#" className="icon">
-                <FaLinkedinIn className="w-6 h-6 text-gray-600" />
-              </a>
+            <h1 className="text-xl font-semibold my-5">Login with Demo Account</h1>
+         
+            <div className="flex justify-center gap-4 mt-4">
+              <button
+                onClick={() => setDemoUser({ email: 'mahfuz@gmail.com', password: 'xyz1234' })}
+                className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded-md text-black font-medium text-sm shadow-md transition-colors"
+              >
+                Login As User
+              </button>
+              <button
+                onClick={() => setDemoUser({ email: 'admin@gmail.com', password: 'xyz1234' })}
+                className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded-md text-black font-medium text-sm shadow-md transition-colors"
+              >
+                Login As Admin
+              </button>
             </div>
-            <span className="text-sm text-gray-700 mb-4">
-              or use your email account
-            </span>
+           
 
             <SHForm
              
@@ -166,6 +168,7 @@ export default function Login() {
                   type="email"
                   pathname="/login"
                   variant="bordered"
+                  defaultValue={demoUser?.password || ""}
                 />
               </div>
               <div className="">
