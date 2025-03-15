@@ -24,7 +24,7 @@ const QuantitySelector = ({
           type="button"
           id="decrement-button"
           data-input-counter-decrement="bedrooms-input"
-          className="bg-gray-700 hover:bg-gray-600 border-gray-600  border rounded-s-lg p-3 h-11 focus:ring-gray-700 focus:ring-2 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
+          className="bg-[#82C408] hover:bg-[#72982c] rounded-s-lg p-3 h-11  focus:ring-[#82C408] focus:ring-2 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
         >
           <svg
             className="w-3 h-3 text-white"
@@ -42,11 +42,11 @@ const QuantitySelector = ({
             />
           </svg>
         </button>
-        <div className="border-x-0 h-11 font-medium text-center text-sm  block w-full pb-6 pt-1 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500">
+        <div className="border-x-0 h-11 font-medium text-center text-sm  block w-full pb-6 pt-1 bg-[#ffffff] border-[#82C408] placeholder-[#82C408] text-[#82C408] focus:ring-blue-500 focus:border-blue-500">
           {quantity}
         </div>
-        <div className="absolute bottom-1 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs text-gray-400 space-x-1 rtl:space-x-reverse">
-          <FaCartArrowDown className="text-gray-400" />
+        <div className="absolute bottom-1 start-1/2 -translate-x-1/2 rtl:translate-x-1/2 flex items-center text-xs font-bold text-[#82C408] space-x-1 rtl:space-x-reverse">
+          <FaCartArrowDown className="text-[#82C408]" />
           <span>Products</span>
         </div>
         <button
@@ -55,7 +55,7 @@ const QuantitySelector = ({
           disabled={inStock <= 0}
           id="increment-button"
           data-input-counter-increment="bedrooms-input"
-          className="bg-gray-700 hover:bg-gray-600 border-gray-600  border rounded-e-lg p-3 h-11 focus:ring-gray-700 focus:ring-2 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
+          className="bg-[#82C408] hover:bg-[#72982c]    rounded-e-lg p-3 h-11 focus:ring-[#82C408] focus:ring-2 focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
         >
           <svg
             className="w-3 h-3 text-white"

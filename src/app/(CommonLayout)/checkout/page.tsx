@@ -160,7 +160,7 @@ const CheckOut = () => {
                         },
                       })}
                       readOnly
-                      className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-gray-800"
+                      className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-[#82C408] transition placeholder-slate-400 focus:ring-2 focus:border-[#82C408] rounded-lg focus:ring-primary text-gray-800"
                     />
                     <p className="text-sm text-red-600 font-medium  mt-2">
                       {errors?.email?.message as ReactNode}
@@ -169,7 +169,7 @@ const CheckOut = () => {
                 </div>
               </div>
 
-              <div className="mt-10 border-t border-primary pt-10">
+              <div className="  pt-10">
                 <h2 className="text-lg font-medium text-gray-800">
                   Shipping information
                 </h2>
@@ -192,7 +192,7 @@ const CheckOut = () => {
                           },
                         })}
                         readOnly
-                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-gray-800"
+                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-[#82C408] transition placeholder-slate-400 focus:ring-2 focus:border-[#82C408] rounded-lg focus:ring-primary text-gray-800"
                       />
                       <p className="text-sm text-red-600 font-medium  mt-2">
                         {errors?.name?.message as ReactNode}
@@ -216,7 +216,7 @@ const CheckOut = () => {
                             message: "Address is required",
                           },
                         })}
-                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-gray-800"
+                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-[#82C408] transition placeholder-slate-400 focus:ring-2 focus:border-[#82C408] rounded-lg focus:ring-primary text-gray-800"
                       />
                       <p className="text-sm text-red-600 font-medium  mt-2">
                         {errors?.address?.message as ReactNode}
@@ -241,14 +241,14 @@ const CheckOut = () => {
                           },
                         })}
                         readOnly
-                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-orange-500 transition placeholder-slate-400 focus:ring-2 focus:border-orange-500 rounded-lg focus:ring-primary text-gray-800"
+                        className="block w-full bg-transparent p-2 border border-primary outline-none invalid:border-[#82C408] transition placeholder-slate-400 focus:ring-2 focus:border-[#82C408] rounded-lg focus:ring-primary text-gray-800"
                       />
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-10 border-t border-gray-200 pt-10">
+              <div className=" pt-10">
                 <fieldset>
                   <div className="flex gap-3 flex-col md:flex-row">
                     <legend className="text-lg font-medium text-gray-800">
@@ -266,7 +266,7 @@ const CheckOut = () => {
 
                   <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
                     <label
-                      className={`relative rounded-lg shadow-sm p-4 flex focus:outline-none cursor-not-allowed border border-[#f5840c]`}
+                      className={`relative rounded-lg shadow-sm p-4 flex focus:outline-none cursor-not-allowed border border-[#82C408]`}
                     >
                       <div className="flex-1 flex">
                         <div className="flex flex-col">
@@ -296,7 +296,7 @@ const CheckOut = () => {
                         </div>
                       </div>
 
-                      <FaCircleXmark className="text-lg text-[#e08534]" />
+                      <FaCircleXmark className="text-lg text-[#82C408]" />
 
                       <div
                         className="absolute -inset-px rounded-lg border-2 border-primary pointer-events-none"
@@ -340,7 +340,7 @@ const CheckOut = () => {
                       </div>
 
                       <svg
-                        className={`h-5 w-5 text-[#e08534] ${togglePayment && "text-gray-800"}`}
+                        className={`h-5 w-5 text-[#82C408] ${togglePayment && "text-gray-800"}`}
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 20 20"
                         fill="currentColor"
@@ -366,7 +366,7 @@ const CheckOut = () => {
             <div className="mt-10 lg:mt-0">
               <h2 className="text-lg font-medium text-gray-800">Order summary</h2>
 
-              <div className="mt-4 border border-[#f5840c] rounded-lg shadow-sm">
+              <div className="mt-2 border border-[#82C408] rounded-lg shadow-sm">
                 <div>
                   {stateProducts.length > 0 &&
                     stateProducts.map((singleProduct) => (
@@ -402,7 +402,7 @@ const CheckOut = () => {
                                     onClick={() =>
                                       handleRemoveFromCart(singleProduct.id)
                                     }
-                                    className="text-[#f5840c] cursor-pointer text-lg"
+                                    className="text-[#82C408] cursor-pointer text-lg"
                                   />
                                 </div>
                               </div>
@@ -421,7 +421,7 @@ const CheckOut = () => {
                   {stateProducts?.length > 0 && !appliedCoupon && (
                     <div
                       onClick={onOpen}
-                      className={`flex gap-2 items-center text-primary font-bold ${stateProducts?.length > 0 && "border-t border-[#f5840c]"} px-4 sm:px-6 pt-4 cursor-pointer hover:underline`}
+                      className={`flex gap-2 items-center text-primary font-bold ${stateProducts?.length > 0 && "border-t border-[#82C408]"} px-4 sm:px-6 pt-4 cursor-pointer hover:underline`}
                     >
                       <span>
                         <RiCoupon2Fill className="text-primary" />
@@ -431,7 +431,7 @@ const CheckOut = () => {
                   )}
 
                   <div
-                    className={`${stateProducts?.length > 0 && appliedCoupon && "border-t border-[#f5840c]"}  py-6 px-4 space-y-6 sm:px-6 `}
+                    className={`${stateProducts?.length > 0 && appliedCoupon && "border-t border-[#82C408]"}  py-6 px-4 space-y-6 sm:px-6 `}
                   >
                     <div className="flex items-center justify-between">
                       <dt className="text-sm text-gray-800">Subtotal</dt>
@@ -469,7 +469,7 @@ const CheckOut = () => {
                       </div>
                     )}
 
-                    <div className="flex items-center justify-between border-t border-[#f5840c] pt-6">
+                    <div className="flex items-center justify-between border-t border-[#82C408] pt-6">
                       <dt className="text-base font-medium  text-gray-800">
                         Total
                       </dt>
@@ -481,7 +481,7 @@ const CheckOut = () => {
                   </div>
                 </div>
 
-                <div className="border-t border-[#f5840c] py-6 px-4 sm:px-6">
+                <div className="border-t border-[#82C408] py-6 px-4 sm:px-6">
                   <button
                     type="submit"
                     className="relative h-12 w-full origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-gray-800 hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3"
