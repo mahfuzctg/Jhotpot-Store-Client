@@ -47,31 +47,31 @@ const DashboardActivityCard = () => {
   }, [allProductsResponse]);
 
   return (
-    <div className=" shadow-lg rounded-xl p-6 mb-8 w-full h-[50vh] mx-auto transition-transform transform hover:scale-105">
-      <h1 className="text-3xl font-semibold text-center text-gray-800 mb-4">
+    <div className=" rounded-2xl p-8 mb-12 w-full h-[60vh] mx-auto  transition-transform transform hover:scale-105 ">
+      <h1 className="text-2xl font-semibold text-center text-gray-800 mb-6">
         Product Count by Vendor
       </h1>
-      <div className="w-full h-full rounded-xl overflow-hidden">
+      <div className="w-full h-full rounded-2xl overflow-hidden shadow-md">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={chartData}
             margin={{
               top: 20,
-              right: 40,
-              bottom: 20,
+              right: 30,
+              bottom: 30,
             }}
           >
-            <CartesianGrid strokeDasharray="5 5" stroke="#ccc" />
+            <CartesianGrid strokeDasharray="5 5" stroke="#e0e0e0" />
             <XAxis
               dataKey="name"
-              tick={{ fontSize: 14, fill: "#444" }}
+              tick={{ fontSize: 14, fill: "#555" }}
               axisLine={{ stroke: "#ddd" }}
               tickLine={{ stroke: "#ddd" }}
               interval={0}
             />
             <YAxis
               domain={[0, Math.max(...chartData.map((d) => d.productCount), 20)]}
-              tick={{ fontSize: 14, fill: "#444" }}
+              tick={{ fontSize: 14, fill: "#555" }}
               axisLine={{ stroke: "#ddd" }}
               tickLine={{ stroke: "#ddd" }}
             />
@@ -86,15 +86,23 @@ const DashboardActivityCard = () => {
             />
             <Bar
               dataKey="productCount"
-              fill="#82C408"
-              barSize={35}
-              radius={[8, 8, 0, 0]}
+              fill="url(#gradient)"
+              barSize={45}
+              radius={[10, 10, 0, 0]}
               background={{ fill: "#f5f5f5" }}
-              animationDuration={1000}
+              animationDuration={1200}
             />
           </BarChart>
         </ResponsiveContainer>
       </div>
+      <svg width="0" height="0">
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#82C408" />
+            <stop offset="100%" stopColor="#6D9D03" />
+          </linearGradient>
+        </defs>
+      </svg>
     </div>
   );
 };
