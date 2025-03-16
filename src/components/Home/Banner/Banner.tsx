@@ -22,7 +22,7 @@ const Banner = () => {
   }, [images.length]);
 
   // Countdown logic
-  const targetDate = new Date("2025-01-31T23:59:59").getTime();
+  const targetDate = new Date("2025-04-18T23:59:59").getTime();
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -57,20 +57,27 @@ const Banner = () => {
 
   return (
     <div className="relative w-full h-[60vh] sm:h-[100vh] lg:h-[65vh] overflow-hidden">
-      <div
-        className="absolute top-0 left-0 h-full w-full flex transition-transform duration-1000 ease-in-out"
-        style={{
-          transform: `translateX(-${currentImage * 100}%)`,
-        }}
-      >
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className="min-w-full h-full bg-cover bg-center"
-            style={{ backgroundImage: `url(${image})` }}
-          ></div>
-        ))}
-      </div>
+<div
+  className="absolute top-0 left-0 h-full w-full flex transition-transform duration-1000 ease-in-out"
+  style={{
+    transform: `translateX(-${currentImage * 100}%)`,
+  }}
+>
+  {images.map((image, index) => (
+    <div
+      key={index}
+      className="min-w-full h-full bg-cover  "
+      style={{
+        backgroundImage: `url(${image})`,
+        backgroundSize: "cover", 
+        backgroundRepeat: "no-repeat", 
+      
+      }}
+    ></div>
+  ))}
+</div>
+
+
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -81,31 +88,36 @@ const Banner = () => {
           Welcome to Jhotpot Store
         </h1>
 
-        {/* Countdown Timer */}
-        <div className="mt-6 sm:mt-8 text-center">
-          <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4">
-            Start Your New Year Buy Something Fresh!
-          </h2>
-          <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-8">
-  {["Days", "Hours", "Minutes", "Seconds"].map((unit, index) => (
-    <div key={unit} className="text-center flex flex-col items-center">
-      {/* Countdown Value */}
-      <div className="relative flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28  rounded-full shadow-lg">
-        <span className="text-white text-4xl font-extrabold">
-          {[timeLeft.days, timeLeft.hours, timeLeft.minutes, timeLeft.seconds][index]}
-        </span>
-        <div className="absolute inset-0 rounded-lg border-2 border-[#82C408] "></div>
-      </div>
+     {/* Countdown Timer */}
+<div className="mt-6 sm:mt-8 text-center">
+  <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4">
+    Start Your New Year Buy Something Fresh!
+  </h2>
+  <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-8">
+    {["Days", "Hours", "Minutes", "Seconds"].map((unit, index) => (
+      <div key={unit} className="text-center flex flex-col items-center">
+        {/* Countdown Value with Unique Shape */}
+        <div
+          className="relative flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28  text-white text-4xl font-extrabold shadow-lg"
+          style={{
+            clipPath: "polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%)"
+          }}
+        >
+          <span>
+            {[timeLeft.days, timeLeft.hours, timeLeft.minutes, timeLeft.seconds][index]}
+          </span>
+          <div className="absolute inset-0 border-4 border-[#82C408]"></div>
+        </div>
 
-      {/* Countdown Unit */}
-      <p className="mt-3 text-gray-200 font-semibold text-sm sm:text-lg uppercase tracking-wide">
-        {unit}
-      </p>
-    </div>
-  ))}
+        {/* Countdown Unit */}
+        <p className="mt-3 text-gray-200 font-semibold text-sm sm:text-lg uppercase tracking-wide">
+          {unit}
+        </p>
+      </div>
+    ))}
+  </div>
 </div>
 
-        </div>
 
         {/* Buy Now Button */}
         <div className="mt-6 sm:mt-8">

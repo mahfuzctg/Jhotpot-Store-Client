@@ -18,6 +18,7 @@ const ScrollingMarquee = () => {
     <span
       key={index}
       className="flex items-center space-x-6 text-2xl font-bold transition-all duration-300 transform hover:scale-110 hover:text-[#fff] hover:rotate-3 hover:shadow-lg"
+
     >
       <span className="text-4xl">{keyword.emoji}</span>
       <span className="text-[#F7F7F7]">{keyword.name}</span>
