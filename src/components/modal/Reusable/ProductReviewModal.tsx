@@ -87,7 +87,7 @@ const ProductReviewModal = ({ onClose, singleOrder }: ReviewModalProps) => {
                       {...field}
                       placeholder="Enter product review"
                       rows={4}
-                      className="w-full box-border p-6 rounded-md border border-gray-300 outline-none invalid:border-primary transition placeholder-slate-400 focus:ring-1 focus:border-primary focus:ring-primary text-white"
+                      className="w-full box-border p-6 rounded-md border border-gray-300 outline-none invalid:border-primary transition placeholder-slate-400 focus:ring-1 focus:border-primary focus:ring-primary text-gray-500"
                     />
                   )}
                 />

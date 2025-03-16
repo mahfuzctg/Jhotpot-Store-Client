@@ -53,7 +53,7 @@ const MyOrders = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
-      className="w-full max-w-6xl mx-auto p-4 lg:p-6"
+      className="w-full max-w-7xl mx-auto p-4 lg:p-6"
     >
       <Title sub="Track and manage all your recent orders effortlessly." heading="Order Management" />
       {isLoading ? (
@@ -61,7 +61,7 @@ const MyOrders = () => {
       ) : (
         <div className="bg-white rounded-2xl shadow-xl border-t-4 border-[#70B103] overflow-hidden">
           {/* Table Header */}
-          <div className="bg-[#70B103] text-gray-700 py-3 px-6 rounded-t-lg">
+          <div className="bg-[#70B103] text-white text-center py-3 px-6 rounded-t-lg">
             <h2 className="text-lg font-semibold">Your Recent Orders</h2>
           </div>
 
@@ -73,15 +73,17 @@ const MyOrders = () => {
               msOverflowStyle: "none",
             }}
           >
-            <table className="w-[90%] mx-auto table-fixed lg:table-auto">
-              <thead className="bg-gray-100 text-gray-700  ">
-                <tr className="text-left text-sm lg:text-base   ">
+            <table className="w-full">
+              <thead>
+                <tr className=" text-sm  text-center  lg:text-base   ">
                   <th className="py-3 px-4">No.</th>
                   <th className="py-3 px-4">Product</th>
                   <th className="py-3 px-4">Shop</th>
                   <th className="py-3 px-4">Quantity</th>
+             
                   <th className="py-3 px-4">Total Price</th>
                   <th className="py-3 px-4">Action</th>
+               
                 </tr>
               </thead>
               <tbody>
@@ -89,31 +91,29 @@ const MyOrders = () => {
                   customerOrders?.data?.map(
                     (singleOrder: IOrder, index: number) => {
                       return (
-                        <tr key={index} className="rounded-lg ">
+                        <tr key={index} className="rounded-lg">
                           <th className="text-gray-700">
                             {index + 1 + (currentPage - 1) * dataPerPage}
                           </th>
-                          <td className="flex justify-evently items-center">
+                          <td className="flex justify-center items-center ">
                             <img
                               src={singleOrder?.orderDetails[0]?.product?.image[0]}
                               alt="product"
                               className="w-20 h-20 rounded-xl object-cover"
                             />
                           </td>
-                          <td className="text-gray-700 font-semibold">
+                          <td className="text-gray-700 font-semibold  text-center">
                             {singleOrder?.orderDetails[0]?.product?.name}
                           </td>
-                          <td className="font-semibold text-center text-gray-700">
+                          <td className="font-semibold text-center text-gray-700 ">
                             {singleOrder?.orderDetails[0]?.quantity}
                           </td>
-                          <td className="font-semibold text-gray-700">
-                            {singleOrder?.vendor?.shopName}
-                          </td>
-                          <td className="font-semibold text-orange-500">
+                        
+                          <td className="font-semibold text-orange-500 text-center">
                             <span>$</span>
                             {(singleOrder?.totalPrice).toFixed(2)}
                           </td>
-                          <td className="font-semibold text-orange-500">
+                          <td className="font-semibold text-orange-500 text-center">
                             <button
                               onClick={() => handleAddReviewClick(singleOrder)}
                               className="relative h-10 w-30 origin-top transform rounded-lg border-2 border-[#70B103] text-black before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-gray-700 hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3 text-xs"

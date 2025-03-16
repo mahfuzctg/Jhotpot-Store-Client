@@ -60,16 +60,16 @@ const OrderList = () => {
               }}
               className="overflow-x-auto mt-8"
             >
-              <table className="table">
+              <table className="table text-center">
                 {/* head */}
                 <thead className="text-lg">
                   <tr>
-                    <th className="text-gray-300">No.</th>
-                    <th className="text-gray-300">Product Image</th>
-                    <th className="text-gray-300">Product</th>
-                    <th className="text-gray-300">Quantity</th>
-                    <th className="text-gray-300">Customer Name</th>
-                    <th className="text-gray-300">Total Price</th>
+                    <th className="text-gray-700">No.</th>
+                    <th className="text-gray-700">Product Image</th>
+                    <th className="text-gray-700">Product</th>
+                    <th className="text-gray-700">Quantity</th>
+                    <th className="text-gray-700">Customer Name</th>
+                    <th className="text-gray-700">Total Price</th>
                     {/* <th className="text-gray-300">Action</th> */}
                   </tr>
                 </thead>
@@ -79,7 +79,7 @@ const OrderList = () => {
                       (singleOrder: IOrder, index: number) => {
                         return (
                           <tr key={index} className="rounded-lg">
-                            <th className="text-white">
+                            <th className="text-gray-600">
                               {index + 1 + (currentPage - 1) * dataPerPage}
                             </th>
                             <td className="flex justify-center items-center">
@@ -92,24 +92,20 @@ const OrderList = () => {
                                 className="w-12 h-12 rounded-xl object-cover"
                               />
                             </td>
-                            <td className="text-white font-semibold">
+                            <td className="text-gray-600 font-semibold">
                               {singleOrder?.orderDetails[0]?.product?.name}
                             </td>
-                            <td className="font-semibold text-center text-white">
+                            <td className="font-semibold text-center text-gray-600">
                               {singleOrder?.orderDetails[0]?.quantity}
                             </td>
-                            <td className="font-semibold text-white">
+                            <td className="font-semibold text-gray-600">
                               {singleOrder?.customer?.name}
                             </td>
-                            <td className="font-semibold text-white">
+                            <td className="font-semibold text-gray-600">
                               <span>$</span>
                               {(singleOrder?.totalPrice).toFixed(2)}
                             </td>
-                            {/* <td className="">
-                              <button className="relative h-10 w-30 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold px-3 text-xs">
-                                Add Review
-                              </button>
-                            </td> */}
+                            
                           </tr>
                         );
                       }

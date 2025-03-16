@@ -84,21 +84,21 @@ const Banner = () => {
 
       {/* Content */}
       <div className="absolute inset-0 flex flex-col justify-center items-center text-white  px-4">
-        <h1 className="text-3xl md:text-5xl text-center font-bold uppercase">
+        <h1 className="text-xl md:text-5xl text-center font-bold uppercase">
           Welcome to Jhotpot Store
         </h1>
 
      {/* Countdown Timer */}
-<div className="mt-6 sm:mt-8 text-center">
-  <h2 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4">
+<div className="my-8  text-center">
+  <h2 className="text-md  md:text-2xl font-bold mb-4">
     Start Your New Year Buy Something Fresh!
   </h2>
-  <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mt-8">
+  <div className="flex flex-wrap justify-center gap-6">
     {["Days", "Hours", "Minutes", "Seconds"].map((unit, index) => (
       <div key={unit} className="text-center flex flex-col items-center">
         {/* Countdown Value with Unique Shape */}
         <div
-          className="relative flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28  text-white text-4xl font-extrabold shadow-lg"
+          className="relative flex items-center justify-center w-16 h-16 md:w-24 md:h-24 sm:w-28 sm:h-28  text-white text-4xl font-extrabold shadow-lg"
           style={{
             clipPath: "polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%)"
           }}

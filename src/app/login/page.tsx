@@ -21,9 +21,11 @@ import { setUser, TUser } from "@/src/lib/redux/features/auth/auth.slice";
 import loginValidationSchema from "@/src/schema/login.schema";
 import registerValidationSchema from "@/src/schema/register.schema";
 
+
 export type TLogin = {
   email: string;
   password: string;
+  defaultValue?: string;  
 };
 
 export default function Login() {
@@ -38,6 +40,9 @@ export default function Login() {
   const [isLogInSuccess, setIsLogInSuccess] = useState(false);
    // Demo credentials for testing
    const [demoUser, setDemoUser] = useState<{ email?: string; password?: string }>({});
+
+
+  //  END of testing code ==========
   useEffect(() => {
     if (isLogInSuccess) {
       if (selectedRole === "User") {
@@ -49,11 +54,12 @@ export default function Login() {
       }
     }
   }, [isLogInSuccess, redirect, router]);
-
+ 
   const handleLogin: SubmitHandler<FieldValues> = async (data) => {
     toast.loading("Loading...");
-    
 
+    
+ 
     try {
       const res = await loginUser(data);
 
@@ -168,7 +174,8 @@ export default function Login() {
                   type="email"
                   pathname="/login"
                   variant="bordered"
-                  defaultValue={demoUser?.password || ""}
+             
+                  
                 />
               </div>
               <div className="">
@@ -177,6 +184,7 @@ export default function Login() {
                   label="Password"
                   type="password"
                   variant="bordered"
+              
                 />
               </div>
 
