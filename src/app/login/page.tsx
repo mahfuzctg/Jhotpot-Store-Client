@@ -123,7 +123,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 sm:px-8 py-10 xl:py-0">
-      <div className="relative border-2 border-primary text-gray-700 rounded-2xl shadow-lg overflow-hidden w-[850px] max-w-full lg:min-h-[570px] min-h-[620px] md:min-h-[580px]">
+      <div className="relative border-2 border-primary text-gray-700 rounded-2xl shadow-lg overflow-hidden w-[90%] md:w-[800px] md:max-w-full lg:min-h-[570px] min-h-[620px] md:min-h-[580px]">
         {/* Form Containers */}
         
         {/* Sign In Part */}
@@ -134,17 +134,17 @@ export default function Login() {
               : "translate-x-0 opacity-100 z-20"
           } w-full lg:w-1/2`}
         >
-          <div className="flex flex-col items-center justify-center h-full px-10 text-gray-700">
+          <div className="flex flex-col items-center justify-center h-full roun px-10 text-gray-700">
             <Link href={"/"}>
               <Image
                 src={logo}
                 alt="logo"
                 height={100}
                 width={100}
-                className="flex py-1"
+                className="flex py-1 rounded-full"
               />
             </Link>
-            <h1 className="text-xl font-semibold my-5">Login with Demo Account</h1>
+            <h1 className="text-xl font-semibold my-5 text-center uppercase">Login Now!</h1>
          
             <div className="flex justify-center gap-4 mt-4">
               <button
@@ -225,10 +225,10 @@ export default function Login() {
                 alt="logo"
                 height={100}
                 width={100}
-                className="flex py-1"
+                className="flex py-1 rounded-full"
               />
             </Link>
-            <h1 className="text-2xl font-semibold mt-4 mb-2">Create Account</h1>
+            <h1 className="text-2xl font-semibold mt-4 mb-2 uppercase">Create Account</h1>
 
             <div className="relative flex justify-center items-center gap-1 my-3">
               {/* Dropdown Trigger */}
@@ -345,6 +345,13 @@ export default function Login() {
         <div className="lg:hidden absolute bottom-5 left-1/2 transform  -translate-x-1/2 text-center z-50 w-60 md:w-auto">
           <p>
             {" "}
+
+
+
+
+
+
+
             {isActive
               ? "Already have an account?"
               : "Don't have an account?"}{" "}

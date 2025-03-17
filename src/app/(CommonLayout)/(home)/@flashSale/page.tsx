@@ -5,6 +5,7 @@ import ProductLoading from "@/src/components/LoadingCards/ProductLoading";
 import Title from "@/src/components/Sections/title";
 import { useGetAllProductsQuery } from "@/src/lib/redux/features/products/product.api";
 import { IProduct } from "@/src/types/schema";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 
@@ -70,9 +71,9 @@ const FlashSale = () => {
 
       {/* View All Button */}
       <div className="flex justify-center items-center ">
-        <button className="relative h-12 w-30 origin-top transform rounded-lg border-2 border-[#def8ae] text-gray-800 before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-[#6EAE03] uppercase font-bold px-3">
+     <Link href={"/allProducts"}>   <button className="relative h-12 w-30 origin-top transform rounded-lg border-2 border-[#def8ae] text-gray-800 before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-white hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-[#6EAE03] uppercase font-bold px-3">
           View All Products
-        </button>
+        </button></Link>
       </div>
     </div>
  </div>

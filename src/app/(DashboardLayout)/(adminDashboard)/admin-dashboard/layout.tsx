@@ -87,7 +87,7 @@ export default function AdminDashboardLayout({
   ];
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen ">
       {/* Sidebar */}
       <Sidebar links={adminLinks} commonLinks={commonLinks} />
 

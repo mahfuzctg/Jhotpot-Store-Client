@@ -67,7 +67,7 @@ import { Eye, House, KeyRound, Package2, ShoppingBag, Store, TicketPercent, User
      return (
        <div className="flex min-h-screen bg-white text-black">
          {/* Sidebar */}
-         <div className="bg-[#FFFFFF] border-r-2 text-black w-64 p-4 shadow-lg fixed left-0 top-0 h-full flex flex-col justify-between">
+         <div className="bg-[#e67a7a] hidden border-r-2 text-black w-64 p-4 shadow-lg fixed left-0 top-0 h-full ">
            <div>
              {/* Logo or Sidebar Title */}
              <h2 className="text-2xl font-bold mb-8 text-center">JHOTPOT-STORE</h2>
