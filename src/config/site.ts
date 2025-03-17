@@ -23,10 +23,10 @@ export const siteConfig = {
       label: "Flash Sale",
       href: "/flashSale",
     },
-    {
-      label: "Shop",
-      href: "/shop",
-    },
+    // {
+    //   label: "Shop",
+    //   href: "/shop",
+    // },
     {
       label: "Contact",
       href: "/contact",

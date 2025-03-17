@@ -203,7 +203,7 @@ const ProductDetails = () => {
                 {data?.image?.map((singleImage: string, index: number) => (
                   <div
                     key={index}
-                    className={`relative rounded-lg border-2 cursor-pointer ${
+                    className={`relative rounded-lg p-4 border-2 cursor-pointer ${
                       singleImage === selectedImage
                         ? "border-primary"
                         : "border-gray-300"
@@ -228,9 +228,9 @@ const ProductDetails = () => {
                 <Image
                   src={selectedImage}
                   alt="Selected Product Image"
-                  height={400}
-                  width={400}
-                  className="rounded-lg object-cover h-[450px]"
+                  height={500}
+                  width={500}
+                  className="rounded-lg  h-[450px] my-auto"
                 />
               )}
             </div>
@@ -238,7 +238,7 @@ const ProductDetails = () => {
               <h1 className="text-primary text-3xl md:text-4xl">
                 {data?.name}
               </h1>
-              <p className="text-gray-700 max-w-lg text-center lg:text-left">
+              <p className="text-gray-700 max-w-lg  lg:text-left px-4 md:px-0 text-justify ">
                 {data?.description}
               </p>
               <div className="flex text-gray-800  gap-2 items-end">
@@ -356,12 +356,12 @@ const ProductDetails = () => {
             </div>
           </div>
 
-          <div className="my-14">
+          <div className="my-14 ">
             <div className="flex justify-center gap-8 mb-8">
               <button
-                className={`pb-2 text-lg font-medium ${
+                className={`pb-2 text-lg  font-medium ${
                   activeTab === "Related Products"
-                    ? "border-b-2 border-primary text-primary"
+                    ? "border-b-2  border-primary text-primary "
                     : "text-gray-400"
                 }`}
                 onClick={() => setActiveTab("Related Products")}
@@ -384,7 +384,7 @@ const ProductDetails = () => {
             <div>
               {activeTab === "Related Products" && (
                 <div>
-                  {/* Your Code Tab Content */}
+                  {/*  Code Tab Content */}
                   <div className="w-full lg:w-11/12 xl:w-4/5  mx-auto my-8">
                     <Swiper
                       spaceBetween={30}
@@ -394,7 +394,7 @@ const ProductDetails = () => {
                       }}
                       navigation={true}
                       modules={[Navigation]}
-                      className="mySwiper"
+                      className="mySwiper "
                       breakpoints={{
                         640: { slidesPerView: 1 },
                         768: { slidesPerView: 2 },
@@ -423,7 +423,7 @@ const ProductDetails = () => {
                               (singleProduct: IProduct, index: number) => (
                                 <SwiperSlide
                                   key={index}
-                                  className="px-10 md:px-5 lg:px-0"
+                                  className="px-10 md:px-5 lg:px-0 "
                                 >
                                   <HomeProductCard
                                     singleProduct={singleProduct}

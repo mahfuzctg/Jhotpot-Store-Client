@@ -3,6 +3,7 @@ export const protectedRoutes = [
   "/recentView",
   "/shop",
   "/checkout",
+
   "/customer-dashboard",
   "/vendor-dashboard",
   "/admin-dashboard",

@@ -109,9 +109,9 @@ const FlashSale = () => {
   return (
     <div className="pb-16">
       {/* Filter and Sidebar */}
-      <div className="flex flex-col xl:flex-row gap-4 md:w-[95%] mx-auto pt-8 px-3">
+      <div className="flex flex-col xl:flex-row gap-4 md:w-[95%]  mx-auto pt-8 px-3">
         {/* Sidebar - Filters */}
-        <div className="w-full xl:w-[18%] space-y-8">
+        <div className="w-full xl:w-[18%]  space-y-12 items-center mt-0 md:mt-0 xl:mt-28">
   {/* Search Input */}
   <input
     type="text"
@@ -188,7 +188,7 @@ const FlashSale = () => {
       value={[minPrice, maxPrice]}
       onChange={handleSliderChange}
     />
-    <p className="text-xl font-medium text-gray-800">
+    <p className="text-xl text-center font-medium text-gray-800">
       Price Range: ${minPrice} - ${maxPrice}
     </p>
   </div>

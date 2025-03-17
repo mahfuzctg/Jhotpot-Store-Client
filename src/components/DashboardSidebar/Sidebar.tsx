@@ -127,11 +127,11 @@ const Sidebar = ({ links, commonLinks }: SidebarProps) => {
                   <>
                     {userData?.userData?.role === "VENDOR" ? (
                       <Image
-                        src={userData?.userData?.logo}
+                        src={"https://i.postimg.cc/hPwrW3xF/smile.webp"}
                         alt="logo"
                         height={90}
-                        width={160}
-                        className="h-16 text-large object-contain"
+                        width={70}
+                        className="h-16 text-large rounded-full border border-[#82C408] p-1"
                       />
                     ) : (
                       <Avatar

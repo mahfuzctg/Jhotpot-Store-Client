@@ -40,6 +40,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 16px;
+
     /* Adjust this value to increase the distance between bullets */
 }
 
