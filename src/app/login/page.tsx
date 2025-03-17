@@ -1,9 +1,9 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/anchor-is-valid */ 
 "use client";
 
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
-import { FaGoogle, FaFacebookF, FaGithub, FaLinkedinIn } from "react-icons/fa";
+
 import logo from "@/src/assets/logo.jpg";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -15,12 +15,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useAppDispatch } from "@/src/lib/redux/hooks";
 import { verifyToken } from "@/src/utils/verifyToken";
 import toast from "react-hot-toast";
-import { IoIosArrowDropdownCircle } from "react-icons/io";
+
 import { loginUser, registerUser } from "@/src/utils/loginService";
 import { setUser, TUser } from "@/src/lib/redux/features/auth/auth.slice";
 import loginValidationSchema from "@/src/schema/login.schema";
-import registerValidationSchema from "@/src/schema/register.schema";
-
 
 export type TLogin = {
   email: string;
@@ -38,11 +36,19 @@ export default function Login() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [isLogInSuccess, setIsLogInSuccess] = useState(false);
-   // Demo credentials for testing
-   const [demoUser, setDemoUser] = useState<{ email?: string; password?: string }>({});
+  
+  // Demo credentials for testing
+  const [demoUser, setDemoUser] = useState<{ email?: string; password?: string }>({});
+  
+  // Set demo credentials
+  const handleCredentialClick = (role: "User" | "Admin") => {
+    if (role === "User") {
+      setDemoUser({ email: "customer@gmail.com", password: "password@A1" });
+    } else {
+      setDemoUser({ email: "admin@gmail.com", password: "password@A1" });
+    }
+  };
 
-
-  //  END of testing code ==========
   useEffect(() => {
     if (isLogInSuccess) {
       if (selectedRole === "User") {
@@ -58,8 +64,6 @@ export default function Login() {
   const handleLogin: SubmitHandler<FieldValues> = async (data) => {
     toast.loading("Loading...");
 
-    
- 
     try {
       const res = await loginUser(data);
 
@@ -101,12 +105,6 @@ export default function Login() {
     }
   };
 
-  const toggleDropdown = () => setIsOpen(!isOpen);
-  const handleSelection = (role: string) => {
-    setSelectedRole(role);
-    setIsOpen(false);
-  };
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -139,31 +137,42 @@ export default function Login() {
               <Image
                 src={logo}
                 alt="logo"
-                height={100}
-                width={100}
+                height={50}
+                width={50}
                 className="flex py-1 rounded-full"
               />
             </Link>
-            <h1 className="text-xl font-semibold my-5 text-center uppercase">Login Now!</h1>
-         
-            <div className="flex justify-center gap-4 mt-4">
+            <div className="bg-gray-50 p-6 rounded-lg shadow-lg mb-6">
+              <ul className="space-y-2 text-gray-700">
+                <li className="flex justify-between py-2 px-4 bg-gray-200 rounded-lg shadow-sm">
+                  <div className="flex w-1/2 justify-between">
+                    <span className="font-medium">Email:</span>
+                    <span>{demoUser.email}</span>
+                  </div>
+                  <div className="flex w-1/2 justify-between">
+                    <span className="font-medium">Password:</span>
+                    <span>{demoUser.password}</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div className="flex space-x-4">
               <button
-                onClick={() => setDemoUser({ email: 'mahfuz@gmail.com', password: 'xyz1234' })}
-                className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded-md text-black font-medium text-sm shadow-md transition-colors"
+                onClick={() => handleCredentialClick("User")}
+                className="px-4 py-2 bg-primary-500 text-white rounded-md"
               >
-                Login As User
+                Use Demo User
               </button>
               <button
-                onClick={() => setDemoUser({ email: 'admin@gmail.com', password: 'xyz1234' })}
-                className="bg-gray-100 hover:bg-gray-200 py-2 px-4 rounded-md text-black font-medium text-sm shadow-md transition-colors"
+                onClick={() => handleCredentialClick("Admin")}
+                className="px-4 py-2 bg-purple-600 text-white rounded-md"
               >
-                Login As Admin
+                Use Demo Admin
               </button>
             </div>
-           
 
             <SHForm
-             
               onSubmit={handleLogin}
               resolver={zodResolver(loginValidationSchema)}
             >
@@ -174,8 +183,7 @@ export default function Login() {
                   type="email"
                   pathname="/login"
                   variant="bordered"
-             
-                  
+                  defaultValue={demoUser.email}
                 />
               </div>
               <div className="">
@@ -184,7 +192,7 @@ export default function Login() {
                   label="Password"
                   type="password"
                   variant="bordered"
-              
+                  defaultValue={demoUser.password}
                 />
               </div>
 
@@ -209,163 +217,7 @@ export default function Login() {
             </SHForm>
           </div>
         </div>
-
-        {/* Sign Up Part */}
-        <div
-          className={`absolute top-0 left-0 h-full transition-all duration-700 ${
-            isActive
-              ? "translate-x-0 lg:translate-x-full opacity-100 z-20"
-              : "translate-x-full lg:translate-x-0 opacity-100 lg:opacity-0 z-10"
-          } w-full lg:w-1/2`}
-        >
-          <div className="flex flex-col items-center justify-center h-full px-10 text-gray-700">
-            <Link href={"/"}>
-              <Image
-                src={logo}
-                alt="logo"
-                height={100}
-                width={100}
-                className="flex py-1 rounded-full"
-              />
-            </Link>
-            <h1 className="text-2xl font-semibold mt-4 mb-2 uppercase">Create Account</h1>
-
-            <div className="relative flex justify-center items-center gap-1 my-3">
-              {/* Dropdown Trigger */}
-              <button
-                onClick={toggleDropdown}
-                className="flex items-center text-primary text-xl cursor-pointer"
-              >
-                <IoIosArrowDropdownCircle />
-              </button>
-
-              {/* Selected Role */}
-              <h1 className="text-center text-primary font-bold">
-                Register as {selectedRole}
-              </h1>
-
-              {/* Dropdown Menu */}
-              {isOpen && (
-                <div
-                  ref={dropdownRef}
-                  className="absolute top-[calc(100%+0.5rem)] left-0  border border-primary bg-black text-gray-700 shadow-lg rounded-md w-40 z-50"
-                >
-                  <div
-                    className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-gray-700"
-                    onClick={() => handleSelection("User")}
-                  >
-                    User
-                    {selectedRole === "User" && (
-                      <span className="ml-2 text-green-500">✔</span>
-                    )}
-                  </div>
-                  <div
-                    className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-gray-700"
-                    onClick={() => handleSelection("Vendor")}
-                  >
-                    Vendor
-                    {selectedRole === "Vendor" && (
-                      <span className="ml-2 text-green-500">✔</span>
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            <SHForm
-          
-              onSubmit={handleSignUp}
-              resolver={zodResolver(registerValidationSchema)}
-            >
-              <div className="py-2">
-                <SHInput
-                  name="name"
-                  label="Full Name"
-                  type="text"
-                  variant="bordered"
-                />
-              </div>
-              <div className="pb-2">
-                <SHInput
-                  name="email"
-                  label="Email"
-                  type="email"
-                  pathname="/login"
-                  variant="bordered"
-                />
-              </div>
-              <div className="pb-2">
-                <SHInput
-                  name="password"
-                  label="Password"
-                  type="password"
-                  variant="bordered"
-                />
-              </div>
-
-              <div className="flex justify-center items-center mt-3 mb-10">
-                <button
-                  type="submit"
-                  className="relative h-10 w-24 origin-top transform rounded-lg border-2 border-primary text-primary before:absolute before:top-0 before:block before:h-0 before:w-full before:duration-500 hover:text-gray-700 hover:before:absolute hover:before:left-0 hover:before:-z-10 hover:before:h-full hover:before:bg-primary uppercase font-bold"
-                >
-                  Sign Up
-                </button>
-              </div>
-            </SHForm>
-          </div>
-        </div>
-
-        {/* Toggle Panels */}
-        <div
-          className={`hidden absolute top-0 left-1/2 w-full h-1/2 md:h-full md:w-1/2 transition-all duration-700 bg-[#82C408] text-white  lg:flex flex-col items-center justify-center px-6 ${
-            isActive
-              ? "translate-x-[-100%] rounded-r-[30%]"
-              : "translate-x-0 rounded-l-[30%]"
-          }`}
-        >
-          <div className="text-center">
-            <h1 className="text-4xl font-bold mb-2">
-              {isActive ? "Welcome Back!" : "Welcome, Friend!"}
-            </h1>
-            <p className="mb-5">
-              {isActive
-                ? "Enter your personal details to sign in."
-                : "Create your account to get started."}
-            </p>
-            <button
-              onClick={() => setIsActive(!isActive)}
-              className="px-6 py-2 bg-transparent border-2 border-white rounded-lg uppercase font-bold"
-            >
-              {isActive ? "Sign In" : "Sign Up"}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Toggle Text */}
-        <div className="lg:hidden absolute bottom-5 left-1/2 transform  -translate-x-1/2 text-center z-50 w-60 md:w-auto">
-          <p>
-            {" "}
-
-
-
-
-
-
-
-            {isActive
-              ? "Already have an account?"
-              : "Don't have an account?"}{" "}
-            <button
-              onClick={() => setIsActive(!isActive)}
-              className="text-primary font-bold hover:underline"
-            >
-              {" "}
-              {isActive ? "Login Now!" : "Sign Up Now!"}{" "}
-            </button>{" "}
-          </p>
-        </div>
       </div>
     </div>
   );
 }
-

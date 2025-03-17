@@ -9,6 +9,7 @@ interface IProps {
   required?: boolean;
   label: string;
   name: string;
+  defaultValue?: string; 
   color?:
     | "primary"
     | "default"
