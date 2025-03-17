@@ -61,7 +61,7 @@ const Sidebar = ({ links, commonLinks }: SidebarProps) => {
     <div>
       <div
         id="view"
-        className="h-full flex flex-row drawer lg:drawer-open"
+        className="h-full  flex flex-row drawer lg:drawer-open"
         // eslint-disable-next-line react/no-unknown-property
         x-data="{ sidenav: true }"
       >
@@ -104,7 +104,7 @@ const Sidebar = ({ links, commonLinks }: SidebarProps) => {
             aria-label="close sidebar"
             className="drawer-overlay"
           />
-          <div className="menu p-4 w-64 md:w-80 min-h-full bg-base-200 text-base-content">
+          <div className="menu p-4 w-64 md:w-80 min-h-full bg-[#FDFFF8] text-base-content border-r-5 over">
             <div className="space-y-3">
               {/* Company logo */}
               <div className="mb-5 flex justify-center items-center">

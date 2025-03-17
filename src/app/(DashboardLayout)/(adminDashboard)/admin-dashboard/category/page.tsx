@@ -62,7 +62,7 @@ const CategoryManagement = () => {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-5 mr-5 lg:mr-0">
+          <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-5 mr-5 lg:mr-0">
             {paginatedCategories?.map((singleCategory: ICategory) => (
               <DashboardCategoryCard
                 key={singleCategory?.id}

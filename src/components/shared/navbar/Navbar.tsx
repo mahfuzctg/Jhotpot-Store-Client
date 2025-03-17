@@ -95,23 +95,24 @@ export default function Navbar() {
         }}
       >
         {/* Logo Section - Left */}
-        <NavbarBrand className=" flex items-center">
-          <div className="lg:hidden">
-            <NavbarMenuToggle />
-          </div>
-          <Link href="/" className="flex items-center">
-            <Image
-              src={logo}
-              alt="logo"
-              height={50}
-              width={50}
-              className="hidden lg:flex  rounded-full"
-            />
-            <span className="ml-4 text-white font-semibold ">
-              JHOTPOT <span className="text-black">STORE</span>
-            </span>
-          </Link>
-        </NavbarBrand>
+        <NavbarBrand className="flex items-center ">
+  <div className="lg:hidden overflow-hidden ">
+    <NavbarMenuToggle />
+  </div>
+  <Link href="/" className="flex items-center overflow-hidden max-w-full">
+    <Image
+      src={logo}
+      alt="logo"
+      height={50}
+      width={50}
+      className="hidden lg:flex rounded-full"
+    />
+    <span className="ml-4 text-white font-semibold truncate whitespace-nowrap">
+      JHOTPOT <span className="text-black">STORE</span>
+    </span>
+  </Link>
+</NavbarBrand>
+
 
         {/* Routes Section - Center */}
         <NavbarContent justify="center" className="lg:flex hidden gap-6">

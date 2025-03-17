@@ -101,7 +101,7 @@ const VendorManagement = () => {
             >
               <table className="table">
                 {/* head */}
-                <thead className="text-lg">
+                <thead className="text-lg text-center">
                   <tr>
                     <th className="text-gray-300">No.</th>
                     <th className="text-gray-300">Shop Logo</th>
@@ -117,7 +117,7 @@ const VendorManagement = () => {
                       (singleVendor: IUser, index: number) => {
                         console.log(singleVendor?.vendor);
                         return (
-                          <tr key={index} className="rounded-lg">
+                          <tr key={index} className="rounded-lg text-center">
                             <th className="text-gray-800">
                               {index + 1 + (currentPage - 1) * dataPerPage}
                             </th>

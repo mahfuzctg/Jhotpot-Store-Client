@@ -99,7 +99,7 @@ const CustomerManagement = () => {
             >
               <table className="table">
                 {/* head */}
-                <thead className="text-lg">
+                <thead className="text-lg text-center">
                   <tr>
                     <th className="text-gray-300">No.</th>
                     <th className="text-gray-300">Profile Photo</th>
@@ -115,8 +115,8 @@ const CustomerManagement = () => {
                     allCustomers?.data?.map(
                       (singleCustomer: IUser, index: number) => {
                         return (
-                          <tr key={index} className="rounded-lg">
-                            <th className="text-gray-800">
+                          <tr key={index} className="rounded-lg" >
+                            <th className="text-gray-800 text-center" >
                               {index + 1 + (currentPage - 1) * dataPerPage}
                             </th>
                             <td className="flex justify-center items-center">
@@ -126,19 +126,20 @@ const CustomerManagement = () => {
                                 className="w-12 h-12 object-cover rounded-full"
                               />
                             </td>
-                            <td className="text-gray-800 font-semibold">
+                            <td className="text-gray-800 font-semibold text-center">
                               {singleCustomer?.customer?.name}
                             </td>
                             <td className="font-semibold text-center text-gray-800">
                               {singleCustomer?.email}
                             </td>
-                            <td className="font-semibold text-gray-800">
-                              {singleCustomer?.customer?.address}
-                            </td>
-                            <td className="font-semibold text-gray-800">
-                              {singleCustomer?.customer?.phone}
-                            </td>
-                            <td className="">
+                            <td className="font-semibold text-gray-800 text-center">
+  {singleCustomer?.customer?.address ? singleCustomer.customer.address : "N/A"}
+</td>
+<td className="font-semibold text-gray-800 text-center">
+  {singleCustomer?.customer?.phone ? singleCustomer.customer.phone : "N/A"}
+</td>
+
+                            <td className=" text-center">
                               {singleCustomer?.status === "ACTIVE" ? (
                                 <button
                                   onClick={() =>
